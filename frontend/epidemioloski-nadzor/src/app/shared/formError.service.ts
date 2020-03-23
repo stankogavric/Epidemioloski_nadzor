@@ -6,20 +6,20 @@ import { Injectable } from '@angular/core';
 })
 export class FormErrorService {
     patternMap = {
-        '^[0-9]{13}$': " must be 13 characters long",
-        '^[a-zA-Z]{3,}$': " must have at least 3 characters, and can't contain white space",
-        '^[0-9]$': " must be number",
-        '^[a-zA-Z]$': " must be letter"
+        '^[0-9]{13}$': " mora imati 13 kraktera",
+        '^[a-zA-Z]{3,}$': " mora imati najmanje 3 kraktera i bez razmaka",
+        '^[0-9]$': " mora biti broj",
+        '^[a-zA-Z]$': " mora biti slovo"
     }
 
     errorMap: { 
         [key: string]: (c: FormControl, name: string) => string } = {
-        'required': (c: FormControl, name: string) => `${name} is required`,
-        'email': (c: FormControl, name: string) => `${c.value} is not a valid email`,
-        'maxlength': (c: FormControl, name: string) => `${name} can't have more than ${c.errors['minlength']['requiredLength']} characters`,
-        'minlength': (c: FormControl, name: string) => `${name} must have at least ${c.errors['minlength']['requiredLength']} characters`,
-        'mustMatch': (c: FormControl, name: string) => `${name} must match password`,
-        'invalidMimeType': (c: FormControl, name: string) => `Invalid type, only png and jpg are supported for ${name}`,
+        'required': (c: FormControl, name: string) => `Ovo polje je obavezno`,
+        'email': (c: FormControl, name: string) => `${c.value} nije ispravna e-pošta`,
+        'maxlength': (c: FormControl, name: string) => `${name} ne može imati više od ${c.errors['minlength']['requiredLength']} karaktera`,
+        'minlength': (c: FormControl, name: string) => `${name} mora imati najmanje ${c.errors['minlength']['requiredLength']} karaktera`,
+        'mustMatch': (c: FormControl, name: string) => `${name} se mora slagati sa lozinkom`,
+        'invalidMimeType': (c: FormControl, name: string) => `Pogrešan tip, samo png i jpg su podržani za ${name}`,
         'pattern' (c: FormControl, name: string) {
             return `${name} ${this.patternMap[c.errors['pattern']['requiredPattern']]}`
         }
@@ -30,7 +30,7 @@ export class FormErrorService {
             if(this.errorMap[Object.keys(control.errors || {})[0]]){
                 return this.errorMap[Object.keys(control.errors || {})[0]].bind(this)(control, name);
             }
-            return "Unsupported error";
+            return "Nepodržana greška";
         }
     }
 

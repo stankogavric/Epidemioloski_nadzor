@@ -1,0 +1,29 @@
+/* Customs */
+
+.login-div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login-card {
+    background-color: rgb(200, 255, 215);
+}
+
+.password-form {
+    margin-top: 10px
+}
+
+.login-button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.login-button:hover {
+    // color: rgb(200, 255, 215);
+    transform:scale(1.1,1.1);
+    -webkit-transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+}
