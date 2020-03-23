@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { PatientsComponent } from './patients/patients.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientComponent } from './patients/patient/patient.component';
+import { RegisterComponent } from './users/register/register.component';
+import { LoginComponent } from './users/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientsComponent,
-    PatientComponent
+    PatientComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<div class="login-div">
+    <mat-card class="login-card">
+        <img src="https://izjzv.org.rs/images/logo.png" alt="IZJZV"><br>
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+            <mat-form-field>
+                <input matInput name="username" ngModel type="text" placeholder="Unesite broj telefona" #usernameInput="ngModel"
+                    required>
+                <mat-error>{{formError.mapErrors(usernameInput, 'Broj telefona')}}</mat-error>
+            </mat-form-field><br>
+            <mat-form-field class="password-form">
+                <input type="password" name="password" ngModel matInput placeholder="Unesite lozinku" #passwordInput="ngModel"
+                    required>
+                <mat-error>{{formError.mapErrors(passwordInput, 'Lozinka')}}</mat-error>
+            </mat-form-field><br>
+            <button [routerLink]='["/patients"]' class="login-button" mat-raised-button color="primary" type="submit">Prijavi se</button>
+        </form>
+    </mat-card>
+</div>
