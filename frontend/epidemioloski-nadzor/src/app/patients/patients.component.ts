@@ -14,7 +14,7 @@ export class PatientsComponent implements OnInit {
 
   patients : Patient[] = [];
   patient : Patient = new Patient();
-  displayedColumns: string[] = ['no', 'firstName', 'lastName', 'jmbg', 'phone', 'actions'];
+  displayedColumns: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone', 'actions'];
   dataSource = new MatTableDataSource<Patient>(this.patients);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -57,7 +57,7 @@ export class PatientsComponent implements OnInit {
     */
   }
 
-  delete(id: string){/*
+  delete(id: number){/*
     this.studentService.delete(id).subscribe((data: any) => {
       this.getAll();
       this.snackBarService.openSnackBar("Successfully deleted student", "X")
@@ -82,7 +82,7 @@ export class PatientsComponent implements OnInit {
     });
   }
 */
-  openDialog(id: string): void {
+  openDialog(patient: Patient): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
       data: {title: "Delete patient", content: "Are you sure you want to delete this patient?"}
@@ -90,7 +90,7 @@ export class PatientsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.delete(id);
+        this.delete(patient.id);
       };
     });
   }

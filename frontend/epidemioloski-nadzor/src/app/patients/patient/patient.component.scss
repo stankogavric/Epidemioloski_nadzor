@@ -6,3 +6,16 @@
     background-color: green;
     color: white;
 }
+
+table {
+    width: 100%;
+}
+
+.search {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-tab-labels :last-child {
+    opacity: unset;
+}
