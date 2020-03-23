@@ -3,6 +3,7 @@ import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { SnackBarService } from 'src/app/shared/snack-bar.service';
 import { Patient } from './patient.model';
+import { PatientService } from './patients.service';
 
 @Component({
   selector: 'app-patients',
@@ -11,23 +12,34 @@ import { Patient } from './patient.model';
 })
 export class PatientsComponent implements OnInit {
 
-  students : Patient[] = [];
-  student : Patient = new Patient();
-  displayedColumns: string[] = ['no', 'firstName', 'lastName', 'personalNumber', 'profilePicturePath', 'country', 'city', 'street', 'streetNumber', 'email', 'username', 'actions'];
-  dataSource = new MatTableDataSource<Patient>(this.students);
+  patients : Patient[] = [];
+  patient : Patient = new Patient();
+  displayedColumns: string[] = ['no', 'firstName', 'lastName', 'jmbg', 'phone', 'actions'];
+  dataSource = new MatTableDataSource<Patient>(this.patients);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog, private snackBarService: SnackBarService) { }
+  constructor(public dialog: MatDialog, private snackBarService: SnackBarService, private patientsService: PatientService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
 
-  getAll(){/*
-    this.studentService.getAll().subscribe((data: Patient[]) => {
-      this.students = data;
+  getAll(){
+    this.patients = this.patientsService.getAll();
+    let data = this.patients;
+    this.dataSource.data = data;
+    this.dataSource.filterPredicate = function(data, filter): boolean {
+      return data.personalInfo.firstname.toLowerCase().includes(filter) ||
+        data.personalInfo.lastname.toLowerCase().includes(filter) || 
+        data.personalInfo.jmbg.toLowerCase().includes(filter) ||
+        data.personalInfo.phone.toLowerCase().includes(filter);
+    };
+
+    /*
+    this.patientsService.getAll().subscribe((data: Patient[]) => {
+      this.patients = data;
       this.dataSource.data = data;
       this.dataSource.filterPredicate = function(data, filter): boolean {
         return data.personalData.firstName.toLowerCase().includes(filter) ||
@@ -41,7 +53,8 @@ export class PatientsComponent implements OnInit {
                 data.accountData.email.toLowerCase().includes(filter) ||
                 data.accountData.username.toLowerCase().includes(filter);
       };
-    });*/
+    });
+    */
   }
 
   delete(id: string){/*
@@ -58,21 +71,21 @@ export class PatientsComponent implements OnInit {
   }
 /*
   exportDataToXML() {
-    this.fileService.exportDataToXML({'fileUrl': this.studentService.studentUrl, 'fileName': 'students.xml'}).subscribe(data => {
-      saveAs(new Blob([data], { type: 'application/xml' }), 'students.xml');
+    this.fileService.exportDataToXML({'fileUrl': this.studentService.studentUrl, 'fileName': 'patients.xml'}).subscribe(data => {
+      saveAs(new Blob([data], { type: 'application/xml' }), 'patients.xml');
     });
   }
   
   exportDataToPDF() {
-    this.fileService.exportDataToPDF({'fileUrl': this.studentService.studentUrl, 'fileName': 'students.pdf'}).subscribe(data => {
-      saveAs(new Blob([data], { type: 'application/pdf' }), 'students.pdf');
+    this.fileService.exportDataToPDF({'fileUrl': this.studentService.studentUrl, 'fileName': 'patients.pdf'}).subscribe(data => {
+      saveAs(new Blob([data], { type: 'application/pdf' }), 'patients.pdf');
     });
   }
 */
   openDialog(id: string): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: {title: "Delete student", content: "Are you sure you want to delete this student?"}
+      data: {title: "Delete patient", content: "Are you sure you want to delete this patient?"}
     });
 
     dialogRef.afterClosed().subscribe(result => {

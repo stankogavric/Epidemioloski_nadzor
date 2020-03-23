@@ -1,4 +1,4 @@
-<button class="buttonBorder" mat-button routerLink="/register/patient" matTooltip="Add new patient">
+<button class="buttonBorder" mat-button routerLink="/register/patient" matTooltip="Dodaj novog pacijenta">
     <mat-icon>add</mat-icon>
 </button>
 <!--
@@ -10,75 +10,45 @@
     <span matSuffix>
         <mat-icon>search</mat-icon>
     </span>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
 </mat-form-field>
 <div class="mat-elevation-z8">
-    <table class="patient-table" mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="no">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <th mat-header-cell *matHeaderCellDef> Redni broj </th>
             <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
         </ng-container>
 
         <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef> First name </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalData.firstName}} </td>
+            <th mat-header-cell *matHeaderCellDef> Ime </th>
+            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.firstname}} </td>
         </ng-container>
 
         <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef> Last name </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalData.lastName}} </td>
+            <th mat-header-cell *matHeaderCellDef> Prezime </th>
+            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.lastname}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="personalNumber">
-            <th mat-header-cell *matHeaderCellDef> Personal number </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalData.personalNumber}} </td>
+        <ng-container matColumnDef="jmbg">
+            <th mat-header-cell *matHeaderCellDef> JMBG </th>
+            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.jmbg}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="profilePicturePath">
-            <th mat-header-cell *matHeaderCellDef> Profile picture path </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalData.profilePicturePath}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="country">
-            <th mat-header-cell *matHeaderCellDef> Country </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.address.city.country.name}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="city">
-            <th mat-header-cell *matHeaderCellDef> City </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.address.city.name}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="street">
-            <th mat-header-cell *matHeaderCellDef> Street </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.address.street}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="streetNumber">
-            <th mat-header-cell *matHeaderCellDef> Street number </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.address.number}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.accountData.email}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="username">
-            <th mat-header-cell *matHeaderCellDef> Username </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.accountData.username}} </td>
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Telefon </th>
+            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.phone}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let patient">
-                <button mat-raised-button color="warn" (click)="openDialog(patient.id)" matTooltip="Delete">
+                <button mat-raised-button color="warn" (click)="openDialog(patient.id)" matTooltip="Izbriši">
                     <mat-icon>delete</mat-icon>
                     <!--Delete-->
                 </button>
-                <button mat-raised-button color="accent" [routerLink]="['/edit/patient', patient.accountData.username]"
-                    matTooltip="Edit">
+                <button mat-raised-button color="accent" [routerLink]="['/edit/patient', patient.id]"
+                    matTooltip="Izmeni">
                     <mat-icon>edit</mat-icon>
                     <!--Edit-->
                 </button>
