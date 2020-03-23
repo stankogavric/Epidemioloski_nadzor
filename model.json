@@ -1,0 +1,20 @@
+[
+    {
+        "naziv": "Role",
+        "mnozina": "Roles",
+        "data":
+        {
+            "id": "Long",
+            "type": "String"
+        }
+    },
+    {
+        "naziv": "User",
+        "mnozina": "Users",
+        "data":
+        {
+            "id": "Long",
+            "pin": "String"
+        }
+    }
+]
