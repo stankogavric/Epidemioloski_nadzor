@@ -5,27 +5,18 @@ import java.util.Date;
 
 public class Contact {
 
-	private Long id;
 	private Date date;
 	private String description;
-	private PersonalInfo PersonalInfo;
+	private PersonalInfo personalInfo;
 	private Address address;
 
 	public Contact() {}
 
-	public Contact(Date date, String description, PersonalInfo PersonalInfo, Address address){
+	public Contact(Date date, String description, PersonalInfo personalInfo, Address address){
 		this.date = date;
 		this.description = description;
-		this.PersonalInfo = PersonalInfo;
+		this.personalInfo = personalInfo;
 		this.address = address;
-	}
-	
-	public Long getId(){
-		return id;
-	}
-
-	public void setId(Long id){
-		this.id = id;
 	}
 
 	public Date getDate(){
@@ -45,11 +36,11 @@ public class Contact {
 	}
 	
 	public PersonalInfo getPersonalInfo(){
-		return PersonalInfo;
+		return personalInfo;
 	}
 
-	public void setPersonalInfo(PersonalInfo PersonalInfo){
-		this.PersonalInfo = PersonalInfo;
+	public void setPersonalInfo(PersonalInfo personalInfo){
+		this.personalInfo = personalInfo;
 	}
 	
 	public Address getAddress(){

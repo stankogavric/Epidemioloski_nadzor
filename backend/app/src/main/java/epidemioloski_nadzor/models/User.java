@@ -5,25 +5,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "users")
 public class User {
 
-	private Long id;
 	private String pin;
 	private String role;
-	private PersonalInfo PersonalInfo;
+	private PersonalInfo personalInfo;
 
 	public User() {}
 
-	public User(String pin, String role, PersonalInfo PersonalInfo){
+	public User(String pin, String role, PersonalInfo personalInfo){
 		this.pin = pin;
 		this.role = role;
-		this.PersonalInfo = PersonalInfo;
-	}
-
-	public Long getId(){
-		return id;
-	}
-
-	public void setId(Long id){
-		this.id = id;
+		this.personalInfo = personalInfo;
 	}
 
 	public String getPin(){
@@ -43,11 +34,11 @@ public class User {
 	}
 	
 	public PersonalInfo getPersonalInfo(){
-		return PersonalInfo;
+		return personalInfo;
 	}
 
-	public void setPersonalInfo(PersonalInfo PersonalInfo){
-		this.PersonalInfo = PersonalInfo;
+	public void setPersonalInfo(PersonalInfo personalInfo){
+		this.personalInfo = personalInfo;
 	}
 	
 }

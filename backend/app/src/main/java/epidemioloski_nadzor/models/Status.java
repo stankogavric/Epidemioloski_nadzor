@@ -1,19 +1,20 @@
 package epidemioloski_nadzor.models;
+
 import java.util.Date;
+import java.util.Set;
 
 
 public class Status {
 
-	private Long id;
 	private Date date;
 	private Float temperature;
 	private String description;
 	private String status;
-	private String[] anamnesis;
+	private Set<String> anamnesis;
 
 	public Status() {}
 
-	public Status(Date date, Float temperature, String description, String status, String[] anamnesis){
+	public Status(Date date, Float temperature, String description, String status, Set<String> anamnesis){
 		this.date = date;
 		this.temperature = temperature;
 		this.description = description;
@@ -21,14 +22,6 @@ public class Status {
 		this.anamnesis = anamnesis;
 	}
 
-	public Long getId(){
-		return id;
-	}
-
-	public void setId(Long id){
-		this.id = id;
-	}
-	
 	public Date getDate(){
 		return date;
 	}
@@ -61,11 +54,11 @@ public class Status {
 		this.status = status;
 	}
 	
-	public String[] getAnamnesis(){
+	public Set<String> getAnamnesis(){
 		return anamnesis;
 	}
 
-	public void setAnamnesis(String[] anamnesis){
+	public void setAnamnesis(Set<String> anamnesis){
 		this.anamnesis = anamnesis;
 	}
 	

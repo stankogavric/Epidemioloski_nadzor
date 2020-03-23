@@ -3,7 +3,6 @@ import java.util.Date;
 
 public class Measure {
 
-	private Long id;
 	private String measure;
 	private Date startDate;
 	private Date endDate;
@@ -18,14 +17,6 @@ public class Measure {
 		this.endDate = endDate;
 		this.instituion = instituion;
 		this.reciptNum = reciptNum;
-	}
-
-	public Long getId(){
-		return id;
-	}
-
-	public void setId(Long id){
-		this.id = id;
 	}
 	
 	public String getMeasure(){

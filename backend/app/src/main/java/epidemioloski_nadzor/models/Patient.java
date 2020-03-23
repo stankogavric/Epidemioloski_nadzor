@@ -10,35 +10,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "patients")
 public class Patient {
 
-	private Long id;
 	private String clinicBranch;
 	private String citizenship;
 	private String countryOfImport;
-	private PersonalInfo PersonalInfo;
+	private PersonalInfo personalInfo;
 
 	@JsonView(ShowMeasure.class)
-	private Set<Measure> Measures;
+	private Set<Measure> measures;
 
 	@JsonView(ShowStatus.class)
-	private Set<Status> Statuses;
+	private Set<Status> statuses;
+
+	@JsonView(ShowStatus.class)
+	private Set<Contact> contacts;
 
 	public Patient() {}
 
-	public Patient(String clinicBranch, String citizenship, String countryOfImport, PersonalInfo PersonalInfo, Set<Measure> Measures, Set<Status> Statuses){
+	public Patient(String clinicBranch, String citizenship, String countryOfImport, PersonalInfo personalInfo, Set<Measure> measures, Set<Status> statuses, Set<Contact> contacts){
 		this.clinicBranch = clinicBranch;
 		this.citizenship = citizenship;
 		this.countryOfImport = countryOfImport;
-		this.PersonalInfo = PersonalInfo;
-		this.Measures = Measures;
-		this.Statuses = Statuses;
-	}
-
-	public Long getId(){
-		return id;
-	}
-
-	public void setId(Long id){
-		this.id = id;
+		this.personalInfo = personalInfo;
+		this.measures = measures;
+		this.statuses = statuses;
+		this.contacts = contacts;
 	}
 	
 	public String getClinicBranch(){
@@ -66,27 +61,35 @@ public class Patient {
 	}
 	
 	public PersonalInfo getPersonalInfo(){
-		return PersonalInfo;
+		return personalInfo;
 	}
 
-	public void setPersonalInfo(PersonalInfo PersonalInfo){
-		this.PersonalInfo = PersonalInfo;
+	public void setPersonalInfo(PersonalInfo personalInfo){
+		this.personalInfo = personalInfo;
 	}
 	
 	public Set<Measure> getMeasures(){
-		return Measures;
+		return measures;
 	}
 
-	public void setMeasures(Set<Measure> Measures){
-		this.Measures = Measures;
+	public void setMeasures(Set<Measure> measures){
+		this.measures = measures;
 	}
 	
 	public Set<Status> getStatuses(){
-		return Statuses;
+		return statuses;
 	}
 
-	public void setStatuses(Set<Status> Statuses){
-		this.Statuses = Statuses;
+	public void setStatuses(Set<Status> statuses){
+		this.statuses = statuses;
+	}
+
+	public Set<Contact> getContacts(){
+		return contacts;
+	}
+
+	public void setContacts(Set<Contact> contacts){
+		this.contacts = contacts;
 	}
 	
 }

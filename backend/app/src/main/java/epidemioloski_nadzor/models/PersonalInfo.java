@@ -1,9 +1,8 @@
 package epidemioloski_nadzor.models;
 
 public class PersonalInfo {
-
-	private Long id;
 	private String phone;
+	
 	private String firstname;
 	private String lastname;
 	private String jmbg;
@@ -21,14 +20,6 @@ public class PersonalInfo {
 		this.email = email;
 		this.lbo = lbo;
 		this.address = address;
-	}
-
-	public Long getId(){
-		return id;
-	}
-
-	public void setId(Long id){
-		this.id = id;
 	}
 	
 	public String getPhone(){

@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import epidemioloski_nadzor.models.User;
 import epidemioloski_nadzor.services.UserService;
-import epidemioloski_nadzor.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins={"http://localhost:4200"})
 @RestController
@@ -26,16 +23,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @JsonView(HideOptionalProperties.class)
     @RequestMapping()
     public ResponseEntity<Iterable<User>> getUsers() {
         return new ResponseEntity<Iterable<User>>(userService.getUsers(), HttpStatus.OK);
     }
 
-    @JsonView(HideOptionalProperties.class)
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        Optional<User> user = userService.getUserById(id);
+    @RequestMapping(value="/{phone}", method=RequestMethod.GET)
+    public ResponseEntity<User> getUserByPhone(@PathVariable String phone) {
+        Optional<User> user = userService.getUserByPersonalInfoPhone(phone);
         if(user.isPresent()) {
             return new ResponseEntity<User>(user.get(), HttpStatus.OK);
         }
@@ -48,16 +43,16 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        userService.updateUser(id, user);
+    @RequestMapping(value="/{phone}", method=RequestMethod.PUT)
+    public ResponseEntity<User> updateUser(@PathVariable String phone, @RequestBody User user) {
+        userService.updateUser(phone, user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public ResponseEntity<User> removeUser(@PathVariable Long id) {
+    @RequestMapping(value="/{phone}", method=RequestMethod.DELETE)
+    public ResponseEntity<User> removeUser(@PathVariable String phone) {
         try {
-            userService.removeUser(id);
+            userService.removeUser(phone);
         }catch (Exception e) {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }

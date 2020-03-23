@@ -21,23 +21,23 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public Optional<User> getUserById(Long id) {
-        return userRepo.findById(id);
+    public Optional<User> getUserByPersonalInfoPhone(String phone) {
+        return userRepo.findByPersonalInfoPhone(phone);
     }
 
     public void addUser(User user) {
         userRepo.save(user);
     }
 
-    public void removeUser(Long id) {
-        Optional<User> user = userRepo.findById(id);
+    public void removeUser(String phone) {
+        Optional<User> user = userRepo.findByPersonalInfoPhone(phone);
         userRepo.delete(user.get());
     }
 
-    public void updateUser(Long id, User user) {
-        Optional<User> Use = userRepo.findById(id);
-        if(Use.isPresent()) {
-            user.setId(Use.get().getId());
+    public void updateUser(String phone, User user) {
+        Optional<User> oUser = userRepo.findByPersonalInfoPhone(phone);
+        if(oUser.isPresent()) {
+            user.getPersonalInfo().setPhone(oUser.get().getPersonalInfo().getPhone());
             userRepo.save(user);
         }
     }
