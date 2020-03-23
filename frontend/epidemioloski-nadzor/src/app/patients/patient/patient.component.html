@@ -1,0 +1,165 @@
+<div class="patient">
+
+    <h1>Pacijent</h1>
+
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Osnovni podaci">
+
+            <div [formGroup]="patientForm">
+                <mat-form-field class="personal-form">
+                    <input matInput name="firstName" type="text" placeholder="Ime" formControlName="firstName">
+                    <mat-error>{{formError.mapErrors(patientForm.get('firstName'), 'Ime')}}</mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="lastName" type="text" placeholder="Prezime" formControlName="lastName">
+                    <mat-error>{{formError.mapErrors(patientForm.get('lastName'), 'Prezime')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="lbo" type="text" placeholder="LBO" formControlName="lbo">
+                    <mat-error>{{formError.mapErrors(patientForm.get('lbo'), 'LBO')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="jmbg" type="text" placeholder="JMBG" formControlName="jmbg">
+                    <mat-error>{{formError.mapErrors(patientForm.get('jmbg'), 'JMBG')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="street" type="text" placeholder="Ulica" formControlName="street">
+                    <mat-error>{{formError.mapErrors(patientForm.get('street'), 'Ulica')}}</mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="streetNum" type="text" placeholder="Broj" formControlName="streetNum">
+                    <mat-error>{{formError.mapErrors(patientForm.get('streetNum'), 'Broj')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="city" type="text" placeholder="Grad" formControlName="city">
+                    <mat-error>{{formError.mapErrors(patientForm.get('city'), 'Grad')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="citizenship" type="text" placeholder="Državljanstvo"
+                        formControlName="citizenship">
+                    <mat-error>{{formError.mapErrors(patientForm.get('citizenship'), 'Državljanstvo')}}</mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
+                        formControlName="countryOfImport">
+                    <mat-error>{{formError.mapErrors(patientForm.get('countryOfImport'), 'Doputovao iz države')}}
+                    </mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
+                    <mat-error>{{formError.mapErrors(patientForm.get('phone'), 'Telefon')}}</mat-error>
+                </mat-form-field><br>
+                <button class="buttonBorder" mat-button matTooltip="Sačuvaj">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
+
+        </mat-tab>
+        <mat-tab label="Status">
+            <br><br>
+            <mat-radio-group aria-label="Izaberite status pacijenta">
+                <mat-radio-button value="1">Izlečen</mat-radio-button>&nbsp;
+                <mat-radio-button value="2">Sumnja - moguć</mat-radio-button>&nbsp;
+                <mat-radio-button value="3">Verovatan</mat-radio-button>&nbsp;
+                <mat-radio-button value="4">Potvrda</mat-radio-button>&nbsp;
+                <mat-radio-button value="5">Mortalitet</mat-radio-button>
+            </mat-radio-group>
+            <br><br>
+            <mat-form-field>
+                <mat-label>Izaberite datum</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br><br>
+            <button class="buttonBorder" mat-button matTooltip="Sačuvaj">
+                <mat-icon>save</mat-icon>
+            </button>
+        </mat-tab>
+        <mat-tab label="Mere">
+            <br><br>
+            <mat-radio-group aria-label="Izaberite meru">
+                <mat-radio-button value="1">Samoizolacija</mat-radio-button>&nbsp;
+                <mat-radio-button value="2">Kućno lečenje</mat-radio-button>&nbsp;
+                <mat-radio-button value="3">Stacionar</mat-radio-button>
+            </mat-radio-group>
+            <br><br>
+            <mat-form-field>
+                <mat-label>Izaberite datum početka mere</mat-label>
+                <input matInput [matDatepicker]="pickerStart">
+                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                <mat-datepicker #pickerStart></mat-datepicker>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <mat-label>Izaberite datum završetka mere</mat-label>
+                <input matInput [matDatepicker]="pickerEnd">
+                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEnd></mat-datepicker>
+            </mat-form-field>
+
+            <br><br>
+            <button class="buttonBorder" mat-button matTooltip="Sačuvaj">
+                <mat-icon>save</mat-icon>
+            </button>
+        </mat-tab>
+
+        <mat-tab label="Kontakti">
+            <div [formGroup]="patientForm">
+                <mat-form-field class="personal-form">
+                    <input matInput name="firstName" type="text" placeholder="Ime" formControlName="firstName">
+                    <mat-error>{{formError.mapErrors(patientForm.get('firstName'), 'Ime')}}</mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="lastName" type="text" placeholder="Prezime" formControlName="lastName">
+                    <mat-error>{{formError.mapErrors(patientForm.get('lastName'), 'Prezime')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="lbo" type="text" placeholder="LBO" formControlName="lbo">
+                    <mat-error>{{formError.mapErrors(patientForm.get('lbo'), 'LBO')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="jmbg" type="text" placeholder="JMBG" formControlName="jmbg">
+                    <mat-error>{{formError.mapErrors(patientForm.get('jmbg'), 'JMBG')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="street" type="text" placeholder="Ulica" formControlName="street">
+                    <mat-error>{{formError.mapErrors(patientForm.get('street'), 'Ulica')}}</mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="streetNum" type="text" placeholder="Broj" formControlName="streetNum">
+                    <mat-error>{{formError.mapErrors(patientForm.get('streetNum'), 'Broj')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="city" type="text" placeholder="Grad" formControlName="city">
+                    <mat-error>{{formError.mapErrors(patientForm.get('city'), 'Grad')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="personal-form">
+                    <input matInput name="citizenship" type="text" placeholder="Državljanstvo"
+                        formControlName="citizenship">
+                    <mat-error>{{formError.mapErrors(patientForm.get('citizenship'), 'Državljanstvo')}}</mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
+                        formControlName="countryOfImport">
+                    <mat-error>{{formError.mapErrors(patientForm.get('countryOfImport'), 'Doputovao iz države')}}
+                    </mat-error>
+                </mat-form-field>&nbsp;
+                <mat-form-field class="personal-form">
+                    <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
+                    <mat-error>{{formError.mapErrors(patientForm.get('phone'), 'Telefon')}}</mat-error>
+                </mat-form-field><br>
+                <mat-form-field>
+                    <mat-label>Izaberite datum kontakta</mat-label>
+                    <input matInput [matDatepicker]="pickerContact">
+                    <mat-datepicker-toggle matSuffix [for]="pickerContact"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerContact></mat-datepicker>
+                </mat-form-field><br>
+                <button class="buttonBorder" mat-button matTooltip="Sačuvaj">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

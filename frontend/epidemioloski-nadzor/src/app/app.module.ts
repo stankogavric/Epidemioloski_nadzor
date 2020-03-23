@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PatientsComponent } from './patients/patients.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PatientComponent } from './patients/patient/patient.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PatientsComponent
+    PatientsComponent,
+    PatientComponent
   ],
   imports: [
     BrowserModule,
