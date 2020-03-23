@@ -1,21 +1,11 @@
-[
-    {
-        "naziv": "Role",
-        "mnozina": "Roles",
-        "data":
-        {
-            "id": "Long",
-            "type": "String"
-        }
-    },
-    {
+[{
         "naziv": "User",
         "mnozina": "Users",
         "data":
         {
             "id": "Long",
             "pin": "String",
-            "role": "Role",
+            "role": "String",
             "PersonalInfo": "PersonalInfo"
         }
     },
@@ -31,12 +21,12 @@
             "jmbg": "String",
             "email": "String",
             "lbo": "String",
-            "adress": "Adress"
+            "address": "Address"
         }
     },
     {
-        "naziv": "Adress",
-        "mnozina": "Adress",
+        "naziv": "Address",
+        "mnozina": "Addresses",
         "data":
         {
             "id": "Long",
@@ -56,7 +46,7 @@
             "citizenship": "String",
             "countryOfImport": "String",
             "PersonalInfo": "PersonalInfo",
-            "Mesures": "Mesure[]",
+            "Measures": "Measure[]",
             "Statuses": "Status[]"
         }
     },
@@ -69,7 +59,7 @@
             "date": "Date",
             "description": "String",
             "PersonalInfo": "PersonalInfo",
-            "adress": "Adress"
+            "address": "Address"
         }
     },
     {
@@ -86,12 +76,12 @@
         }
     },
     {
-        "naziv": "Mesure",
-        "mnozina": "Mesures",
+        "naziv": "Measure",
+        "mnozina": "Measures",
         "data":
         {
             "id": "Long",
-            "mesure": "String",
+            "measure": "String",
             "startDate": "Date",
             "endDate": "Date",
             "instituion": "String",
