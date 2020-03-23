@@ -1,0 +1,101 @@
+[
+    {
+        "naziv": "Role",
+        "mnozina": "Roles",
+        "data":
+        {
+            "id": "Long",
+            "type": "String"
+        }
+    },
+    {
+        "naziv": "User",
+        "mnozina": "Users",
+        "data":
+        {
+            "id": "Long",
+            "pin": "String",
+            "role": "Role",
+            "PersonalInfo": "PersonalInfo"
+        }
+    },
+    {
+        "naziv": "PersonalInfo",
+        "mnozina": "PersonalInfo",
+        "data":
+        {
+            "id": "Long",
+            "phone": "String",
+            "firstname": "String",
+            "lastname": "String",
+            "jmbg": "String",
+            "email": "String",
+            "lbo": "String",
+            "adress": "Adress"
+        }
+    },
+    {
+        "naziv": "Adress",
+        "mnozina": "Adress",
+        "data":
+        {
+            "id": "Long",
+            "city": "String",
+            "street": "String",
+            "streetNum": "String"
+
+        }
+    },
+    {
+        "naziv": "Patient",
+        "mnozina": "Patients",
+        "data":
+        {
+            "id": "Long",
+            "clinicBranch": "String",
+            "citizenship": "String",
+            "countryOfImport": "String",
+            "PersonalInfo": "PersonalInfo",
+            "Mesures": "Mesure[]",
+            "Statuses": "Status[]"
+        }
+    },
+    {
+        "naziv": "Contact",
+        "mnozina": "Contacts",
+        "data":
+        {
+            "id": "Long",
+            "date": "Date",
+            "description": "String",
+            "PersonalInfo": "PersonalInfo",
+            "adress": "Adress"
+        }
+    },
+    {
+        "naziv": "Status",
+        "mnozina": "Statuses",
+        "data":
+        {
+            "id": "Long",
+            "date": "Date",
+            "temperature": "Float",
+            "description": "String",
+            "status": "String",
+            "anamnesis": "String[]"
+        }
+    },
+    {
+        "naziv": "Mesure",
+        "mnozina": "Mesures",
+        "data":
+        {
+            "id": "Long",
+            "mesure": "String",
+            "startDate": "Date",
+            "endDate": "Date",
+            "instituion": "String",
+            "reciptNum": "String"
+        }
+    }
+]
