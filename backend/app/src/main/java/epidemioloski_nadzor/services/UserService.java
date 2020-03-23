@@ -3,6 +3,7 @@ package epidemioloski_nadzor.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import epidemioloski_nadzor.models.User;
@@ -13,6 +14,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+	private PasswordEncoder passwordEncoder;
 
     public UserService() {
     }
@@ -26,6 +30,7 @@ public class UserService {
     }
 
     public void addUser(User user) {
+        user.setPin((passwordEncoder.encode(user.getPin())));
         userRepo.save(user);
     }
 
