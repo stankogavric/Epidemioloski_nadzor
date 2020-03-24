@@ -214,7 +214,7 @@
                         <mat-radio-button value="Kućno lečenje">Kućno lečenje</mat-radio-button>&nbsp;
                         <mat-radio-button value="Stacionar">Stacionar</mat-radio-button>
                     </mat-radio-group><br><br>
-                    <mat-form-field *ngIf="patientForm.value.measure.measure == 'Stacionar'">
+                    <mat-form-field *ngIf="patientForm.value.measure?.measure == 'Stacionar'">
                         <input matInput name="institution" type="text" placeholder="Ustanova"
                             formControlName="institution">
                         <mat-error>{{formError.mapErrors(patientForm.get('measure.institution'), 'Ustanova')}}
