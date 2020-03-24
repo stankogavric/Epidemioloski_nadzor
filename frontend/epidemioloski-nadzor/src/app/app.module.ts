@@ -19,8 +19,7 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     PatientsComponent,
     PatientComponent,
     RegisterComponent,
-    LoginComponent,
-    ConfirmationDialogComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +28,6 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     MaterialModule,
     BrowserAnimationsModule
   ],
-  entryComponents: [ConfirmationDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

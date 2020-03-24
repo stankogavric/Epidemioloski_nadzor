@@ -12,4 +12,8 @@ export class Patient {
     measures:Measure[];
     personalInfo:PersonalInfo;
     statuses:Status[];
+
+    constructor(){
+        this.contacts = [];
+    }
 }

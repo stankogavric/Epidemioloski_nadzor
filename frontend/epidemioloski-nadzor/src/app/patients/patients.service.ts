@@ -6,7 +6,6 @@ import { Patient } from './patient.model';
     providedIn: 'root'
 })
 export class PatientService {
-
     public patientsUrl = "http://localhost:8080/patient";
 
     constructor(private http: HttpClient) {
@@ -16,13 +15,8 @@ export class PatientService {
         return this.http.get<Patient[]>(this.patientsUrl);
     }
 
-<<<<<<< HEAD
     getOne(jmbg: String) {
         return this.http.get<Patient>(this.patientsUrl + `/${jmbg}`);
-=======
-    getOne(phone: String) {
-        return this.http.get<Patient>(this.patientsUrl + `/${phone}`);
->>>>>>> 1eb7c0879ac2cc1994ecf889b25e45f3a6a4f030
     }
 
     delete(jmbg: String) {
@@ -30,7 +24,8 @@ export class PatientService {
     }
 
     add(patient: Patient) {
-        return this.http.post(this.patientsUrl + '/register', patient);
+        console.log(patient);
+        return this.http.post(this.patientsUrl, patient);
     }
 
     update(jmbg: string, patient: Patient) {

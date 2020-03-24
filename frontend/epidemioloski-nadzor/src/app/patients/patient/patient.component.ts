@@ -10,6 +10,7 @@ import { PatientService } from '../patients.service';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/snack-bar.service';
+import { Patient } from '../patient.model';
 
 @Component({
   selector: 'app-patient',
@@ -52,6 +53,8 @@ export class PatientComponent implements OnInit {
   public patientForm : FormGroup;
   public contactForm : FormGroup;
 
+  patient = new Patient();
+
   constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -68,9 +71,9 @@ export class PatientComponent implements OnInit {
     let phone = this.route.snapshot.paramMap.get("phone");
     if (phone) {
       this.edit = true;
-      //let patient = this.patientService.getOne(phone);
-      //this.patientForm.patchValue(patient);
-      //this.contactForm.patchValue(patient);
+      let tempPatient = this.patientService.getOne(phone);
+      this.patientForm.patchValue(tempPatient);
+      this.contactForm.patchValue(tempPatient);
     }
     this.dataSourceStatuses.paginator = this.paginator;
     this.dataSourceMeasures.paginator = this.paginator;
@@ -116,11 +119,14 @@ export class PatientComponent implements OnInit {
   savePatient(){
     this.patientForm.reset();
     this.contactForm.reset();
-    this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
+    this.patientService.add(this.patientForm.value).subscribe(
+        value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
+        error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
+    );
   }
 
-  saveContact(contact: Contact){
-    // this.patient.contacts.push(contact);
+  saveContact(){
+    this.patient.contacts.push(this.contactForm.value);
     this.contactForm.reset();
     this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
