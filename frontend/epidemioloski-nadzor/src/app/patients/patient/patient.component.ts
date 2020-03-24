@@ -169,8 +169,6 @@ export class PatientComponent implements OnInit {
     }
     
     this.patient.contacts = this.contacts;
-    this.patientForm.reset();
-    this.contactForm.reset();
     console.log(this.patient);
     if(this.edit){
       this.patientService.update(this.patient.personalInfo.jmbg, this.patient).subscribe(
@@ -183,6 +181,8 @@ export class PatientComponent implements OnInit {
           value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
           error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
+      this.patientForm.reset();
+      this.contactForm.reset();
     }
   }
 
