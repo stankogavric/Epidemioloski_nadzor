@@ -2,8 +2,6 @@ package epidemioloski_nadzor.controllers;
 
 import java.util.Optional;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import epidemioloski_nadzor.models.Contact;
 import epidemioloski_nadzor.models.Patient;
 import epidemioloski_nadzor.services.PatientService;
-import epidemioloski_nadzor.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins={"http://localhost:4200"})
 @RestController
@@ -27,7 +24,6 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @JsonView(HideOptionalProperties.class)
     @RequestMapping()
     public ResponseEntity<Iterable<Patient>> getPatients() {
         return new ResponseEntity<Iterable<Patient>>(patientService.getPatients(), HttpStatus.OK);

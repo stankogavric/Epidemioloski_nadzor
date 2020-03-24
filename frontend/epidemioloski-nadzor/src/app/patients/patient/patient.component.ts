@@ -5,6 +5,7 @@ import { FormErrorService } from 'src/app/shared/formError.service';
 import { Status } from '../status.model';
 import { Measure } from '../measure.model';
 import { Contact } from 'src/app/users/contact.model';
+import { Patient } from '../patient.model';
 
 @Component({
   selector: 'app-patient',
@@ -33,6 +34,8 @@ export class PatientComponent implements OnInit {
 
   public patientForm : FormGroup;
   public contactForm : FormGroup;
+
+  patient : Patient = new Patient();
 
   constructor(private fb: FormBuilder, public formError: FormErrorService) { }
 
@@ -81,9 +84,11 @@ export class PatientComponent implements OnInit {
   savePatient(){
     this.patientForm.reset();
     this.contactForm.reset();
+    // this.pati
   }
 
-  saveContact(){
+  saveContact(contact: Contact){
+    this.patient.contacts.push(contact);
     this.contactForm.reset();
   }
 

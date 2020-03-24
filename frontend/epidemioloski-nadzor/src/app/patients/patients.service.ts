@@ -7,89 +7,35 @@ import { Patient } from './patient.model';
 })
 export class PatientService {
 
-    public patientsUrl = "http://localhost:8080/patients";
+    public patientsUrl = "http://localhost:8080/patient";
 
     constructor(private http: HttpClient) {
     }
 
     getAll() {
-        return [
-            {
-                id: 1,
-                clinicBranch: "string",
-                citizenship: "string",
-                countryOfImport: "string",
-                contacts: [],
-                measures: [],
-                personalInfo: {
-                    id:1,
-                    phone:"67867",
-                    firstname:"string",
-                    lastname:"string",
-                    jmbg:"664736",
-                    email:"string",
-                    lbo:"string",
-                    address:{
-                        id:1,
-                        city:"string",
-                        street:"string",
-                        streetNum:"string"
-                    }
-                },
-                statuses: []
-            },
-            {
-                id: 2,
-                clinicBranch: "string",
-                citizenship: "string",
-                countryOfImport: "string",
-                contacts: [],
-                measures: [],
-                personalInfo: {
-                    id:1,
-                    phone:"0123",
-                    firstname:"firstname",
-                    lastname:"lastname",
-                    jmbg:"000111",
-                    email:"string",
-                    lbo:"string",
-                    address:{
-                        id:1,
-                        city:"string",
-                        street:"string",
-                        streetNum:"string"
-                    }
-                },
-                statuses: []
-            }
-        ]
-        //return this.http.get<Patient[]>(this.patientsUrl);
+        return this.http.get<Patient[]>(this.patientsUrl);
     }
 
-    getOne(id: String) {
-        return this.http.get<Patient>(this.patientsUrl + `/${id}`);
+    getOne(jmbg: String) {
+        return this.http.get<Patient>(this.patientsUrl + `/${jmbg}`);
     }
-    /*
-      getOneByUsername(username: String) {
-        return this.http.get<Patient>(this.patientsUrl+`/username/${username}`);
-      }
-    */
-    delete(id: String) {
-        return this.http.delete(this.patientsUrl + `/${id}`);
+
+    delete(jmbg: String) {
+        return this.http.delete(this.patientsUrl + `/${jmbg}`);
     }
 
     add(patient: Patient) {
         return this.http.post(this.patientsUrl + '/register', patient);
     }
 
-    update(id: number, patient: Patient) {
-        return this.http.put(this.patientsUrl + `/${id}`, patient)
+    update(jmbg: string, patient: Patient) {
+        return this.http.put(this.patientsUrl + `/${jmbg}`, patient)
     }
 
-    searchPatients(queryParams: {}) {
-        return this.http.get<Patient[]>(this.patientsUrl + `/search/`, {
-            params: queryParams
-        });
-    }
+    // searchPatients(queryParams: {}) {
+    //     return this.http.get<Patient[]>(this.patientsUrl + `/search/`, {
+    //         params: queryParams
+    //     });
+    // }
 
 }
