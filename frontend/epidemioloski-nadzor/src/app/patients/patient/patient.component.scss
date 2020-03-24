@@ -1,19 +1,17 @@
-.patient {
-    text-align: center;
-}
-
-.buttonBorder {
-    background-color: rgba(0,0,0,.87);
-    color: white;
-}
-
-.buttonAdd {
-    background-color: green;
-    color: white;
-}
-
 table {
     width: 100%;
+}
+
+.info-card {
+    width: max-content;
+    display: inline-block;
+    background-color: rgb(210, 255, 220);
+}
+
+.patient {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .search {
