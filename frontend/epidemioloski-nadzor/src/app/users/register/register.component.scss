@@ -1,0 +1,29 @@
+/* Customs */
+
+.register-div {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.register-card {
+    background-color: rgb(210, 255, 220);
+}
+
+.password-form {
+    margin-top: 10px
+}
+
+.register-button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.register-button:hover {
+    // color: rgb(210, 255, 220);
+    transform:scale(1.1,1.1);
+    -webkit-transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+}
