@@ -5,10 +5,14 @@ import epidemioloski_nadzor.utils.View.ShowMeasure;
 import com.fasterxml.jackson.annotation.JsonView;
 import epidemioloski_nadzor.utils.View.ShowStatus;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "patients")
 public class Patient {
+
+	@Id
+	private String id;
 
 	private String clinicBranch;
 	private String citizenship;
@@ -26,7 +30,8 @@ public class Patient {
 
 	public Patient() {}
 
-	public Patient(String clinicBranch, String citizenship, String countryOfImport, PersonalInfo personalInfo, Set<Measure> measures, Set<Status> statuses, Set<Contact> contacts){
+	public Patient(String id, String clinicBranch, String citizenship, String countryOfImport, PersonalInfo personalInfo, Set<Measure> measures, Set<Status> statuses, Set<Contact> contacts){
+		this.id = id;
 		this.clinicBranch = clinicBranch;
 		this.citizenship = citizenship;
 		this.countryOfImport = countryOfImport;
@@ -36,6 +41,14 @@ public class Patient {
 		this.contacts = contacts;
 	}
 	
+	public String getId(){
+		return id;
+	}
+
+	public void setId(String id){
+		this.id = id;
+	}
+
 	public String getClinicBranch(){
 		return clinicBranch;
 	}

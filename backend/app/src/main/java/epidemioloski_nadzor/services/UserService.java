@@ -3,6 +3,8 @@ package epidemioloski_nadzor.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import epidemioloski_nadzor.models.User;
@@ -13,6 +15,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+	private PasswordEncoder passwordEncoder;
 
     public UserService() {
     }
@@ -25,8 +30,15 @@ public class UserService {
         return userRepo.findByPersonalInfoPhone(phone);
     }
 
-    public void addUser(User user) {
-        userRepo.save(user);
+    public HttpStatus addUser(User user) {
+        Optional<User> oUser = userRepo.findByPersonalInfoPhone(user.getPersonalInfo().getPhone());
+        if(oUser.isPresent()){
+            return HttpStatus.CONFLICT;
+        }else{
+            user.setPin((passwordEncoder.encode(user.getPin())));
+            userRepo.save(user);
+            return HttpStatus.CREATED;
+        }
     }
 
     public void removeUser(String phone) {
@@ -38,6 +50,7 @@ public class UserService {
         Optional<User> oUser = userRepo.findByPersonalInfoPhone(phone);
         if(oUser.isPresent()) {
             user.getPersonalInfo().setPhone(oUser.get().getPersonalInfo().getPhone());
+            user.setId(oUser.get().getId());
             userRepo.save(user);
         }
     }

@@ -39,8 +39,7 @@ public class UserController {
 
     @RequestMapping(value="", method=RequestMethod.POST)
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        userService.addUser(user);
-        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+        return new ResponseEntity<User>(user, userService.addUser(user));
     }
 
     @RequestMapping(value="/{phone}", method=RequestMethod.PUT)

@@ -1,7 +1,7 @@
 /* Customs */
 
 .login-div {
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
 }
 
 .login-card {
-    background-color: rgb(200, 255, 215);
+    background-color: rgb(210, 255, 220);
 }
 
 .password-form {
@@ -22,7 +22,7 @@
 }
 
 .login-button:hover {
-    // color: rgb(200, 255, 215);
+    // color: rgb(210, 255, 220);
     transform:scale(1.1,1.1);
     -webkit-transform:scale(1.1,1.1);
     -moz-transform:scale(1.1,1.1);

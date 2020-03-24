@@ -1,1 +1,25 @@
-<p>register works!</p>
+<div class="register-div">
+    <mat-card class="register-card">
+        <img src="https://izjzv.org.rs/images/logo.png" alt="IZJZV"><br>
+        <p>REGISTRACIJA NOVOG KORISNIKA</p>
+        <div [formGroup]="form">
+            <mat-form-field>
+                <input matInput name="firstName" formControlName="firstName" type="text" placeholder="Ime">
+                <mat-error>{{formError.mapErrors(form.get('firstName'), 'Ime')}}</mat-error>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput name="lastName" formControlName="lastName" type="text" placeholder="Prezime">
+                <mat-error>{{formError.mapErrors(form.get('lastName'), 'Prezime')}}</mat-error>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput name="username" formControlName="username" type="text" placeholder="Broj telefona">
+                <mat-error>{{formError.mapErrors(form.get('username'), 'Broj telefona')}}</mat-error>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput name="password" formControlName="password" type="text" placeholder="Lozinka">
+                <mat-error>{{formError.mapErrors(form.get('password'), 'Lozinka')}}</mat-error>
+            </mat-form-field><br>
+            <button class="register-button" mat-raised-button color="primary" (click)="onRegister(registerForm)">Registruj</button>
+        </div>
+    </mat-card>
+</div>
