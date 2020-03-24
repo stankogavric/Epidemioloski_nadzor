@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { FormErrorService } from '../../shared/formError.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { FormErrorService } from '../../shared/formError.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService : AuthService, public readonly formError: FormErrorService) { }
+  constructor(private authService : AuthService, public readonly formError: FormErrorService, private router: Router) { }
 
   message: string = "";
 
@@ -22,20 +23,17 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(form.value.username, form.value.password).subscribe(
-      {
-        next: response => {
+      response => {
           if(response.token){
             localStorage.setItem('token', response.token);
             this.message = "";
+            this.router.navigate(['/patients']);
           }else{
-            this.message = "Incorect username or password";
+            this.message = "Pogrešan telefon ili pin";
           }
-        },
-        error: () => {
-          this.message = "Incorect username or password";
-        }
-      }
-    );
-  }
-
+      },
+      () => {
+          this.message = "Pogrešan telefon ili pin";
+      });
+    }
 }

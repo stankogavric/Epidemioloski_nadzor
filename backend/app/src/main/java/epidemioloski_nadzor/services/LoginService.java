@@ -39,23 +39,14 @@ public class LoginService {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getPersonalInfo().getPhone(),
 			user.getPin());
 
-			System.out.println("PRVI");
-			System.out.println(token);
-			
 			Authentication authentication = authenticationManager.authenticate(token);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
-
-			System.out.println("PRVI");
 
 			UserDetails details = userDetailsService.loadUserByUsername(user.getPersonalInfo().getPhone());
 			String userToken = tokenUtils.generateToken(details);
 			
-			System.out.println("PRVI");
-
 			HashMap<String, String> data = new HashMap<String, String>();
 			data.put("token", userToken);
-			
-			System.out.println("PRVI");
 
 			return new ResponseEntity<HashMap<String, String>>(data, HttpStatus.OK);
 		} catch (Exception e) {

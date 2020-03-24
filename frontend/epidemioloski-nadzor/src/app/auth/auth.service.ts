@@ -10,8 +10,8 @@ export class AuthService {
 
 
 
-  login(username: string, password: string) {
-    return this.http.post<{token: string}>("http://localhost:8080/login", {username: username, password: password});
+  login(phone: string, pin: string) {
+    return this.http.post<{token: string}>("http://localhost:8080/login", {pin: pin, personalInfo:{phone: phone}});
   }
   
   logout(){
