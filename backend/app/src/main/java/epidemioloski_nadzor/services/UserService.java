@@ -3,6 +3,7 @@ package epidemioloski_nadzor.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,11 +30,14 @@ public class UserService {
         return userRepo.findByPersonalInfoPhone(phone);
     }
 
-    public void addUser(User user) {
+    public HttpStatus addUser(User user) {
         Optional<User> oUser = userRepo.findByPersonalInfoPhone(user.getPersonalInfo().getPhone());
         if(oUser.isPresent()){
+            return HttpStatus.CONFLICT;
+        }else{
             user.setPin((passwordEncoder.encode(user.getPin())));
             userRepo.save(user);
+            return HttpStatus.CREATED;
         }
     }
 
