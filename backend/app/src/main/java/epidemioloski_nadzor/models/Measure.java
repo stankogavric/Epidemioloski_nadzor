@@ -7,16 +7,16 @@ public class Measure {
 	private Date startDate;
 	private Date endDate;
 	private String instituion;
-	private String reciptNum;
+	private String rescriptNum;
 
 	public Measure() {}
 
-	public Measure(String measure, Date startDate, Date endDate, String instituion, String reciptNum){
+	public Measure(String measure, Date startDate, Date endDate, String instituion, String rescriptNum){
 		this.measure = measure;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.instituion = instituion;
-		this.reciptNum = reciptNum;
+		this.rescriptNum = rescriptNum;
 	}
 	
 	public String getMeasure(){
@@ -51,12 +51,12 @@ public class Measure {
 		this.instituion = instituion;
 	}
 	
-	public String getReciptNum(){
-		return reciptNum;
+	public String getRescriptNum(){
+		return rescriptNum;
 	}
 
-	public void setReciptNum(String reciptNum){
-		this.reciptNum = reciptNum;
+	public void setRescriptNum(String rescriptNum){
+		this.rescriptNum = rescriptNum;
 	}
 	
 }
