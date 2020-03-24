@@ -11,29 +11,29 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService : AuthService, public readonly formError: FormErrorService, private router: Router) { }
+  constructor(private authService: AuthService, public readonly formError: FormErrorService, private router: Router) { }
 
   message: string = "";
 
   ngOnInit() {
   }
 
-  onLogin(form: NgForm){
+  onLogin(form: NgForm) {
     if (form.invalid) {
       return;
     }
     this.authService.login(form.value.username, form.value.password).subscribe(
       response => {
-          if(response.token){
-            localStorage.setItem('token', response.token);
-            this.message = "";
-            this.router.navigate(['/patients']);
-          }else{
-            this.message = "Pogrešan telefon ili pin";
-          }
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          this.message = "";
+          this.router.navigate(['/patients']);
+        } else {
+          this.message = "Pogrešan telefon i/ili pin";
+        }
       },
       () => {
-          this.message = "Pogrešan telefon ili pin";
+        this.message = "Pogrešan telefon i/ili pin";
       });
-    }
+  }
 }

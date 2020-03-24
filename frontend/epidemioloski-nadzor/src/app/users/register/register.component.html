@@ -30,9 +30,9 @@
                 <mat-error>{{formError.mapErrors(form.get('pin'), 'PIN')}}</mat-error>
             </mat-form-field>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Sakrij PIN'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>{{hide ? ' Prikaži PIN' : ' Sakrij PIN'}}
-                </button><br>
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>{{hide ? ' Prikaži PIN' : ' Sakrij PIN'}}
+            </button><br>
             <p class="message">{{message}}</p>
             <button class="register-button" mat-raised-button color="primary"
                 (click)="onRegister(registerForm)">Registruj</button>

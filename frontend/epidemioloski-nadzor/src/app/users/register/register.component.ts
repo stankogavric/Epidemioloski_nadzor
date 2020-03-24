@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormErrorService } from '../../shared/formError.service';
 import { UserService } from '../user.service';
 import { User } from '../user.model';
@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   public form: FormGroup;
   public user: User = new User();
   message: string = "";
+  hide = true;
 
   roles: Role[] = [
     { value: 'student', viewValue: 'Student' },
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
     { value: 'krizniStab', viewValue: 'Krizni štab' }
   ];
 
-  constructor(private userService: UserService, public readonly formError: FormErrorService, private fb: FormBuilder,  private router: Router) { }
+  constructor(private userService: UserService, public readonly formError: FormErrorService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -58,8 +59,8 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/']);
       },
       (e) => {
-        if (e.status == 409){
-          this.message = "Korisnik sa tim telefonom je vec registrovan";
+        if (e.status == 409) {
+          this.message = "Korisnik sa tim telefonom je već registrovan";
         }
       });
   }
