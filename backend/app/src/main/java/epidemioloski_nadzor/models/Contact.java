@@ -2,8 +2,14 @@ package epidemioloski_nadzor.models;
 
 import java.util.Date;
 
+// import org.springframework.data.mongodb.core.mapping.Document;
 
+// @Document(collection = "contact")
 public class Contact {
+
+	private String id;
+	
+	// @Id
 
 	private Date date;
 	private String description;
@@ -12,11 +18,20 @@ public class Contact {
 
 	public Contact() {}
 
-	public Contact(Date date, String description, PersonalInfo personalInfo, Address address){
+	public Contact(String id, Date date, String description, PersonalInfo personalInfo, Address address){
+		this.id = id;
 		this.date = date;
 		this.description = description;
 		this.personalInfo = personalInfo;
 		this.address = address;
+	}
+
+	public String getId(){
+		return id;
+	}
+
+	public void setId(String id){
+		this.id = id;
 	}
 
 	public Date getDate(){

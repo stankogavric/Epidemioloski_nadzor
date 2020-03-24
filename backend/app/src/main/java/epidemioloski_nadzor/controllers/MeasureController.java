@@ -13,7 +13,7 @@ import epidemioloski_nadzor.models.Measure;
 import epidemioloski_nadzor.services.MeasureService;
 import epidemioloski_nadzor.utils.View.HideOptionalProperties;
 
-@CrossOrigin(origins={"http://localhost:4200"})
+@CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @RestController
 @RequestMapping("/measure")
 public class MeasureController {

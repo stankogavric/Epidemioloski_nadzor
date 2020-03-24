@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import epidemioloski_nadzor.services.LoginService;
 import epidemioloski_nadzor.models.User;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @Controller
 @RequestMapping("/login")
 public class LoginController {

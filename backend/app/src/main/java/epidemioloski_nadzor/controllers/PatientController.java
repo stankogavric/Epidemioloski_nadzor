@@ -16,7 +16,7 @@ import epidemioloski_nadzor.models.Contact;
 import epidemioloski_nadzor.models.Patient;
 import epidemioloski_nadzor.services.PatientService;
 
-@CrossOrigin(origins={"http://localhost:4200"})
+@CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
@@ -31,8 +31,7 @@ public class PatientController {
 
     @RequestMapping(method=RequestMethod.POST)
     public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
-        patientService.addPatient(patient);
-        return new ResponseEntity<Patient>(patient, HttpStatus.CREATED);
+        return new ResponseEntity<Patient>(patient, patientService.addPatient(patient));
     }
 
     @RequestMapping(value="/{jmbg}", method=RequestMethod.GET)

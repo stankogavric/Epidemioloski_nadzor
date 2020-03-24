@@ -2,63 +2,71 @@
 <button class="buttonBorder" mat-button (click)="exportDataToXML()">Export data to XML</button>
 <button class="buttonBorder" mat-button (click)="exportDataToPDF()">Export data to PDF</button>
 -->
-<div class="center">
-    <button class="buttonBorder" mat-button [routerLink]='["/register-patient"]' matTooltip="Dodaj novog pacijenta">
-        <mat-icon>add</mat-icon>
-    </button>
-    &nbsp;
-    <mat-form-field>
-        <span matSuffix>
-            <mat-icon>search</mat-icon>
-        </span>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
-    </mat-form-field>
-</div>
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+<div class="patients-div">
+    <div class="mat-elevation-z8">
 
-        <ng-container matColumnDef="no">
-            <th mat-header-cell *matHeaderCellDef> Redni broj </th>
-            <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
-        </ng-container>
+        <button class="left-buttons" mat-raised-button color="warn" [routerLink]='["/"]'>
+            Odjavi se
+        </button>
+        <button class="left-buttons" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
+            Dodaj novog pacijenta
+        </button>
 
-        <ng-container matColumnDef="firstname">
-            <th mat-header-cell *matHeaderCellDef> Ime </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.firstname}} </td>
-        </ng-container>
+        &nbsp;
+        <mat-form-field class="right-buttons">
+            <span matSuffix>
+                <mat-icon>search</mat-icon>
+            </span>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
+        </mat-form-field>
 
-        <ng-container matColumnDef="lastname">
-            <th mat-header-cell *matHeaderCellDef> Prezime </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.lastname}} </td>
-        </ng-container>
+        
+        
+        <table mat-table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="jmbg">
-            <th mat-header-cell *matHeaderCellDef> JMBG </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.jmbg}} </td>
-        </ng-container>
+            <ng-container matColumnDef="no">
+                <th mat-header-cell *matHeaderCellDef> Redni broj </th>
+                <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="phone">
-            <th mat-header-cell *matHeaderCellDef> Telefon </th>
-            <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.phone}} </td>
-        </ng-container>
+            <ng-container matColumnDef="firstname">
+                <th mat-header-cell *matHeaderCellDef> Ime </th>
+                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.firstname}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let patient">
-                <button mat-raised-button color="warn" (click)="openDialog(patient)" matTooltip="Izbriši">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                &nbsp;
-                <button mat-raised-button color="accent" [routerLink]="['/edit-patient', patient.personalInfo.jmbg]"
-                    matTooltip="Izmeni">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="lastname">
+                <th mat-header-cell *matHeaderCellDef> Prezime </th>
+                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.lastname}} </td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+            <ng-container matColumnDef="jmbg">
+                <th mat-header-cell *matHeaderCellDef> JMBG </th>
+                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.jmbg}} </td>
+            </ng-container>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Telefon </th>
+                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.phone}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let patient">
+                    <button mat-raised-button color="warn" (click)="openDialog(patient)" matTooltip="Izbriši">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    &nbsp;
+                    <button mat-raised-button color="accent" [routerLink]="['/edit-patient', patient.personalInfo.jmbg]"
+                        matTooltip="Izmeni">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
 </div>
