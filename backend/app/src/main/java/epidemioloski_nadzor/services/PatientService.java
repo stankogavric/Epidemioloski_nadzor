@@ -46,7 +46,8 @@ public class PatientService {
     public void updatePatient(String jmbg, Patient patient) {
         Optional<Patient> oPatient = patientRepo.findByPersonalInfoJmbg(jmbg);
         if(oPatient.isPresent()) {
-            patient.getPersonalInfo().setPhone(oPatient.get().getPersonalInfo().getPhone());
+            patient.getPersonalInfo().setJmbg(oPatient.get().getPersonalInfo().getJmbg());
+            patient.setId(oPatient.get().getId());
             patientRepo.save(patient);
         }
     }

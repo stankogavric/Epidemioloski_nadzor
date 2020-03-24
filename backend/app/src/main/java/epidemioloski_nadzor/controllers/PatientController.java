@@ -31,8 +31,7 @@ public class PatientController {
 
     @RequestMapping(method=RequestMethod.POST)
     public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
-        patientService.addPatient(patient);
-        return new ResponseEntity<Patient>(patient, HttpStatus.CREATED);
+        return new ResponseEntity<Patient>(patient, patientService.addPatient(patient));
     }
 
     @RequestMapping(value="/{jmbg}", method=RequestMethod.GET)
