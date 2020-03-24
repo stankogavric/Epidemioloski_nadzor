@@ -7,7 +7,7 @@ import { User } from './user.model';
 })
 export class UserService {
 
-  public userUrl = "http://88.99.225.22/user";
+  public userUrl = "http://88.99.225.22:8080/user";
 
   constructor(private http: HttpClient) {
   }
