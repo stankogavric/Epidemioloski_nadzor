@@ -6,7 +6,6 @@ import { Patient } from './patient.model';
     providedIn: 'root'
 })
 export class PatientService {
-
     public patientsUrl = "http://localhost:8080/patient";
 
     constructor(private http: HttpClient) {
@@ -25,7 +24,8 @@ export class PatientService {
     }
 
     add(patient: Patient) {
-        return this.http.post(this.patientsUrl + '/register', patient);
+        console.log(patient);
+        return this.http.post(this.patientsUrl, patient);
     }
 
     update(jmbg: string, patient: Patient) {

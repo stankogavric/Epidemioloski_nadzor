@@ -27,7 +27,6 @@ import { LoginComponent } from './users/login/login.component';
     MaterialModule,
     BrowserAnimationsModule
   ],
-  entryComponents: [],
   providers: [],
   bootstrap: [AppComponent]
 })
