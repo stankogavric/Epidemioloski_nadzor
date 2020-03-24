@@ -16,7 +16,7 @@ import epidemioloski_nadzor.models.Contact;
 import epidemioloski_nadzor.models.Patient;
 import epidemioloski_nadzor.services.PatientService;
 
-@CrossOrigin(origins={"http://localhost:4200"})
+@CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @RestController
 @RequestMapping("/patient")
 public class PatientController {

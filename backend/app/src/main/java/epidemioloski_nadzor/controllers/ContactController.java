@@ -13,7 +13,7 @@ import epidemioloski_nadzor.models.Contact;
 import epidemioloski_nadzor.services.ContactService;
 import epidemioloski_nadzor.utils.View.HideOptionalProperties;
 
-@CrossOrigin(origins={"http://localhost:4200"})
+@CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @RestController
 @RequestMapping("/contact")
 public class ContactController {
