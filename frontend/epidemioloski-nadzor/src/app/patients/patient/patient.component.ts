@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PatientService } from '../patients.service';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { SnackBarService } from 'src/app/shared/snack-bar.service';
 
 @Component({
   selector: 'app-patient',
@@ -51,7 +52,7 @@ export class PatientComponent implements OnInit {
   public patientForm : FormGroup;
   public contactForm : FormGroup;
 
-  constructor(private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) { }
+  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.filteredCountries = this.myControl.valueChanges.pipe(
@@ -115,10 +116,12 @@ export class PatientComponent implements OnInit {
   savePatient(){
     this.patientForm.reset();
     this.contactForm.reset();
+    this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
 
   saveContact(){
     this.contactForm.reset();
+    this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
 
   private _filter(value: string): string[] {
