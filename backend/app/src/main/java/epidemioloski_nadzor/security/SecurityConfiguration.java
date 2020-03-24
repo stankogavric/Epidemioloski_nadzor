@@ -17,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -25,18 +24,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
-	    Map<String, PasswordEncoder> encoders = new HashMap<>();
+	    Map<String, PasswordEncoder> encoders = new HashMap<String, PasswordEncoder>();
 	    encoders.put("bcrypt", new BCryptPasswordEncoder());
-	    
+
 	    DelegatingPasswordEncoder passworEncoder = new DelegatingPasswordEncoder(
 	      "bcrypt", encoders);
 	    passworEncoder.setDefaultPasswordEncoderForMatches(encoders.get("bcrypt"));
 	    return passworEncoder;
 	}
-	
+
 	@Autowired
 	public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(this.userDetailsService).passwordEncoder(this.getPasswordEncoder()).and().jdbcAuthentication();
@@ -47,18 +46,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
-	@Bean
-	public AuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-		AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter();
-		authenticationTokenFilter.setAuthenticationManager(this.authenticationManagerBean());
-		return authenticationTokenFilter;
-	}
-	
+
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 		httpSecurity.csrf().disable();
 	}
 }

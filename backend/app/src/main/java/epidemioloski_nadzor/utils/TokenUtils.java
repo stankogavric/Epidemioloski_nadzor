@@ -16,31 +16,31 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class TokenUtils {
 	@Value("${token.secret}")
 	private String secret;
-	
+
 	@Value("${token.expiration}")
 	private Long expiration;
-	
+
 	private Claims getClaims(String token) {
 		Claims claims;
-		
+
 		try {
 			claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
 		}
 		catch(Exception e) {
 			claims = null;
 		}
-		
+
 		return claims;
 	}
-	
+
 	private boolean isExpired(String token) {
 		final Date expiration = this.getExpirationDate(token);
 		return expiration.before(new Date(System.currentTimeMillis()));
 	}
-	
+
 	public String getUsername(String token) {
 		String username;
-		
+
 		try {
 			Claims claims = this.getClaims(token);
 			username = claims.getSubject();
@@ -48,13 +48,13 @@ public class TokenUtils {
 		catch(Exception e) {
 			username = null;
 		}
-		
+
 		return username;
 	}
-	
+
 	public Date getExpirationDate(String token) {
 		Date expiration;
-		
+
 		try {
 			final Claims claims = this.getClaims(token);
 			expiration = claims.getExpiration();
@@ -62,22 +62,20 @@ public class TokenUtils {
 		catch(Exception e) {
 			expiration = null;
 		}
-		
+
 		return expiration;
 	}
-	
+
 	public boolean validateToken(String token, UserDetails userDetails) {
 		final String username = getUsername(token);
 		return (username.equals(userDetails.getUsername()) && !isExpired(token));
 	}
-	
+
 	public String generateToken(UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<String, Object>();
 		claims.put("sub", userDetails.getUsername());
 		claims.put("created", new Date(System.currentTimeMillis()));
-		claims.put("role", userDetails.getAuthorities());
-		
 		return Jwts.builder().setClaims(claims).setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
-				.signWith(SignatureAlgorithm.HS512, this.secret).compact();
+				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
 }

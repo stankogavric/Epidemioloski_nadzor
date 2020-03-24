@@ -136,8 +136,8 @@ export class PatientComponent implements OnInit {
     this.patientForm.reset();
     this.contactForm.reset();
     this.patientService.add(this.patientForm.value).subscribe(
-        value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
-        error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
+        () => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
+        () => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
     );
   }
 

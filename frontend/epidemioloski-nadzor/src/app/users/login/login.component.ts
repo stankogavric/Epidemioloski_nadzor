@@ -10,9 +10,9 @@ import { FormErrorService } from '../../shared/formError.service';
 })
 export class LoginComponent implements OnInit {
 
-  hide = true;
-
   constructor(private authService : AuthService, public readonly formError: FormErrorService) { }
+
+  message: string = "";
 
   ngOnInit() {
   }
@@ -21,7 +21,21 @@ export class LoginComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.authService.login(form.value.username, form.value.password);
+    this.authService.login(form.value.username, form.value.password).subscribe(
+      {
+        next: response => {
+          if(response.token){
+            localStorage.setItem('token', response.token);
+            this.message = "";
+          }else{
+            this.message = "Incorect username or password";
+          }
+        },
+        error: () => {
+          this.message = "Incorect username or password";
+        }
+      }
+    );
   }
 
 }
