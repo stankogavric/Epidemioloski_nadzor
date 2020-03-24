@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { FormErrorService } from '../../shared/formError.service';
 import { Router } from "@angular/router";
@@ -11,18 +11,24 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, public readonly formError: FormErrorService, private router: Router) { }
+  public loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private authService: AuthService, public readonly formError: FormErrorService, private router: Router) { }
 
   message: string = "";
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      phoneInput: ['', { validators: [Validators.required] }],
+      pinInput: ['', { validators: [Validators.required] }]
+    })
   }
 
-  onLogin(form: NgForm) {
-    if (form.invalid) {
+  onLogin() {
+    if (this.loginForm.invalid) {
       return;
     }
-    this.authService.login(form.value.username, form.value.password).subscribe(
+    this.authService.login(this.loginForm.value.phoneInput, this.loginForm.value.pinInput).subscribe(
       response => {
         if (response.token) {
           localStorage.setItem('token', response.token);
