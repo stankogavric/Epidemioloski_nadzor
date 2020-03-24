@@ -3,6 +3,7 @@ package epidemioloski_nadzor.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import epidemioloski_nadzor.models.Contact;
@@ -26,8 +27,15 @@ public class PatientService {
         return patientRepo.findByPersonalInfoJmbg(jmbg);
     }
 
-    public void addPatient(Patient patient) {
-        patientRepo.save(patient);
+    public HttpStatus addPatient(Patient patient) {
+        Optional<Patient> oPatient = patientRepo.findByPersonalInfoJmbg(patient.getPersonalInfo().getJmbg());
+        if(oPatient.isPresent()){
+            return HttpStatus.CONFLICT;
+        }else{
+            patientRepo.save(patient);
+            return HttpStatus.CREATED;
+        }
+
     }
 
     public void removePatient(String jmbg) {
