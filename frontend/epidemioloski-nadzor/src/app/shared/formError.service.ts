@@ -9,7 +9,7 @@ export class FormErrorService {
         '^[0-9]{13}$': " mora imati 13 kraktera",
         '^[a-zA-Z]{3,}$': " mora imati najmanje 3 kraktera i bez razmaka",
         '^[0-9]$': " mora biti broj",
-        '^[a-zA-Z]$': " mora biti slovo"
+        '^[a-zA-Z]$': " mora biti slovo ili reč"
     }
 
     errorMap: { 

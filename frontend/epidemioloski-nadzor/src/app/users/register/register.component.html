@@ -12,14 +12,20 @@
                 <mat-error>{{formError.mapErrors(form.get('lastName'), 'Prezime')}}</mat-error>
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput name="username" formControlName="username" type="text" placeholder="Broj telefona">
-                <mat-error>{{formError.mapErrors(form.get('username'), 'Broj telefona')}}</mat-error>
+                <input matInput name="phone" formControlName="phone" type="text" placeholder="Broj telefona">
+                <mat-error>{{formError.mapErrors(form.get('phone'), 'Broj telefona')}}</mat-error>
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput name="password" formControlName="password" type="text" placeholder="Lozinka">
-                <mat-error>{{formError.mapErrors(form.get('password'), 'Lozinka')}}</mat-error>
+                <input matInput name="pin" formControlName="pin" type="text" placeholder="PIN"
+                    [type]="hide ? 'password' : 'text'">
+                <mat-error>{{formError.mapErrors(form.get('pin'), 'PIN')}}</mat-error>
             </mat-form-field><br>
-            <button class="register-button" mat-raised-button color="primary" (click)="onRegister(registerForm)">Registruj</button>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Sakrij PIN'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>{{hide ? ' Prikaži PIN' : ' Sakrij PIN'}}
+                </button><br>
+            <button class="register-button" mat-raised-button color="primary"
+                (click)="onRegister(registerForm)">Registruj</button>
         </div>
     </mat-card>
 </div>

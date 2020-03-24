@@ -5,4 +5,8 @@ export class User {
 	pin:string;
 	role:string;
 	personalInfo:PersonalInfo;
+
+	constructor(){
+		this.personalInfo = new PersonalInfo();
+	}
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../auth/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormErrorService } from '../../shared/formError.service';
 import { UserService } from '../user.service';
 import { User } from '../user.model';
@@ -12,25 +11,28 @@ import { User } from '../user.model';
 })
 export class RegisterComponent implements OnInit {
 
+  hide = true;
   public form: FormGroup;
-  public user: User;
+  public user: User = new User();
 
-  constructor(private userervice: UserService, private authService: AuthService, public readonly formError: FormErrorService, private fb: FormBuilder) { }
+  constructor(private userService: UserService, public readonly formError: FormErrorService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.fb.group({
-      firstName: ['', {validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')]}],
-      lastName: ['', {validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')]}],
-      username: ['', {validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')]}],
-      password: ['', {validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')]}]
+      firstName: ['', {validators: [Validators.required]}],
+      lastName: ['', {validators: [Validators.required]}],
+      phone: ['', {validators: [Validators.required]}],
+      pin: ['', {validators: [Validators.required]}]
     });
   }
 
   onRegister() {
-    
+    this.user.personalInfo.firstname = this.form.value.firstName;
+    this.user.personalInfo.firstname = this.form.value.lastName;
+    this.user.personalInfo.phone = this.form.value.phone;
+    this.user.pin = this.form.value.pin;
 
-    console.log(this.form.value);
-    // this.userervice.add(this.user)
+    this.userService.add(this.user);
   }
 
 }
