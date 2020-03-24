@@ -66,8 +66,8 @@ export class PatientService {
         //return this.http.get<Patient[]>(this.patientsUrl);
     }
 
-    getOne(id: String) {
-        return this.http.get<Patient>(this.patientsUrl + `/${id}`);
+    getOne(phone: String) {
+        return this.http.get<Patient>(this.patientsUrl + `/${phone}`);
     }
     /*
       getOneByUsername(username: String) {

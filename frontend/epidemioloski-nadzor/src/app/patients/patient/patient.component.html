@@ -4,7 +4,7 @@
 
     <mat-tab-group mat-align-tabs="center" [selectedIndex]="1">
         <mat-tab disabled>
-            
+
         </mat-tab>
         <mat-tab label="Osnovni podaci">
             <br>
@@ -42,12 +42,30 @@
                         formControlName="citizenship">
                     <mat-error>{{formError.mapErrors(patientForm.get('citizenship'), 'Državljanstvo')}}</mat-error>
                 </mat-form-field>&nbsp;
+
+
+
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Doputovao iz države" aria-label="Number" matInput
+                        [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+                        <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
+                            {{country}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+
+
+                <!--
                 <mat-form-field>
                     <input matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
                         formControlName="countryOfImport">
                     <mat-error>{{formError.mapErrors(patientForm.get('countryOfImport'), 'Doputovao iz države')}}
                     </mat-error>
-                </mat-form-field>&nbsp;
+                </mat-form-field>
+                -->
+                &nbsp;
                 <mat-form-field>
                     <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
                     <mat-error>{{formError.mapErrors(patientForm.get('phone'), 'Telefon')}}</mat-error>
@@ -68,13 +86,13 @@
                 <br><br>
                 <mat-form-field>
                     <mat-label>Datum</mat-label>
-                    <input matInput [matDatepicker]="picker" name="date" formControlName="date">
+                    <input matInput [matDatepicker]="picker" name="date" formControlName="date" [value]="date.value">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field><br>
 
                 <mat-form-field>
-                    <input matInput name="temperature" type="text" placeholder="Temperatura"
+                    <input matInput name="temperature" type="number" min="0" step="0.1" value="36.5" placeholder="Temperatura"
                         formControlName="temperature">
                     <mat-error>{{formError.mapErrors(patientForm.get('temperature'), 'Temperatura')}}</mat-error>
                 </mat-form-field>&nbsp;
@@ -90,13 +108,13 @@
 
             <br>
 
-            <mat-form-field class="search">
+            <mat-form-field class="search" *ngIf="edit">
                 <span matSuffix>
                     <mat-icon>search</mat-icon>
                 </span>
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
             </mat-form-field>
-            <div class="mat-elevation-z8">
+            <div class="mat-elevation-z8" *ngIf="edit">
                 <table mat-table [dataSource]="dataSourceStatuses">
 
                     <ng-container matColumnDef="no">
@@ -168,14 +186,14 @@
                 </mat-form-field><br>
                 <mat-form-field>
                     <mat-label>Datum početka mere</mat-label>
-                    <input matInput [matDatepicker]="pickerStart" name="startDate" formControlName="startDate">
+                    <input matInput [matDatepicker]="pickerStart" name="startDate" formControlName="startDate" [value]="startDate.value">
                     <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                     <mat-datepicker #pickerStart></mat-datepicker>
                 </mat-form-field>
                 &nbsp;
                 <mat-form-field>
                     <mat-label>Datum završetka mere</mat-label>
-                    <input matInput [matDatepicker]="pickerEnd" name="endDate" formControlName="endDate">
+                    <input matInput [matDatepicker]="pickerEnd" name="endDate" formControlName="endDate" [value]="endDate.value">
                     <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                     <mat-datepicker #pickerEnd></mat-datepicker>
                 </mat-form-field>
@@ -183,13 +201,13 @@
 
             <br>
 
-            <mat-form-field class="search">
+            <mat-form-field class="search" *ngIf="edit">
                 <span matSuffix>
                     <mat-icon>search</mat-icon>
                 </span>
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
             </mat-form-field>
-            <div class="mat-elevation-z8">
+            <div class="mat-elevation-z8" *ngIf="edit">
                 <table mat-table [dataSource]="dataSourceMeasures">
 
                     <ng-container matColumnDef="no">
@@ -247,11 +265,13 @@
             <br>
             <div [formGroup]="contactForm">
                 <mat-form-field>
-                    <input matInput name="firstnameContact" type="text" placeholder="Ime" formControlName="firstnameContact">
+                    <input matInput name="firstnameContact" type="text" placeholder="Ime"
+                        formControlName="firstnameContact">
                     <mat-error>{{formError.mapErrors(contactForm.get('firstnameContact'), 'Ime')}}</mat-error>
                 </mat-form-field>&nbsp;
                 <mat-form-field>
-                    <input matInput name="lastnameContact" type="text" placeholder="Prezime" formControlName="lastnameContact">
+                    <input matInput name="lastnameContact" type="text" placeholder="Prezime"
+                        formControlName="lastnameContact">
                     <mat-error>{{formError.mapErrors(contactForm.get('lastnameContact'), 'Prezime')}}</mat-error>
                 </mat-form-field><br>
                 <mat-form-field>
@@ -263,11 +283,13 @@
                     <mat-error>{{formError.mapErrors(contactForm.get('jmbgContact'), 'JMBG')}}</mat-error>
                 </mat-form-field><br>
                 <mat-form-field>
-                    <input matInput name="streetContact" type="text" placeholder="Ulica" formControlName="streetContact">
+                    <input matInput name="streetContact" type="text" placeholder="Ulica"
+                        formControlName="streetContact">
                     <mat-error>{{formError.mapErrors(contactForm.get('streetContact'), 'Ulica')}}</mat-error>
                 </mat-form-field>&nbsp;
                 <mat-form-field>
-                    <input matInput name="streetNumContact" type="text" placeholder="Broj ulice" formControlName="streetNumContact">
+                    <input matInput name="streetNumContact" type="text" placeholder="Broj ulice"
+                        formControlName="streetNumContact">
                     <mat-error>{{formError.mapErrors(contactForm.get('streetNumContact'), 'Broj ulice')}}</mat-error>
                 </mat-form-field>&nbsp;
                 <mat-form-field>
@@ -277,27 +299,44 @@
                 <mat-form-field>
                     <input matInput name="citizenshipContact" type="text" placeholder="Državljanstvo"
                         formControlName="citizenshipContact">
-                    <mat-error>{{formError.mapErrors(contactForm.get('citizenshipContact'), 'Državljanstvo')}}</mat-error>
+                    <mat-error>{{formError.mapErrors(contactForm.get('citizenshipContact'), 'Državljanstvo')}}
+                    </mat-error>
                 </mat-form-field>&nbsp;
+
+
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Doputovao iz države" aria-label="Number" matInput
+                        [formControl]="myControlContact" [matAutocomplete]="autoContact">
+                    <mat-autocomplete #autoContact="matAutocomplete" autoActiveFirstOption>
+                        <mat-option *ngFor="let country of filteredCountriesContact | async" [value]="country">
+                            {{country}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <!--
                 <mat-form-field>
                     <input matInput name="countryOfImportContact" type="text" placeholder="Doputovao iz države"
                         formControlName="countryOfImportContact">
                     <mat-error>{{formError.mapErrors(contactForm.get('countryOfImportContact'), 'Doputovao iz države')}}
                     </mat-error>
-                </mat-form-field>&nbsp;
+                </mat-form-field>
+                &nbsp;
+                -->
                 <mat-form-field>
-                    <input matInput name="phoneContact" type="text" placeholder="Telefon" formControlName="phoneContact">
+                    <input matInput name="phoneContact" type="text" placeholder="Telefon"
+                        formControlName="phoneContact">
                     <mat-error>{{formError.mapErrors(contactForm.get('phoneContact'), 'Telefon')}}</mat-error>
                 </mat-form-field><br>
                 <mat-form-field>
                     <mat-label>Datum kontakta</mat-label>
-                    <input matInput [matDatepicker]="pickerContact" name="dateContact" formControlName="dateContact">
+                    <input matInput [matDatepicker]="pickerContact" name="dateContact" formControlName="dateContact" [value]="dateContact.value">
                     <mat-datepicker-toggle matSuffix [for]="pickerContact"></mat-datepicker-toggle>
                     <mat-datepicker #pickerContact></mat-datepicker>
                 </mat-form-field>
                 <br><br>
-                <button class="buttonBorder" mat-button matTooltip="Sačuvaj kontakt" (click)="saveContact()">
-                    <mat-icon>save</mat-icon>
+                <button class="buttonAdd" mat-button matTooltip="Dodaj kontakt" (click)="saveContact()">
+                    <mat-icon>add</mat-icon>
                 </button>
             </div>
             <br>
@@ -309,27 +348,27 @@
             </mat-form-field>
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSourceContacts">
-            
+
                     <ng-container matColumnDef="no">
                         <th mat-header-cell *matHeaderCellDef> Redni broj </th>
                         <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
                     </ng-container>
-            
+
                     <ng-container matColumnDef="firstname">
                         <th mat-header-cell *matHeaderCellDef> Ime </th>
                         <td mat-cell *matCellDef="let contact"> {{contact.firstname}} </td>
                     </ng-container>
-            
+
                     <ng-container matColumnDef="lastname">
                         <th mat-header-cell *matHeaderCellDef> Prezime </th>
                         <td mat-cell *matCellDef="let patient"> {{contact.lastname}} </td>
                     </ng-container>
-            
+
                     <ng-container matColumnDef="jmbg">
                         <th mat-header-cell *matHeaderCellDef> JMBG </th>
                         <td mat-cell *matCellDef="let patient"> {{contact.jmbg}} </td>
                     </ng-container>
-            
+
                     <ng-container matColumnDef="phone">
                         <th mat-header-cell *matHeaderCellDef> Telefon </th>
                         <td mat-cell *matCellDef="let patient"> {{contact.phone}} </td>
@@ -351,18 +390,19 @@
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsContacts"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsContacts;"></tr>
                 </table>
-            
+
                 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
             </div>
         </mat-tab>
 
         <mat-tab disabled>
             <ng-template mat-tab-label>
-                <button [disableRipple]="true" class="buttonBorder" mat-button matTooltip="Sačuvaj pacijenta" (click)="savePatient()">
+                <button [disableRipple]="true" class="buttonBorder" mat-button matTooltip="Sačuvaj pacijenta"
+                    (click)="savePatient()">
                     <mat-icon>save</mat-icon>
                 </button>
             </ng-template>
         </mat-tab>
-    </mat-tab-group>    
+    </mat-tab-group>
 
 </div>

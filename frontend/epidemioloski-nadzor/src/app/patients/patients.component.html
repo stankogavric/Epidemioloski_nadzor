@@ -1,17 +1,19 @@
-<button class="buttonBorder" mat-button [routerLink]='["/register-patient"]' matTooltip="Dodaj novog pacijenta">
-    <mat-icon>add</mat-icon>
-</button>
 <!--
 <button class="buttonBorder" mat-button (click)="exportDataToXML()">Export data to XML</button>
 <button class="buttonBorder" mat-button (click)="exportDataToPDF()">Export data to PDF</button>
 -->
-<br><br>
-<mat-form-field>
-    <span matSuffix>
-        <mat-icon>search</mat-icon>
-    </span>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
-</mat-form-field>
+<div class="center">
+    <button class="buttonBorder" mat-button [routerLink]='["/register-patient"]' matTooltip="Dodaj novog pacijenta">
+        <mat-icon>add</mat-icon>
+    </button>
+    &nbsp;
+    <mat-form-field>
+        <span matSuffix>
+            <mat-icon>search</mat-icon>
+        </span>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
+    </mat-form-field>
+</div>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
@@ -47,7 +49,8 @@
                     <mat-icon>delete</mat-icon>
                     <!--Delete-->
                 </button>
-                <button mat-raised-button color="accent" [routerLink]="['/register-patient', patient]"
+                &nbsp;
+                <button mat-raised-button color="accent" [routerLink]="['/edit-patient', patient.personalInfo.phone]"
                     matTooltip="Izmeni">
                     <mat-icon>edit</mat-icon>
                     <!--Edit-->

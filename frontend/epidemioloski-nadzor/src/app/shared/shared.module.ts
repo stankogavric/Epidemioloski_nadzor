@@ -8,10 +8,11 @@ import { AppRoutingModule } from '../app-routing.module';
 
 //import {FlexLayoutModule} from "@angular/flex-layout";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
-    
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +21,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MaterialModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
     //FlexLayoutModule
   ],
   exports: [
@@ -31,8 +32,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ConfirmationDialogComponent
     //FlexLayoutModule
   ],
-  entryComponents: [  ]
+  entryComponents: [ 
+    ConfirmationDialogComponent
+  ]
 })
 export class SharedModule { }

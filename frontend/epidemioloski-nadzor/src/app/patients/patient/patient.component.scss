@@ -3,6 +3,11 @@
 }
 
 .buttonBorder {
+    background-color: rgba(0,0,0,.87);
+    color: white;
+}
+
+.buttonAdd {
     background-color: green;
     color: white;
 }
@@ -16,6 +21,3 @@ table {
     width: 100%;
 }
 
-.mat-tab-labels :last-child {
-    opacity: unset;
-}
