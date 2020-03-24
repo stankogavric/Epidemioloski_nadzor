@@ -19,8 +19,6 @@ import { Patient } from '../patient.model';
 })
 export class PatientComponent implements OnInit {
 
-  myControl = new FormControl();
-  myControlContact = new FormControl();
   countries: string[] = ['Kina', 'Italija', 'Španija'];
   countriesContact: string[] = ['Kina', 'Italija', 'Španija'];
   filteredCountries: Observable<string[]>;
@@ -59,16 +57,15 @@ export class PatientComponent implements OnInit {
 
   ngOnInit() {
 
-    this.filteredCountriesContact = this.myControlContact.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterContact(value))
-    );
+    
 
     let jmbg = this.route.snapshot.paramMap.get("jmbg");
 
     if (jmbg) {
       this.edit = true;
       this.patientService.getOne(jmbg).subscribe(data => {
+        this.patient = data;
+        this.contacts = data.contacts;
         this.patientForm.patchValue(data);
         this.contacts = data.contacts;
         this.dataSourceContacts.data = data.contacts;
@@ -96,46 +93,86 @@ export class PatientComponent implements OnInit {
         })
       }),
 
-      status: [],
+      status: this.fb.group({
+        status: [],
       date: [],
       temperature: [],
       description: [],
-      anamnesis: [],
+      anamnesis: []
+      }),
 
-      rescriptNum: [],
+      measure: this.fb.group({
+        rescriptNum: [],
       institution: [],
       startDate: [],
       endDate: [],
-      measure: [],
+      measure: []
+      }),
 
       citizenship: [],
       countryOfImport: []
     });
 
     this.contactForm = this.fb.group({
-      jmbgContact: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
-      firstnameContact: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
-      lastnameContact: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
-      lboContact: [],
-      streetContact: [],
-      streetNumContact: [],
-      cityContact: [],
-      citizenshipContact: [],
-      countryOfImportContact: [],
-      phoneContact: [],
-      dateContact: []
+      personalInfo: this.fb.group({
+        jmbg: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
+        firstname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
+        lastname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
+        lbo: [],
+        phone: [],
+        address: this.fb.group({
+          street: [],
+          streetNum: [],
+          city: []
+        })
+      }),
+      citizenship: [],
+      countryOfImport: [],
+      date:[]
     })
 
     this.filteredCountries = this.patientForm.get("countryOfImport").valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
+
+    this.filteredCountriesContact = this.contactForm.get("countryOfImport").valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterContact(value))
+    );
   }
 
   savePatient() {
+    this.patient = this.patientForm.value;
+    delete this.patient['status'];
+    delete this.patient['measure'];
+    if(!this.patient.contacts){
+      this.patient.contacts = [];
+    }
+    if(!this.patient.measures){
+      this.patient.measures = [];
+    }
+    if(!this.patient.statuses){
+      this.patient.statuses = [];
+    }
+    for (let value of Object.values(this.patientForm.get("status").value)){
+      if (value){
+        this.patient.statuses.push(this.patientForm.get("status").value);
+        break;
+      }
+    }
+    for (let value of Object.values(this.patientForm.get("measure").value)){
+      if (value){
+        this.patient.measures.push(this.patientForm.get("measure").value);
+        break;
+      }
+    }
+    
+    this.patient.contacts = this.contacts;
     this.patientForm.reset();
     this.contactForm.reset();
-    this.patientService.add(this.patientForm.value).subscribe(
+    console.log(this.patient);
+    this.patientService.add(this.patient).subscribe(
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
     );
@@ -143,20 +180,38 @@ export class PatientComponent implements OnInit {
 
   saveContact(){
     this.patient.contacts.push(this.contactForm.value);
+    this.contacts.push(this.contactForm.value);
+    this.dataSourceContacts.data = this.patient.contacts;
     this.contactForm.reset();
     this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
 
   private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.countries.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    if(value){
+      const filterValue = value.toLowerCase();
+      return this.countries.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+    
   }
 
   private _filterContact(value: string): string[] {
-    const filterValue = value.toLowerCase();
+    if(value){
+      const filterValue = value.toLowerCase();
+      return this.countriesContact.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+    
+  }
 
-    return this.countriesContact.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  applyFilterStatuses(filterValue: string) {
+    this.dataSourceStatuses.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterMeasures(filterValue: string) {
+    this.dataSourceMeasures.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterContacts(filterValue: string) {
+    this.dataSourceContacts.filter = filterValue.trim().toLowerCase();
   }
 
 }

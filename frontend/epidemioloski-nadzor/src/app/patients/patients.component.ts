@@ -42,7 +42,7 @@ export class PatientsComponent implements OnInit {
   delete(jmbg: string){
     this.patientsService.delete(jmbg).subscribe((data: any) => {
       this.getAll();
-      this.snackBarService.openSnackBar("Successfully deleted student", "X")
+      this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
     });
   }
 

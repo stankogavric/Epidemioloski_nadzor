@@ -15,5 +15,7 @@ export class Patient {
 
     constructor(){
         this.contacts = [];
+        this.measures = [];
+        this.statuses = [];
     }
 }
