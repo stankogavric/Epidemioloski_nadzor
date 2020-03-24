@@ -50,6 +50,7 @@ public class UserService {
         Optional<User> oUser = userRepo.findByPersonalInfoPhone(phone);
         if(oUser.isPresent()) {
             user.getPersonalInfo().setPhone(oUser.get().getPersonalInfo().getPhone());
+            user.setPin(passwordEncoder.encode(user.getPin()));
             user.setId(oUser.get().getId());
             userRepo.save(user);
         }

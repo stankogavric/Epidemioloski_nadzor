@@ -21,7 +21,7 @@ public class LoginController {
 	LoginService ls;
 	
 	@RequestMapping(path = "", method = RequestMethod.POST)
-	public ResponseEntity<HashMap<String, String>> login(@RequestBody User user) {		
+	public ResponseEntity<HashMap<String, String>> login(@RequestBody User user) {
 		return ls.login(user);
 	}
 

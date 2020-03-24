@@ -37,8 +37,8 @@ public class LoginService {
 	public ResponseEntity<HashMap<String, String>> login(User user) {
 		try {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getPersonalInfo().getPhone(),
-            user.getPin());
-			
+			user.getPin());
+
 			Authentication authentication = authenticationManager.authenticate(token);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -47,9 +47,8 @@ public class LoginService {
 			
 			HashMap<String, String> data = new HashMap<String, String>();
 			data.put("token", userToken);
-			
+
 			return new ResponseEntity<HashMap<String, String>>(data, HttpStatus.OK);
-			
 		} catch (Exception e) {
 			return new ResponseEntity<HashMap<String, String>>(HttpStatus.UNAUTHORIZED);
 		}

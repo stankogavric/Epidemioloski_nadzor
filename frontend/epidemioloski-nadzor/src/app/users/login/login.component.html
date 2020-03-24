@@ -13,7 +13,8 @@
                     required>
                 <mat-error>{{formError.mapErrors(passwordInput, 'Lozinka')}}</mat-error>
             </mat-form-field><br>
-            <button [routerLink]='["/patients"]' class="login-button" mat-raised-button color="primary" type="submit">Prijavi se</button>
+            <p class="message">{{message}}</p>
+            <button class="login-button" mat-raised-button color="primary" type="submit">Prijavi se</button>
         </form>
     </mat-card>
 </div>

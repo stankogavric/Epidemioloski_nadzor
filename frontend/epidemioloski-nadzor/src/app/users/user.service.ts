@@ -29,15 +29,11 @@ export class UserService {
   }
 
   add(user:User) {
-    const postData = new FormData();
-    postData.append("data", JSON.stringify(user));
-    return this.http.post(this.userUrl+'/register', postData);
+    return this.http.post(this.userUrl+'/register', user);
   }
 
-  update(username:string, user:User) {
-    const postData = new FormData();
-    postData.append("data", JSON.stringify(user));
-    return this.http.put(this.userUrl+`/${username}`, postData)
+  update(phone:string, user:User) {
+    return this.http.put(this.userUrl+`/${phone}`, user)
   }
 
 }
