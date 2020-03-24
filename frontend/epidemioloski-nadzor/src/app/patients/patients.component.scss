@@ -7,11 +7,25 @@
     width: 100%;
   }
 */
-.buttonBorder {
-    background-color: green;
-    color: white;
+
+.patients-div {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.center {
-  text-align: center;
+.mat-elevation-z8 {
+  width: 90%;
+  background-color: rgb(210, 255, 220);
+}
+
+.left-buttons {
+  margin: 20px;
+}
+
+.right-buttons {
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
 }
