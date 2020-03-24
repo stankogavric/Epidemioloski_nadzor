@@ -30,8 +30,11 @@ public class UserService {
     }
 
     public void addUser(User user) {
-        user.setPin((passwordEncoder.encode(user.getPin())));
-        userRepo.save(user);
+        Optional<User> oUser = userRepo.findByPersonalInfoPhone(user.getPersonalInfo().getPhone());
+        if(oUser.isPresent()){
+            user.setPin((passwordEncoder.encode(user.getPin())));
+            userRepo.save(user);
+        }
     }
 
     public void removeUser(String phone) {
@@ -43,6 +46,7 @@ public class UserService {
         Optional<User> oUser = userRepo.findByPersonalInfoPhone(phone);
         if(oUser.isPresent()) {
             user.getPersonalInfo().setPhone(oUser.get().getPersonalInfo().getPhone());
+            user.setId(oUser.get().getId());
             userRepo.save(user);
         }
     }

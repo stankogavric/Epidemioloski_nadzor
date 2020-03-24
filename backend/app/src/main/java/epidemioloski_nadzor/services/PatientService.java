@@ -22,29 +22,29 @@ public class PatientService {
         return patientRepo.findAll();
     }
 
-    public Optional<Patient> getPatientByPhone(String phone) {
-        return patientRepo.findByPersonalInfoPhone(phone);
+    public Optional<Patient> getPatientByJmbg(String jmbg) {
+        return patientRepo.findByPersonalInfoJmbg(jmbg);
     }
 
     public void addPatient(Patient patient) {
         patientRepo.save(patient);
     }
 
-    public void removePatient(String phone) {
-        Optional<Patient> patient = patientRepo.findByPersonalInfoPhone(phone);
+    public void removePatient(String jmbg) {
+        Optional<Patient> patient = patientRepo.findByPersonalInfoJmbg(jmbg);
         patientRepo.delete(patient.get());
     }
 
-    public void updatePatient(String phone, Patient patient) {
-        Optional<Patient> oPatient = patientRepo.findByPersonalInfoPhone(phone);
+    public void updatePatient(String jmbg, Patient patient) {
+        Optional<Patient> oPatient = patientRepo.findByPersonalInfoJmbg(jmbg);
         if(oPatient.isPresent()) {
             patient.getPersonalInfo().setPhone(oPatient.get().getPersonalInfo().getPhone());
             patientRepo.save(patient);
         }
     }
 
-	public void addPatientContact(String phone, Contact contact) {
-        Optional<Patient> oPatient = patientRepo.findByPersonalInfoPhone(phone);
+	public void addPatientContact(String jmbg, Contact contact) {
+        Optional<Patient> oPatient = patientRepo.findByPersonalInfoJmbg(jmbg);
         if(oPatient.isPresent()) {
             Patient p = oPatient.get();
             p.getContacts().add(contact);
