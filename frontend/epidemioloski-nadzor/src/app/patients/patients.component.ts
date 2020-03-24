@@ -55,7 +55,7 @@ export class PatientsComponent implements OnInit {
   openDialog(patient: Patient): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: {title: "Delete patient", content: "Are you sure you want to delete this patient?"}
+      data: {title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?"}
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'patients', component: PatientsComponent },
-  { path: 'register-patient', component: PatientComponent }
+  { path: 'register-patient', component: PatientComponent },
+  { path: 'edit-patient/:phone', component: PatientComponent }
 ];
 
 @NgModule({

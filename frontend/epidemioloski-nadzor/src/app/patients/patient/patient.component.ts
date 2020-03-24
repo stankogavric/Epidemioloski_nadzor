@@ -1,21 +1,38 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { FormErrorService } from 'src/app/shared/formError.service';
 import { Status } from '../status.model';
 import { Measure } from '../measure.model';
 import { Contact } from 'src/app/users/contact.model';
-import { Patient } from '../patient.model';
+import { ActivatedRoute } from '@angular/router';
+import { PatientService } from '../patients.service';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import { SnackBarService } from 'src/app/shared/snack-bar.service';
 
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
 
+  myControl = new FormControl();
+  myControlContact = new FormControl();
+  countries: string[] = ['Kina', 'Italija', 'Španija'];
+  countriesContact: string[] = ['Kina', 'Italija', 'Španija'];
+  filteredCountries: Observable<string[]>;
+  filteredCountriesContact: Observable<string[]>;
+
   showInstitution = false;
+
+  edit = false;
+
+  date = new FormControl(new Date());
+  startDate = new FormControl(new Date());
+  endDate = new FormControl(new Date());
+  dateContact = new FormControl(new Date());
 
   statuses : Status[] = [];
   status : Status = new Status();
@@ -35,11 +52,26 @@ export class PatientComponent implements OnInit {
   public patientForm : FormGroup;
   public contactForm : FormGroup;
 
-  patient : Patient = new Patient();
-
-  constructor(private fb: FormBuilder, public formError: FormErrorService) { }
+  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.filteredCountries = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+    this.filteredCountriesContact = this.myControlContact.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterContact(value))
+    );
+
+    let phone = this.route.snapshot.paramMap.get("phone");
+    if (phone) {
+      this.edit = true;
+      //let patient = this.patientService.getOne(phone);
+      //this.patientForm.patchValue(patient);
+      //this.contactForm.patchValue(patient);
+    }
     this.dataSourceStatuses.paginator = this.paginator;
     this.dataSourceMeasures.paginator = this.paginator;
     this.dataSourceContacts.paginator = this.paginator;
@@ -84,12 +116,25 @@ export class PatientComponent implements OnInit {
   savePatient(){
     this.patientForm.reset();
     this.contactForm.reset();
-    // this.pati
+    this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
 
   saveContact(contact: Contact){
-    this.patient.contacts.push(contact);
+    // this.patient.contacts.push(contact);
     this.contactForm.reset();
+    this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.countries.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterContact(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.countriesContact.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }
