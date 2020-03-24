@@ -16,13 +16,8 @@ export class PatientService {
         return this.http.get<Patient[]>(this.patientsUrl);
     }
 
-<<<<<<< HEAD
-    getOne(jmbg: String) {
-        return this.http.get<Patient>(this.patientsUrl + `/${jmbg}`);
-=======
-    getOne(phone: String) {
-        return this.http.get<Patient>(this.patientsUrl + `/${phone}`);
->>>>>>> 1eb7c0879ac2cc1994ecf889b25e45f3a6a4f030
+    getOne(jmbg: String) { 
+        return this.http.get<Patient>(this.patientsUrl + `/${jmbg}`);     
     }
 
     delete(jmbg: String) {

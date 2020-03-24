@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientComponent } from './patients/patient/patient.component';
 import { RegisterComponent } from './users/register/register.component';
 import { LoginComponent } from './users/login/login.component';
-import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     PatientsComponent,
     PatientComponent,
     RegisterComponent,
-    LoginComponent,
-    ConfirmationDialogComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     MaterialModule,
     BrowserAnimationsModule
   ],
-  entryComponents: [ConfirmationDialogComponent],
+  entryComponents: [],
   providers: [],
   bootstrap: [AppComponent]
 })
