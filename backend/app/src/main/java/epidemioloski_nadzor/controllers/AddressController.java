@@ -13,7 +13,7 @@ import epidemioloski_nadzor.models.Address;
 import epidemioloski_nadzor.services.AddressService;
 import epidemioloski_nadzor.utils.View.HideOptionalProperties;
 
-@CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22","http://portal.izjzv.org.rs"})
+@CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22","https://portal.izjzv.org.rs"})
 @RestController
 @RequestMapping("/api/address")
 public class AddressController {
