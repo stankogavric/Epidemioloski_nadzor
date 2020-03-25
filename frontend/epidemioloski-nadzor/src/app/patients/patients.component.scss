@@ -20,12 +20,16 @@
   background-color: rgb(210, 255, 220);
 }
 
-.left-buttons {
+.add-button {
+  float: left;
   margin: 20px;
 }
 
-.right-buttons {
+.search-button {
+  margin: 10px;
+}
+
+.logout-button {
   float: right;
-  margin-top: 10px;
-  margin-right: 20px;
+  margin: 20px;
 }

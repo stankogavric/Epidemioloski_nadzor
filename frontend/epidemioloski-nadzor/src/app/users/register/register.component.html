@@ -25,14 +25,16 @@
                 <mat-error>{{formError.mapErrors(form.get('role'), 'Uloga')}}</mat-error>
             </mat-form-field><br>
             <mat-form-field class="register-form">
+                <span matSuffix>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Sakrij PIN'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button><br>
+                </span>
                 <input matInput name="pin" formControlName="pin" type="text" placeholder="PIN"
                     [type]="hide ? 'password' : 'text'">
                 <mat-error>{{formError.mapErrors(form.get('pin'), 'PIN')}}</mat-error>
             </mat-form-field>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Sakrij PIN'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>{{hide ? ' Prikaži PIN' : ' Sakrij PIN'}}
-            </button><br>
             <p class="message">{{message}}</p>
             <button class="register-button" mat-raised-button color="primary"
                 (click)="onRegister()">Registruj</button>
