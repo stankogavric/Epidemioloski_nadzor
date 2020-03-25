@@ -18,7 +18,7 @@ import epidemioloski_nadzor.services.PatientService;
 
 @CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("/api/patient")
 public class PatientController {
 
     @Autowired
