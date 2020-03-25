@@ -1,9 +1,14 @@
 <div class="patient">
     <div>
-        <button class="patient-button" mat-raised-button color="accent" (click)="onBack()">Pregled
-            pacijenata</button>
+        <button class="patient-button" mat-raised-button color="accent" (click)="onBack()">Pregled pacijenata</button>
         <button class="patient-button" [disableRipple]="true" mat-raised-button color="primary"
-            (click)="savePatient()">Sačuvaj pacijenta</button>
+            (click)="savePatient()">Sačuvaj izmene</button>
+        <div *ngIf="edit">
+            <h3>{{patient.personalInfo.firstname}} {{patient.personalInfo.lastname}}</h3>
+        </div>
+        <div *ngIf="!edit">
+            <h3>Novi pacijent</h3>
+        </div>
     </div>
     <mat-tab-group mat-align-tabs="center" [selectedIndex]="0">
         <!-- <mat-tab disabled>
@@ -93,12 +98,7 @@
                                 {{citizenship}}
                             </mat-option>
                         </mat-autocomplete>
-                    </mat-form-field>
-                    
-                    &nbsp;
-
-
-
+                    </mat-form-field>&nbsp;
                     <mat-form-field class="example-full-width">
                         <input type="text" placeholder="Doputovao iz države" aria-label="Number" matInput
                             formControlName="countryOfImport" [matAutocomplete]="auto">
@@ -128,7 +128,7 @@
             </mat-card><br><br>
 
         </mat-tab>
-        <mat-tab label="Status">
+        <mat-tab label="Statusi">
             <br>
             <mat-card class="info-card">
                 <div [formGroup]="patientForm">
@@ -210,6 +210,7 @@
                 </div>
             </mat-card>
             <br><br>
+            <!-- <button mat-raised-button color="primary" (click)="saveContact()">Dodaj status</button> -->
             <div class="patients-div">
                 <div class="mat-elevation-z8" *ngIf="edit">
                     <mat-form-field class="search" *ngIf="edit">
@@ -270,6 +271,7 @@
                     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
+
         </mat-tab>
         <mat-tab label="Mere">
             <br>
@@ -310,6 +312,7 @@
                 </div>
             </mat-card>
             <br><br>
+            <!-- <button mat-raised-button color="primary" (click)="saveContact()">Dodaj meru</button> -->
             <div class="patients-div">
 
                 <div class="mat-elevation-z8" *ngIf="edit">
@@ -435,7 +438,6 @@
                             </mat-form-field>&nbsp;
                         </span>
                     </div>
-                    <br>
                     <!--
                     <mat-form-field>
                         <input matInput name="citizenship" type="text" placeholder="Državljanstvo"
@@ -448,7 +450,8 @@
                         <input type="text" placeholder="Državljanstvo" aria-label="Number" matInput
                             formControlName="citizenship" [matAutocomplete]="autoCitizenshipContact">
                         <mat-autocomplete #autoCitizenshipContact="matAutocomplete" autoActiveFirstOption>
-                            <mat-option *ngFor="let citizenship of filteredCitizenshipsContact | async" [value]="citizenship">
+                            <mat-option *ngFor="let citizenship of filteredCitizenshipsContact | async"
+                                [value]="citizenship">
                                 {{citizenship}}
                             </mat-option>
                         </mat-autocomplete>
@@ -488,10 +491,7 @@
                 </div>
             </mat-card>
             <br><br>
-            <button mat-raised-button color="primary" matTooltip="Dodaj kontakt" (click)="saveContact()">Dodaj
-                kontakt</button>
-            <br>
-
+            <!-- <button mat-raised-button color="primary" (click)="saveContact()">Dodaj kontakt</button> -->
             <div class="patients-div">
                 <div class="mat-elevation-z8">
                     <mat-form-field class="search">

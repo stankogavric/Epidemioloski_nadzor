@@ -2,16 +2,16 @@
 <button class="buttonBorder" mat-button (click)="exportDataToXML()">Export data to XML</button>
 <button class="buttonBorder" mat-button (click)="exportDataToPDF()">Export data to PDF</button>
 -->
+<div class="patients-buttons">
+    <button class="patients-button" (click)="logout()" mat-raised-button color="warn">
+        Odjavi se
+    </button>&nbsp;
+    <button class="patients-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
+        Dodaj pacijenta
+    </button>
+</div>
 <div class="patients-div">
     <div class="mat-elevation-z8">
-        <div class="patients-buttons">
-            <button (click)="logout()" class="logout-button" mat-raised-button color="warn">
-                Odjavi se
-            </button>&nbsp;
-            <button class="add-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
-                Novi pacijent
-            </button>
-        </div>
         <mat-form-field class="search-button">
             <span matSuffix>
                 <mat-icon>search</mat-icon>
