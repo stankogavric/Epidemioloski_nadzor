@@ -23,37 +23,30 @@ public class PatientService {
         return patientRepo.findAll();
     }
 
-    public Optional<Patient> getPatientByJmbg(String jmbg) {
-        return patientRepo.findByPersonalInfoJmbg(jmbg);
+    public Optional<Patient> getPatientById(String id) {
+        return patientRepo.findById(id);
     }
 
     public HttpStatus addPatient(Patient patient) {
-        Optional<Patient> oPatient = patientRepo.findByPersonalInfoJmbg(patient.getPersonalInfo().getJmbg());
-        if(oPatient.isPresent()){
-            return HttpStatus.CONFLICT;
-        }else{
-            patientRepo.save(patient);
-            return HttpStatus.CREATED;
-        }
-
+        patientRepo.save(patient);
+        return HttpStatus.CREATED;
     }
 
-    public void removePatient(String jmbg) {
-        Optional<Patient> patient = patientRepo.findByPersonalInfoJmbg(jmbg);
+    public void removePatient(String id) {
+        Optional<Patient> patient = patientRepo.findById(id);
         patientRepo.delete(patient.get());
     }
 
-    public void updatePatient(String jmbg, Patient patient) {
-        Optional<Patient> oPatient = patientRepo.findByPersonalInfoJmbg(jmbg);
+    public void updatePatient(String id, Patient patient) {
+        Optional<Patient> oPatient = patientRepo.findById(id);
         if(oPatient.isPresent()) {
-            patient.getPersonalInfo().setJmbg(oPatient.get().getPersonalInfo().getJmbg());
             patient.setId(oPatient.get().getId());
             patientRepo.save(patient);
         }
     }
 
-	public void addPatientContact(String jmbg, Contact contact) {
-        Optional<Patient> oPatient = patientRepo.findByPersonalInfoJmbg(jmbg);
+	public void addPatientContact(String id, Contact contact) {
+        Optional<Patient> oPatient = patientRepo.findById(id);
         if(oPatient.isPresent()) {
             Patient p = oPatient.get();
             p.getContacts().add(contact);

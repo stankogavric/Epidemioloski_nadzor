@@ -28,38 +28,40 @@
 
             <ng-container matColumnDef="firstname">
                 <th mat-header-cell *matHeaderCellDef> Ime </th>
-                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.firstname}} </td>
+                <td mat-cell *matCellDef="let patient" [routerLink]="['/edit-patient', patient.personalInfo.jmbg]"> {{patient.personalInfo.firstname}} </td>
             </ng-container>
 
             <ng-container matColumnDef="lastname">
                 <th mat-header-cell *matHeaderCellDef> Prezime </th>
-                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.lastname}} </td>
+                <td mat-cell *matCellDef="let patient" [routerLink]="['/edit-patient', patient.personalInfo.jmbg]"> {{patient.personalInfo.lastname}} </td>
             </ng-container>
 
             <ng-container matColumnDef="jmbg">
                 <th mat-header-cell *matHeaderCellDef> JMBG </th>
-                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.jmbg}} </td>
+                <td mat-cell *matCellDef="let patient" [routerLink]="['/edit-patient', patient.personalInfo.jmbg]"> {{patient.personalInfo.jmbg}} </td>
             </ng-container>
 
             <ng-container matColumnDef="phone">
                 <th mat-header-cell *matHeaderCellDef> Telefon </th>
-                <td mat-cell *matCellDef="let patient"> {{patient.personalInfo.phone}} </td>
+                <td mat-cell *matCellDef="let patient" [routerLink]="['/edit-patient', patient.personalInfo.jmbg]"> {{patient.personalInfo.phone}} </td>
             </ng-container>
-
+            <!--
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let patient">
+                    
                     <button mat-raised-button color="warn" (click)="openDialog(patient)">
                         Izbriši
                     </button>
                     &nbsp;
+                    
                     <button mat-raised-button color="accent"
                         [routerLink]="['/edit-patient', patient.personalInfo.jmbg]">
                         Izmeni
                     </button>
                 </td>
             </ng-container>
-
+            -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>

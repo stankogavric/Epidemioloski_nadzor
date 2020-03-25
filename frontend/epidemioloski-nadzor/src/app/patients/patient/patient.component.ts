@@ -86,11 +86,11 @@ export class PatientComponent implements OnInit {
 
   ngOnInit() {
 
-    let jmbg = this.route.snapshot.paramMap.get("jmbg");
+    let id = this.route.snapshot.paramMap.get("id");
 
-    if (jmbg) {
+    if (id) {
       this.edit = true;
-      this.patientService.getOne(jmbg).subscribe(data => {
+      this.patientService.getOne(id).subscribe(data => {
         this.patient = data;
         this.contacts = data.contacts;
         this.patientForm.patchValue(data);
@@ -101,8 +101,8 @@ export class PatientComponent implements OnInit {
         this.measures = data.measures;
         this.dataSourceMeasures.data = data.measures;
       });
-
     }
+    
     this.dataSourceStatuses.paginator = this.paginator;
     this.dataSourceMeasures.paginator = this.paginator;
     this.dataSourceContacts.paginator = this.paginator;
@@ -210,7 +210,7 @@ export class PatientComponent implements OnInit {
     }
     this.patient.contacts = this.contacts;
     if (this.edit) {
-      this.patientService.update(this.patient.personalInfo.jmbg, this.patient).subscribe(
+      this.patientService.update(this.patient.id, this.patient).subscribe(
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );

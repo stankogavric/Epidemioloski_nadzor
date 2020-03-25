@@ -1,7 +1,7 @@
 import { PersonalInfo } from './personal-info.model';
 
 export class User {
-    id:number;
+    id:string;
 	pin:string;
 	role:string;
 	personalInfo:PersonalInfo;

@@ -34,25 +34,25 @@ public class PatientController {
         return new ResponseEntity<Patient>(patient, patientService.addPatient(patient));
     }
 
-    @RequestMapping(value="/{jmbg}", method=RequestMethod.GET)
-    public ResponseEntity<Patient> getPatient(@PathVariable String jmbg) {
-        Optional<Patient> patient = patientService.getPatientByJmbg(jmbg);
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    public ResponseEntity<Patient> getPatient(@PathVariable String id) {
+        Optional<Patient> patient = patientService.getPatientById(id);
         if(patient.isPresent()) {
             return new ResponseEntity<Patient>(patient.get(), HttpStatus.OK);
         }
         return new ResponseEntity<Patient>(HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(value="/{jmbg}", method=RequestMethod.PUT)
-    public ResponseEntity<Patient> updatePatient(@PathVariable String jmbg, @RequestBody Patient patient) {
-        patientService.updatePatient(jmbg, patient);
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    public ResponseEntity<Patient> updatePatient(@PathVariable String id, @RequestBody Patient patient) {
+        patientService.updatePatient(id, patient);
         return new ResponseEntity<Patient>(patient, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/{jmbg}", method=RequestMethod.DELETE)
-    public ResponseEntity<Patient> removePatient(@PathVariable String jmbg) {
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    public ResponseEntity<Patient> removePatient(@PathVariable String id) {
         try {
-            patientService.removePatient(jmbg);
+            patientService.removePatient(id);
         }catch (Exception e) {
             return new ResponseEntity<Patient>(HttpStatus.NOT_FOUND);
         }
@@ -60,9 +60,9 @@ public class PatientController {
         return new ResponseEntity<Patient>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value="/addContact/{jmbg}", method=RequestMethod.PUT)
-    public ResponseEntity<Contact> addContact(@PathVariable String jmbg, @RequestBody Contact contact) {
-        patientService.addPatientContact(jmbg, contact);
+    @RequestMapping(value="/addContact/{id}", method=RequestMethod.PUT)
+    public ResponseEntity<Contact> addContact(@PathVariable String id, @RequestBody Contact contact) {
+        patientService.addPatientContact(id, contact);
         return new ResponseEntity<Contact>(contact, HttpStatus.CREATED);
     }
 

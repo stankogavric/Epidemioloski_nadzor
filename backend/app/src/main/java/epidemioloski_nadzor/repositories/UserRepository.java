@@ -10,4 +10,5 @@ import epidemioloski_nadzor.models.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, Long> {
     Optional<User> findByPersonalInfoPhone(String phone);
+    Optional<User> findById(String id);
 }

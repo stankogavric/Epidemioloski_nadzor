@@ -1,5 +1,5 @@
 export class Status {
-    id:number;
+    id:string;
     date: Date;
     temperature: number;
     description: string;

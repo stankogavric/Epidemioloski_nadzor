@@ -4,7 +4,7 @@ import { PersonalInfo } from '../users/personal-info.model';
 import { Status } from './status.model';
 
 export class Patient {
-    id:number;
+    id:string;
     clinicBranch:string;
     citizenship:string;
     countryOfImport:string;

@@ -15,7 +15,7 @@ export class PatientsComponent implements OnInit {
 
   patients : Patient[] = [];
   patient : Patient = new Patient();
-  displayedColumns: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone', 'actions'];
+  displayedColumns: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
   dataSource = new MatTableDataSource<Patient>(this.patients);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -56,15 +56,15 @@ export class PatientsComponent implements OnInit {
     this.authService.logout();
   }
 
-  delete(jmbg: string){
-    this.patientsService.delete(jmbg).subscribe((data: any) => {
+  delete(id: string){
+    this.patientsService.delete(id).subscribe(() => {
       this.getAll();
       this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
     });
   }
 
-  update(jmbg: string, patient: Patient){
-    this.patientsService.update(jmbg, patient).subscribe((data: any) => {
+  update(id: string, patient: Patient){
+    this.patientsService.update(id, patient).subscribe(() => {
       this.getAll();
     });
   }
@@ -77,7 +77,7 @@ export class PatientsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.delete(patient.personalInfo.jmbg);
+        this.delete(patient.id);
       };
     });
   }

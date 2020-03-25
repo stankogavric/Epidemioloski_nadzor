@@ -10,5 +10,6 @@ import epidemioloski_nadzor.models.Patient;
 @Repository
 public interface PatientRepository extends MongoRepository<Patient, Long> {
     Optional<Patient> findByPersonalInfoPhone(String phone);
-	Optional<Patient> findByPersonalInfoJmbg(String jmbg);
+    Optional<Patient> findByPersonalInfoJmbg(String jmbg);
+    Optional<Patient> findById(String id);
 }
