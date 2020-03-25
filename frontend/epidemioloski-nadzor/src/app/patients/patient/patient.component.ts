@@ -97,7 +97,7 @@ export class PatientComponent implements OnInit {
         firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
-        phone: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+        phone: ['', { validators: [Validators.required, Validators.pattern('[0-9+ ]{3,}')] }],
         address: this.fb.group({
           street: [],
           streetNum: [],
@@ -131,7 +131,7 @@ export class PatientComponent implements OnInit {
         firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
-        phone: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+        phone: ['', { validators: [Validators.required, Validators.pattern('[0-9+ ]{3,}')] }],
         address: this.fb.group({
           street: [],
           streetNum: [],
