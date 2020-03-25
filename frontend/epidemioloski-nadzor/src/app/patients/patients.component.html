@@ -5,23 +5,21 @@
 <div class="patients-div">
     <div class="mat-elevation-z8">
 
-        <button class="left-buttons" mat-raised-button color="warn" [routerLink]='["/"]'>
+        <button class="logout-button" mat-raised-button color="warn" [routerLink]='["/"]'>
             Odjavi se
         </button>
-        <button class="left-buttons" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
+        <button class="add-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
             Dodaj novog pacijenta
         </button>
 
         &nbsp;
-        <mat-form-field class="right-buttons">
+        <mat-form-field class="search-button">
             <span matSuffix>
                 <mat-icon>search</mat-icon>
             </span>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
         </mat-form-field>
 
-        
-        
         <table mat-table [dataSource]="dataSource">
 
             <ng-container matColumnDef="no">
