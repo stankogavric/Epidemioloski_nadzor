@@ -5,7 +5,7 @@ import { FormErrorService } from 'src/app/shared/formError.service';
 import { Status } from '../status.model';
 import { Measure } from '../measure.model';
 import { Contact } from 'src/app/users/contact.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from '../patients.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -67,8 +67,7 @@ export class PatientComponent implements OnInit {
 
   patient = new Patient();
 
-  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) {
-   }
+  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -95,8 +94,8 @@ export class PatientComponent implements OnInit {
     this.patientForm = this.fb.group({
       personalInfo: this.fb.group({
         jmbg: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
-        firstname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
-        lastname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
+        firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+        lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
         phone: [],
         address: this.fb.group({
@@ -129,8 +128,8 @@ export class PatientComponent implements OnInit {
     this.contactForm = this.fb.group({
       personalInfo: this.fb.group({
         jmbg: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
-        firstname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
-        lastname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
+        firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+        lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
         phone: [],
         address: this.fb.group({
@@ -157,6 +156,10 @@ export class PatientComponent implements OnInit {
     this.filteredanamnesiss = this.patientForm.get('status.anamnesis').valueChanges.pipe(
       startWith(null),
       map((anamnesis: string | null) => anamnesis ? this._filterAnamnesis(anamnesis) : this.allanamnesiss.slice()));
+  }
+
+  onBack(){
+    this.router.navigate(['/patients']);
   }
 
   savePatient() {

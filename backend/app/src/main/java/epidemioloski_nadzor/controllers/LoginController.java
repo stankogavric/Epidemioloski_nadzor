@@ -15,7 +15,7 @@ import epidemioloski_nadzor.models.User;
 
 @CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/api/login")
 public class LoginController {
 	@Autowired
 	LoginService ls;

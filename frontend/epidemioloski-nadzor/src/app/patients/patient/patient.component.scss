@@ -1,10 +1,23 @@
 table {
     width: 100%;
+    text-align: left;
 }
 
 .info-card {
     width: max-content;
     display: inline-block;
+    background-color: rgb(210, 255, 220);
+}
+
+.patients-div {
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-elevation-z8 {
+    width: 90%;
     background-color: rgb(210, 255, 220);
 }
 
@@ -16,6 +29,7 @@ table {
 
 .search {
     font-size: 14px;
-    width: 100%;
+    width: 90%;
+    margin-top: 10px;
 }
 
