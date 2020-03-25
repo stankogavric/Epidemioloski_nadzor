@@ -100,7 +100,6 @@ export class PatientComponent implements OnInit {
       this.edit = true;
       this.patientService.getOne(id).subscribe(data => {
         this.patient = data;
-        this.contacts = data.contacts;
         this.patientForm.patchValue(data);
         this.contacts = data.contacts;
         this.dataSourceContacts.data = data.contacts;
@@ -210,51 +209,86 @@ export class PatientComponent implements OnInit {
       this.patientForm.markAllAsTouched();
       return;
     }
+    /*
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+    */
+    
+
     let id = this.patient.id;
     this.patient = this.patientForm.value;
     delete this.patient['status'];
     delete this.patient['measure'];
-    if (!this.patient.contacts) {
-      this.patient.contacts = [];
-    }
-    if (!this.patient.measures) {
-      this.patient.measures = [];
-    }
-    if (!this.patient.statuses) {
-      this.patient.statuses = [];
-    }
     for (let value of Object.entries(this.patientForm.get("status").value)) {
       //if (value[1] && value[0] != "date" && value[0] != "temperature") {
       if (value[1] && value[0] != "date") {
         let status = this.patientForm.get("status").value;
         status.anamnesis = this.anamnesiss;
-        this.patient.statuses.push(status);
+        this.statuses.push(status);
+        this.patient.statuses = this.statuses;
+        this.dataSourceStatuses.data = this.statuses;
         break;
       }
     }
     for (let value of Object.entries(this.patientForm.get("measure").value)) {
       if (value[1] && value[0] != "startDate" && value[0] != "endDate") {
-        this.patient.measures.push(this.patientForm.get("measure").value);
+        this.measures.push(this.patientForm.get("measure").value);
+        this.patient.measures=this.measures;
+        this.dataSourceMeasures.data = this.measures;
         break;
       }
     }
-    this.patient.contacts = this.contacts;
+    let existContactData = false;
+    for (let value of Object.entries(this.contactForm.get('personalInfo').value)) {
+      if (value[0]=="address"){
+        for (let value of Object.entries(this.contactForm.get('personalInfo.address').value)) {
+          if (value[1]) {
+            this.contacts.push(this.contactForm.value);
+            this.patient.contacts = this.contacts;
+            this.dataSourceContacts.data = this.contacts;
+            existContactData = true;
+            break;
+          }
+        }
+      }
+      else if (existContactData){
+        break;
+      }
+      else if (value[1]) {
+        this.contacts.push(this.contactForm.value);
+        this.patient.contacts = this.contacts;
+        this.dataSourceContacts.data = this.contacts;
+        break;
+      }
+    }
+    
     if (this.edit) {
       this.patient.id = id;
       this.patientService.update(this.patient.id, this.patient).subscribe(
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
+      this.patientForm.get('status').reset();
+      this.patientForm.get('measure').reset();
+      this.contactForm.reset();
+      this.anamnesiss = [];
     }
     else {
       this.patientService.add(this.patient).subscribe(
-        value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
+        value => {this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; console.log(this.patient)},
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
-      this.patientForm.reset();
+      this.patientForm.get('status').reset();
+      this.patientForm.get('measure').reset();
       this.contactForm.reset();
-      this.dataSourceContacts.data = [];
+      //this.dataSourceContacts.data = [];
+      //this.dataSourceMeasures.data = [];
+      //this.dataSourceStatuses.data = [];
+      this.anamnesiss = [];
     }
+    this.edit = true;
   }
 
   saveContact() {
@@ -262,8 +296,8 @@ export class PatientComponent implements OnInit {
       this.contactForm.markAllAsTouched();
       return;
     }
-    this.patient.contacts.push(this.contactForm.value);
-    this.dataSourceContacts.data = this.patient.contacts;
+    this.contacts.push(this.contactForm.value);
+    this.dataSourceContacts.data = this.contacts;
     this.contactForm.reset();
     this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
