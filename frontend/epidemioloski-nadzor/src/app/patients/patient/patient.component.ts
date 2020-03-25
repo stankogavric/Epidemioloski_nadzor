@@ -39,12 +39,12 @@ export class PatientComponent implements OnInit {
   @ViewChild('anamnesisInput', { static: true }) anamnesisInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoAnamnesis', { static: true }) matAutocomplete: MatAutocomplete;
 
-  countries: string[] = this.staticDataService.getCities();
+  countries: string[] = this.staticDataService.getCountries();
   countriesContact: string[] = this.staticDataService.getCountries();
-  cities: string[];
-  citiesContact: string[];
-  citizenships: string[];
-  citizenshipsContact: string[];
+  cities: string[] = this.staticDataService.getCities();
+  citiesContact: string[] = this.staticDataService.getCities();
+  citizenships: string[] = this.staticDataService.getCountries();
+  citizenshipsContact: string[] = this.staticDataService.getCountries();
   filteredCountries: Observable<string[]>;
   filteredCountriesContact: Observable<string[]>;
   filteredCities: Observable<string[]>;
@@ -176,22 +176,22 @@ export class PatientComponent implements OnInit {
 
     this.filteredCities = this.patientForm.get("personalInfo.address.city").valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map(value => this._filterCities(value))
     );
 
     this.filteredCitiesContact = this.contactForm.get("personalInfo.address.city").valueChanges.pipe(
       startWith(''),
-      map(value => this._filterContact(value))
+      map(value => this._filterCitiesContact(value))
     );
 
     this.filteredCitizenships = this.patientForm.get("citizenship").valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map(value => this._filterCitizenships(value))
     );
 
     this.filteredCitizenshipsContact = this.contactForm.get("citizenship").valueChanges.pipe(
       startWith(''),
-      map(value => this._filterContact(value))
+      map(value => this._filterCitizenshipsContact(value))
     );
 
     this.filteredanamnesiss = this.patientForm.get('status.anamnesis').valueChanges.pipe(
@@ -316,6 +316,38 @@ export class PatientComponent implements OnInit {
     if (value) {
       const filterValue = value.toLowerCase();
       return this.countriesContact.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+
+  }
+
+  private _filterCities(value: string): string[] {
+    if (value) {
+      const filterValue = value.toLowerCase();
+      return this.cities.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+
+  }
+
+  private _filterCitiesContact(value: string): string[] {
+    if (value) {
+      const filterValue = value.toLowerCase();
+      return this.citiesContact.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+
+  }
+
+  private _filterCitizenships(value: string): string[] {
+    if (value) {
+      const filterValue = value.toLowerCase();
+      return this.citizenships.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+
+  }
+
+  private _filterCitizenshipsContact(value: string): string[] {
+    if (value) {
+      const filterValue = value.toLowerCase();
+      return this.citizenshipsContact.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
 
   }
