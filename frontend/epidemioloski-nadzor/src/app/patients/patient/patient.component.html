@@ -35,7 +35,18 @@
                             <input matInput name="jmbg" type="text" placeholder="JMBG" formControlName="jmbg">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.jmbg'), 'JMBG')}}</mat-error>
                         </mat-form-field><br>
-                        <div formGroupName="address">
+                        <mat-form-field>
+                            <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
+                            <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.phone'), 'Telefon')}}
+                            </mat-error>
+                        </mat-form-field>&nbsp;
+                        <span formGroupName="address">
+                            <mat-form-field>
+                                <input matInput name="city" type="text" placeholder="Grad" formControlName="city">
+                                <mat-error>
+                                    {{formError.mapErrors(patientForm.get('personalInfo.address.city'), 'Grad')}}
+                                </mat-error>
+                            </mat-form-field><br>
                             <mat-form-field>
                                 <input matInput name="street" type="text" placeholder="Ulica" formControlName="street">
                                 <mat-error>
@@ -49,12 +60,8 @@
                                     {{formError.mapErrors(patientForm.get('personalInfo.address.streetNum'), 'Broj')}}
                                 </mat-error>
                             </mat-form-field>&nbsp;
-                            <mat-form-field>
-                                <input matInput name="city" type="text" placeholder="Grad" formControlName="city">
-                                <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.address.city'), 'Grad')}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
+
+                        </span>
                         <br>
                     </div>
                     <mat-form-field>
@@ -87,11 +94,7 @@
                 -->
                     &nbsp;
                     <div formGroupName="personalInfo">
-                        <mat-form-field>
-                            <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
-                            <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.phone'), 'Telefon')}}
-                            </mat-error>
-                        </mat-form-field>
+
                     </div>
 
                 </div>
@@ -103,13 +106,24 @@
             <mat-card class="info-card">
                 <div [formGroup]="patientForm">
                     <div formGroupName="status">
-                        <mat-radio-group name="status" formControlName="status" aria-label="Izaberite status pacijenta">
+                        <!-- <mat-radio-group name="status" formControlName="status" aria-label="Izaberite status pacijenta">
                             <mat-radio-button value="Izlečen">Izlečen</mat-radio-button>&nbsp;
                             <mat-radio-button value="Sumnja - moguć">Sumnja - moguć</mat-radio-button>&nbsp;
                             <mat-radio-button value="Verovatan">Verovatan</mat-radio-button>&nbsp;
                             <mat-radio-button value="Potvrda">Potvrda</mat-radio-button>&nbsp;
                             <mat-radio-button value="Mortalitet">Mortalitet</mat-radio-button>
-                        </mat-radio-group>
+                        </mat-radio-group> -->
+
+                        <!-- TODO -->
+                        <mat-form-field>
+                            <mat-label>Uloga</mat-label>
+                            <mat-select formControlName="status">
+                                <mat-option *ngFor="let status of statuss" [value]="status.value">
+                                    {{status.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <!-- <mat-error>{{formError.mapErrors(form.get('status'), 'Status')}}</mat-error> -->
+                        </mat-form-field>
                         <br><br>
                         <mat-form-field>
                             <mat-label>Datum</mat-label>
@@ -349,7 +363,17 @@
                             <input matInput name="jmbg" type="text" placeholder="JMBG" formControlName="jmbg">
                             <mat-error>{{formError.mapErrors(contactForm.get('personalInfo.jmbg'), 'JMBG')}}</mat-error>
                         </mat-form-field><br>
-                        <div formGroupName="address">
+                        <mat-form-field>
+                            <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
+                            <mat-error>{{formError.mapErrors(contactForm.get('personalInfo.phone'), 'Telefon')}}
+                            </mat-error>
+                        </mat-form-field>&nbsp;
+                        <span formGroupName="address">
+                            <mat-form-field>
+                                <input matInput name="city" type="text" placeholder="Grad" formControlName="city">
+                                <mat-error>{{formError.mapErrors(contactForm.get('personalInfo.address.city'), 'Grad')}}
+                                </mat-error>
+                            </mat-form-field><br>
                             <mat-form-field>
                                 <input matInput name="street" type="text" placeholder="Ulica" formControlName="street">
                                 <mat-error>
@@ -363,12 +387,7 @@
                                     {{formError.mapErrors(contactForm.get('personalInfo.address.streetNum'), 'Broj ulice')}}
                                 </mat-error>
                             </mat-form-field>&nbsp;
-                            <mat-form-field>
-                                <input matInput name="city" type="text" placeholder="Grad" formControlName="city">
-                                <mat-error>{{formError.mapErrors(contactForm.get('personalInfo.address.city'), 'Grad')}}
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
+                        </span>
                     </div>
                     <br>
                     <mat-form-field>
@@ -399,11 +418,7 @@
                 &nbsp;
                 -->
                     <div formGroupName="personalInfo">
-                        <mat-form-field>
-                            <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
-                            <mat-error>{{formError.mapErrors(contactForm.get('personalInfo.phone'), 'Telefon')}}
-                            </mat-error>
-                        </mat-form-field><br>
+                        
                     </div>
                     <mat-form-field>
                         <mat-label>Datum kontakta</mat-label>
