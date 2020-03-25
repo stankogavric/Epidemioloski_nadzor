@@ -8,11 +8,8 @@ import { LoginComponent } from './users/login/login.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  // { 
-  //   path: 'register', component: RegisterComponent, 
-  //   canActivate: [RoleGuard], data: { expectedRoles: ['ROLE_ADMINISTRATOR'] } 
-  // },
+  { path: 'register', component: RegisterComponent, 
+    canActivate: [RoleGuard], data: { expectedRoles: ['admin'] } },
   { path: 'patients', component: PatientsComponent, 
   canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar', 'mup', 'krizniStab'] } },
   { path: 'register-patient', component: PatientComponent, 

@@ -5,7 +5,7 @@ import { FormErrorService } from 'src/app/shared/formError.service';
 import { Status } from '../status.model';
 import { Measure } from '../measure.model';
 import { Contact } from 'src/app/users/contact.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from '../patients.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -53,7 +53,7 @@ export class PatientComponent implements OnInit {
 
   patient = new Patient();
 
-  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) { }
+  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -140,6 +140,10 @@ export class PatientComponent implements OnInit {
       startWith(''),
       map(value => this._filterContact(value))
     );
+  }
+
+  onBack(){
+    this.router.navigate(['/patients']);
   }
 
   savePatient() {

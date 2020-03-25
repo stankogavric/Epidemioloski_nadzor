@@ -4,15 +4,14 @@
 -->
 <div class="patients-div">
     <div class="mat-elevation-z8">
-
-        <button class="logout-button" mat-raised-button color="warn" [routerLink]='["/"]'>
-            Odjavi se
-        </button>
-        <button class="add-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
-            Dodaj novog pacijenta
-        </button>
-
-        &nbsp;
+        <div class="patients-buttons">
+            <button class="logout-button" mat-raised-button color="warn" [routerLink]='["/"]'>
+                Odjavi se
+            </button>&nbsp;
+            <button class="add-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
+                Novi pacijent
+            </button>
+        </div>
         <mat-form-field class="search-button">
             <span matSuffix>
                 <mat-icon>search</mat-icon>
@@ -50,13 +49,13 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let patient">
-                    <button mat-raised-button color="warn" (click)="openDialog(patient)" matTooltip="Izbriši">
-                        <mat-icon>delete</mat-icon>
+                    <button mat-raised-button color="warn" (click)="openDialog(patient)">
+                        Izbriši
                     </button>
                     &nbsp;
-                    <button mat-raised-button color="accent" [routerLink]="['/edit-patient', patient.personalInfo.jmbg]"
-                        matTooltip="Izmeni">
-                        <mat-icon>edit</mat-icon>
+                    <button mat-raised-button color="accent"
+                        [routerLink]="['/edit-patient', patient.personalInfo.jmbg]">
+                        Izmeni
                     </button>
                 </td>
             </ng-container>
