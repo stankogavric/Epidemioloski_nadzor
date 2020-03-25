@@ -22,26 +22,17 @@
   background-color: rgb(210, 255, 220);
 }
 
-.add-button {
-  float: left;
-  margin: 5px;
-}
-
 .search-button {
   margin: 10px;
   width: 90%;
 }
 
-.logout-button {
-  float: right;
-  margin: 5px;
-}
-
 .patients-buttons {
-  margin-top: 10px;
-  width: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.patients-button {
+  margin: 20px;
 }
