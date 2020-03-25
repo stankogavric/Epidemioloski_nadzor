@@ -7,8 +7,6 @@ import decode from 'jwt-decode';
 export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
-
-
   login(phone: string, pin: string) {
     return this.http.post<{token: string}>("http://localhost:8080/api/login", {pin: pin, personalInfo:{phone: phone}});
     //return this.http.post<{token: string}>("/api/login", {pin: pin, personalInfo:{phone: phone}});

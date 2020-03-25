@@ -10,5 +10,4 @@ import epidemioloski_nadzor.models.Contact;
 @Repository
 public interface ContactRepository extends MongoRepository<Contact, Long> {
     Optional<Contact> findByPersonalInfoPhone(String phone);
-    Optional<Contact> findById(String id);
 }
