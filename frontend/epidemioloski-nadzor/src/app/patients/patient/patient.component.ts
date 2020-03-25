@@ -15,6 +15,12 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 
+//TODO
+interface Statuss {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -66,6 +72,15 @@ export class PatientComponent implements OnInit {
   public contactForm: FormGroup;
 
   patient = new Patient();
+
+  //TODO
+  statuss: Statuss[] = [
+    { value: 'Izlečen', viewValue: 'Izlečen' },
+    { value: 'Sumnja - moguć', viewValue: 'Sumnja - moguć' },
+    { value: 'Verovatan', viewValue: 'Verovatan' },
+    { value: 'Potvrda', viewValue: 'Potvrda' },
+    { value: 'Mortalitet', viewValue: 'Mortalitet' }
+  ];
 
   constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router) { }
 
