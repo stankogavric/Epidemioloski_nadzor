@@ -4,7 +4,7 @@
         <button class="patient-button" [disableRipple]="true" mat-raised-button color="primary"
             (click)="savePatient()">Sačuvaj izmene</button>
         <div *ngIf="edit">
-            <h3>{{patient.personalInfo.firstname}} {{patient.personalInfo.lastname}}</h3>
+            <h3>{{patient.personalInfo?.firstname}} {{patient.personalInfo?.lastname}}</h3>
         </div>
         <div *ngIf="!edit">
             <h3>Novi pacijent</h3>
@@ -21,9 +21,7 @@
             <div class="patients-div">
                 <div class="mat-elevation-z8">
                     <div [formGroup]="patientForm">
-
                         <div formGroupName="personalInfo">
-
                             <mat-form-field>
                                 <input matInput name="firstname" type="text" placeholder="Ime"
                                     formControlName="firstname">
@@ -33,7 +31,8 @@
                             <mat-form-field>
                                 <input matInput name="lastname" type="text" placeholder="Prezime"
                                     formControlName="lastname">
-                                <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.lastname'), 'Prezime')}}
+                                <mat-error>
+                                    {{formError.mapErrors(patientForm.get('personalInfo.lastname'), 'Prezime')}}
                                 </mat-error>
                             </mat-form-field><br>
                             <mat-form-field>
@@ -84,7 +83,6 @@
                                         {{formError.mapErrors(patientForm.get('personalInfo.address.streetNum'), 'Broj')}}
                                     </mat-error>
                                 </mat-form-field>&nbsp;
-
                             </span>
                             <br>
                         </div>
@@ -114,9 +112,6 @@
                                 </mat-option>
                             </mat-autocomplete>
                         </mat-form-field>
-
-
-
                         <!--
                 <mat-form-field>
                     <input matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
@@ -125,16 +120,11 @@
                     </mat-error>
                 </mat-form-field>
                 -->
-                        &nbsp;
-                        <div formGroupName="personalInfo">
-
-                        </div>
-
                     </div>
                 </div>
-            </div><br><br>
-
+            </div><br>
         </mat-tab>
+
         <mat-tab label="Statusi">
             <br>
             <div class="patients-div">
@@ -219,9 +209,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br><br>
-            <div class="patients-div">
+                <br>
                 <div class="mat-elevation-z8">
                     <mat-form-field class="search">
                         <span matSuffix>
@@ -324,9 +312,8 @@
                         </div>
                     </div>
                 </div>
-                <br><br>
                 <!-- <button mat-raised-button color="primary" (click)="saveContact()">Dodaj meru</button> -->
-
+                <br>
                 <div class="mat-elevation-z8">
                     <mat-form-field class="search">
                         <span matSuffix>
@@ -508,7 +495,7 @@
                     </div>
                 </div>
 
-                <br><br>
+                <br>
                 <!--
             <button mat-raised-button color="primary" matTooltip="Dodaj kontakt" (click)="saveContact()">Dodaj
                 kontakt</button>
