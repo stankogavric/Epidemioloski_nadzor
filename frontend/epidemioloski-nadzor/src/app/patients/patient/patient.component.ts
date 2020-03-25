@@ -218,6 +218,9 @@ export class PatientComponent implements OnInit {
 
     let id = this.patient.id;
     this.patient = this.patientForm.value;
+    this.patient.statuses = this.statuses;
+    this.patient.measures = this.measures;
+    this.patient.contacts = this.contacts;
     delete this.patient['status'];
     delete this.patient['measure'];
     for (let value of Object.entries(this.patientForm.get("status").value)) {
@@ -262,7 +265,7 @@ export class PatientComponent implements OnInit {
         break;
       }
     }
-    
+    console.log(this.patient);
     if (this.edit) {
       this.patient.id = id;
       this.patientService.update(this.patient.id, this.patient).subscribe(

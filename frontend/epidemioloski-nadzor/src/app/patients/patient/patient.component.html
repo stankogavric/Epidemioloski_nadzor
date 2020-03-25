@@ -4,7 +4,7 @@
         <button class="patient-button" [disableRipple]="true" mat-raised-button color="primary"
             (click)="savePatient()">Sačuvaj izmene</button>
         <div *ngIf="edit">
-            <h3>{{patient.personalInfo.firstname}} {{patient.personalInfo.lastname}}</h3>
+            <h3>{{patient.personalInfo?.firstname}} {{patient.personalInfo?.lastname}}</h3>
         </div>
         <div *ngIf="!edit">
             <h3>Novi pacijent</h3>
