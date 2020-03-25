@@ -95,8 +95,8 @@ export class PatientComponent implements OnInit {
 
       status: this.fb.group({
         status: [],
-      date: [],
-      temperature: [],
+      date: [new Date()],
+      temperature: ['36.5'],
       description: [],
       anamnesis: []
       }),
@@ -104,12 +104,12 @@ export class PatientComponent implements OnInit {
       measure: this.fb.group({
         rescriptNum: [],
       institution: [],
-      startDate: [],
-      endDate: [],
+      startDate: [new Date()],
+      endDate: [new Date()],
       measure: []
       }),
 
-      citizenship: [],
+      citizenship: ["Srbija"],
       countryOfImport: []
     });
 
@@ -126,7 +126,7 @@ export class PatientComponent implements OnInit {
           city: []
         })
       }),
-      citizenship: [],
+      citizenship: ["Srbija"],
       countryOfImport: [],
       date:[]
     })
@@ -169,7 +169,6 @@ export class PatientComponent implements OnInit {
     }
     
     this.patient.contacts = this.contacts;
-    console.log(this.patient);
     if(this.edit){
       this.patientService.update(this.patient.personalInfo.jmbg, this.patient).subscribe(
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
@@ -183,6 +182,7 @@ export class PatientComponent implements OnInit {
       );
       this.patientForm.reset();
       this.contactForm.reset();
+      this.dataSourceContacts.data = [];
     }
   }
 
