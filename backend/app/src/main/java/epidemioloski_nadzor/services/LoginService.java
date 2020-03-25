@@ -42,9 +42,11 @@ public class LoginService {
 			Authentication authentication = authenticationManager.authenticate(token);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
+
 			UserDetails details = userDetailsService.loadUserByUsername(user.getPersonalInfo().getPhone());
 			String userToken = tokenUtils.generateToken(details);
-			
+
+
 			HashMap<String, String> data = new HashMap<String, String>();
 			data.put("token", userToken);
 

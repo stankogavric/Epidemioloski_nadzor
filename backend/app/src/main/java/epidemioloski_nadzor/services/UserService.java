@@ -49,10 +49,15 @@ public class UserService {
     public void updateUser(String id, User user) {
         Optional<User> oUser = userRepo.findById(id);
         if(oUser.isPresent()) {
+            user.getPersonalInfo().setPhone(oUser.get().getPersonalInfo().getPhone());
             user.setId(oUser.get().getId());
             user.setPin(passwordEncoder.encode(user.getPin()));
             userRepo.save(user);
         }
     }
+
+    public Optional<User> getUserByPersonalInfoPhone(String phone) {
+        return userRepo.findByPersonalInfoPhone(phone);
+	}
 
 }
