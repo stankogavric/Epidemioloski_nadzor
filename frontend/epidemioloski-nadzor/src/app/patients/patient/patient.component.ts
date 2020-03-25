@@ -14,7 +14,7 @@ import { Patient } from '../patient.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-
+import { StaticDataService } from 'src/app/shared/staticData.service';
 
 interface Statuss {
   value: string;
@@ -39,8 +39,8 @@ export class PatientComponent implements OnInit {
   @ViewChild('anamnesisInput', { static: true }) anamnesisInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoAnamnesis', { static: true }) matAutocomplete: MatAutocomplete;
 
-  countries: string[] = ['Kina', 'Italija', 'Španija'];
-  countriesContact: string[] = ['Kina', 'Italija', 'Španija'];
+  countries: string[] = this.staticDataService.getCities();
+  countriesContact: string[] = this.staticDataService.getCountries();
   cities: string[];
   citiesContact: string[];
   citizenships: string[];
@@ -90,10 +90,9 @@ export class PatientComponent implements OnInit {
     { value: 'Mortalitet', viewValue: 'Mortalitet' }
   ];
 
-  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
-
     let id = this.route.snapshot.paramMap.get("id");
 
     if (id) {

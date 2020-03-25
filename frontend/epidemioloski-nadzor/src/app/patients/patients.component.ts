@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { SnackBarService } from 'src/app/shared/snack-bar.service';
-import { StaticDataService } from 'src/app/shared/staticData.service';
 import { Patient } from './patient.model';
 import { PatientService } from './patients.service';
 import { AuthService } from '../auth/auth.service';
@@ -22,8 +21,7 @@ export class PatientsComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(public dialog: MatDialog, private authService: AuthService, 
-    private patientsService: PatientService, private snackBarService: SnackBarService,
-    private staticDataService: StaticDataService) { }
+    private patientsService: PatientService, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
