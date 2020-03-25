@@ -34,10 +34,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      firstName: ['', { validators: [Validators.required] }],
-      lastName: ['', { validators: [Validators.required] }],
+      firstName: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+      lastName: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
       role: ['', { validators: [Validators.required] }],
-      phone: ['', { validators: [Validators.required] }],
+      phone: ['', { validators: [Validators.required, Validators.pattern('[0-9+ ]{3,}')] }],
       pin: ['', { validators: [Validators.required] }]
     });
   }

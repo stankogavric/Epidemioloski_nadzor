@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/snack-bar.service';
 import { Patient } from '../patient.model';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-patient',
@@ -97,7 +97,7 @@ export class PatientComponent implements OnInit {
         firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
-        phone: [],
+        phone: ['', { validators: [Validators.required, Validators.pattern('[0-9+ ]{3,}')] }],
         address: this.fb.group({
           street: [],
           streetNum: [],
@@ -107,18 +107,18 @@ export class PatientComponent implements OnInit {
 
       status: this.fb.group({
         status: [],
-      date: [new Date()],
-      temperature: ['36.5'],
-      description: [],
-      anamnesis: []
+        date: [new Date()],
+        temperature: ['36.5'],
+        description: [],
+        anamnesis: []
       }),
 
       measure: this.fb.group({
         rescriptNum: [],
-      institution: [],
-      startDate: [new Date()],
-      endDate: [new Date()],
-      measure: []
+        institution: [],
+        startDate: [new Date()],
+        endDate: [new Date()],
+        measure: []
       }),
 
       citizenship: ["Srbija"],
@@ -131,7 +131,7 @@ export class PatientComponent implements OnInit {
         firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
-        phone: [],
+        phone: ['', { validators: [Validators.required, Validators.pattern('[0-9+ ]{3,}')] }],
         address: this.fb.group({
           street: [],
           streetNum: [],
@@ -140,7 +140,7 @@ export class PatientComponent implements OnInit {
       }),
       citizenship: ["Srbija"],
       countryOfImport: [],
-      date:[]
+      date: []
     })
 
     this.filteredCountries = this.patientForm.get("countryOfImport").valueChanges.pipe(
@@ -158,48 +158,52 @@ export class PatientComponent implements OnInit {
       map((anamnesis: string | null) => anamnesis ? this._filterAnamnesis(anamnesis) : this.allanamnesiss.slice()));
   }
 
-  onBack(){
+  onBack() {
     this.router.navigate(['/patients']);
   }
 
   savePatient() {
+    if (this.patientForm.invalid) {
+      this.patientForm.markAllAsTouched();
+      return;
+    }
     this.patient = this.patientForm.value;
     delete this.patient['status'];
     delete this.patient['measure'];
-    if(!this.patient.contacts){
+    if (!this.patient.contacts) {
       this.patient.contacts = [];
     }
-    if(!this.patient.measures){
+    if (!this.patient.measures) {
       this.patient.measures = [];
     }
-    if(!this.patient.statuses){
+    if (!this.patient.statuses) {
       this.patient.statuses = [];
     }
-    for (let value of Object.entries(this.patientForm.get("status").value)){
-      if (value[1] && value[0]!="date" && value[0]!="temperature"){
+    for (let value of Object.entries(this.patientForm.get("status").value)) {
+      if (value[1] && value[0] != "date" && value[0] != "temperature") {
         let status = this.patientForm.get("status").value;
         status.anamnesis = this.anamnesiss;
         this.patient.statuses.push(status);
         break;
       }
     }
-    for (let value of Object.entries(this.patientForm.get("measure").value)){
-      if (value[1] && value[0]!="startDate" && value[0]!="endDate"){
+    for (let value of Object.entries(this.patientForm.get("measure").value)) {
+      if (value[1] && value[0] != "startDate" && value[0] != "endDate") {
         this.patient.measures.push(this.patientForm.get("measure").value);
         break;
       }
     }
     this.patient.contacts = this.contacts;
-    if(this.edit){
+    if (this.edit) {
       this.patientService.update(this.patient.personalInfo.jmbg, this.patient).subscribe(
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
-    );
+      );
     }
-    else{
+    else {
       this.patientService.add(this.patient).subscribe(
-          value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
-          error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
+        value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
+        error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
       this.patientForm.reset();
       this.contactForm.reset();
@@ -207,7 +211,11 @@ export class PatientComponent implements OnInit {
     }
   }
 
-  saveContact(){
+  saveContact() {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
     this.patient.contacts.push(this.contactForm.value);
     this.contacts.push(this.contactForm.value);
     this.dataSourceContacts.data = this.patient.contacts;
@@ -216,19 +224,19 @@ export class PatientComponent implements OnInit {
   }
 
   private _filter(value: string): string[] {
-    if(value){
+    if (value) {
       const filterValue = value.toLowerCase();
       return this.countries.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
-    
+
   }
 
   private _filterContact(value: string): string[] {
-    if(value){
+    if (value) {
       const filterValue = value.toLowerCase();
       return this.countriesContact.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
-    
+
   }
 
   applyFilterStatuses(filterValue: string) {
