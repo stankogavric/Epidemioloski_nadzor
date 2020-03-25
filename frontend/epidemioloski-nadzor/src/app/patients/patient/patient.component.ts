@@ -82,8 +82,8 @@ export class PatientComponent implements OnInit {
     this.patientForm = this.fb.group({
       personalInfo: this.fb.group({
         jmbg: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
-        firstname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
-        lastname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
+        firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+        lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
         phone: [],
         address: this.fb.group({
@@ -116,8 +116,8 @@ export class PatientComponent implements OnInit {
     this.contactForm = this.fb.group({
       personalInfo: this.fb.group({
         jmbg: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
-        firstname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
-        lastname: ['', { validators: [Validators.required, Validators.pattern('[a-zA-Z]{3,}')] }],
+        firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+        lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
         phone: [],
         address: this.fb.group({

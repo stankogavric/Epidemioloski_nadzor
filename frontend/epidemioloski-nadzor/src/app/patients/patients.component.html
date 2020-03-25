@@ -5,7 +5,7 @@
 <div class="patients-div">
     <div class="mat-elevation-z8">
 
-        <button class="left-buttons" mat-raised-button color="warn" [routerLink]='["/"]'>
+        <button (click)="logout()" class="left-buttons" mat-raised-button color="warn">
             Odjavi se
         </button>
         <button class="left-buttons" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>

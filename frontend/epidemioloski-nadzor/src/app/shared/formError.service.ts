@@ -7,15 +7,15 @@ import { Injectable } from '@angular/core';
 export class FormErrorService {
     patternMap = {
         '^[0-9]{13}$': " mora imati 13 kraktera",
-        '^[a-zA-Z]{3,}$': " mora imati najmanje 3 kraktera i bez razmaka",
+        '^[^0-9]{3,}$': " mora imati najmanje 3 kraktera i bez razmaka",
         '^[0-9]$': " mora biti broj",
-        '^[a-zA-Z]$': " mora biti slovo ili reč"
+        '^[^0-9]$': " mora biti slovo ili reč"
     }
 
     errorMap: { 
         [key: string]: (c: AbstractControl, name: string) => string } = {
-        'required': (c: AbstractControl, name: string) => `Ovo polje je obavezno`,
-        'email': (c: AbstractControl, name: string) => `${c.value} nije ispravna e-pošta`,
+        'required': (c: AbstractControl) => `Polje je obavezno`,
+        'email': (c: AbstractControl) => `${c.value} nije ispravna e-pošta`,
         'maxlength': (c: AbstractControl, name: string) => `${name} ne može imati više od ${c.errors['minlength']['requiredLength']} karaktera`,
         'minlength': (c: AbstractControl, name: string) => `${name} mora imati najmanje ${c.errors['minlength']['requiredLength']} karaktera`,
         'mustMatch': (c: AbstractControl, name: string) => `${name} se mora slagati sa lozinkom`,

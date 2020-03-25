@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import decode from 'jwt-decode';
-import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -11,7 +10,8 @@ export class AuthService {
 
 
   login(phone: string, pin: string) {
-    return this.http.post<{token: string}>("http://88.99.225.22:8080/login", {pin: pin, personalInfo:{phone: phone}});
+    // return this.http.post<{token: string}>("http://88.99.225.22:8080/login", {pin: pin, personalInfo:{phone: phone}});
+    return this.http.post<{token: string}>("http://localhost:8080/login", {pin: pin, personalInfo:{phone: phone}});
   }
   
   logout(){

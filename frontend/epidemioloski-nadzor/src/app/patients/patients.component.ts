@@ -4,6 +4,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 import { SnackBarService } from 'src/app/shared/snack-bar.service';
 import { Patient } from './patient.model';
 import { PatientService } from './patients.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-patients',
@@ -19,7 +20,7 @@ export class PatientsComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService) { }
+  constructor(public dialog: MatDialog, private authService: AuthService, private patientsService: PatientService, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -37,6 +38,10 @@ export class PatientsComponent implements OnInit {
                 data.personalInfo.phone.toLowerCase().includes(filter);
       };
     });
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
   delete(jmbg: string){
