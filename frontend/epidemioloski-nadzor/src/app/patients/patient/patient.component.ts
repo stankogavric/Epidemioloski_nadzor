@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { FormErrorService } from 'src/app/shared/formError.service';
@@ -11,6 +11,9 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/snack-bar.service';
 import { Patient } from '../patient.model';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
 
 @Component({
   selector: 'app-patient',
@@ -18,6 +21,17 @@ import { Patient } from '../patient.model';
   styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredanamnesiss: Observable<string[]>;
+  anamnesiss: string[] = [];
+  allanamnesiss: string[] = ['febrilan', 'infekcija', 'septalni defekt', 'lokalizovane infekcije', 'glavobolja', 'drhtavica'];
+
+  @ViewChild('anamnesisInput', { static: true }) anamnesisInput: ElementRef<HTMLInputElement>;
+  @ViewChild('autoAnamnesis', { static: true }) matAutocomplete: MatAutocomplete;
 
   countries: string[] = ['Kina', 'Italija', 'Španija'];
   countriesContact: string[] = ['Kina', 'Italija', 'Španija'];
@@ -53,11 +67,10 @@ export class PatientComponent implements OnInit {
 
   patient = new Patient();
 
-  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) { }
+  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) {
+   }
 
   ngOnInit() {
-
-    
 
     let jmbg = this.route.snapshot.paramMap.get("jmbg");
 
@@ -140,6 +153,10 @@ export class PatientComponent implements OnInit {
       startWith(''),
       map(value => this._filterContact(value))
     );
+
+    this.filteredanamnesiss = this.patientForm.get('status.anamnesis').valueChanges.pipe(
+      startWith(null),
+      map((anamnesis: string | null) => anamnesis ? this._filterAnamnesis(anamnesis) : this.allanamnesiss.slice()));
   }
 
   savePatient() {
@@ -155,19 +172,20 @@ export class PatientComponent implements OnInit {
     if(!this.patient.statuses){
       this.patient.statuses = [];
     }
-    for (let value of Object.values(this.patientForm.get("status").value)){
-      if (value){
-        this.patient.statuses.push(this.patientForm.get("status").value);
+    for (let value of Object.entries(this.patientForm.get("status").value)){
+      if (value[1] && value[0]!="date" && value[0]!="temperature"){
+        let status = this.patientForm.get("status").value;
+        status.anamnesis = this.anamnesiss;
+        this.patient.statuses.push(status);
         break;
       }
     }
-    for (let value of Object.values(this.patientForm.get("measure").value)){
-      if (value){
+    for (let value of Object.entries(this.patientForm.get("measure").value)){
+      if (value[1] && value[0]!="startDate" && value[0]!="endDate"){
         this.patient.measures.push(this.patientForm.get("measure").value);
         break;
       }
     }
-    
     this.patient.contacts = this.contacts;
     if(this.edit){
       this.patientService.update(this.patient.personalInfo.jmbg, this.patient).subscribe(
@@ -220,6 +238,44 @@ export class PatientComponent implements OnInit {
 
   applyFilterContacts(filterValue: string) {
     this.dataSourceContacts.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our anamnesis
+    if ((value || '').trim()) {
+      this.anamnesiss.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.patientForm.get('status.anamnesis').setValue(null);
+  }
+
+  remove(anamnesis: string): void {
+    const index = this.anamnesiss.indexOf(anamnesis);
+
+    if (index >= 0) {
+      this.anamnesiss.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.anamnesiss.push(event.option.viewValue);
+    this.anamnesisInput.nativeElement.value = '';
+    this.patientForm.get('status.anamnesis').setValue(null);
+  }
+
+  private _filterAnamnesis(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allanamnesiss.filter(anamnesis => anamnesis.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

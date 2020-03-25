@@ -127,12 +127,40 @@
                             <mat-error>{{formError.mapErrors(patientForm.get('status.description'), 'Opis')}}
                             </mat-error>
                         </mat-form-field><br>
+
+                        <mat-form-field class="example-chip-list">
+                            <mat-chip-list #chipList aria-label="anamnesis selection">
+                              <mat-chip
+                                *ngFor="let anamnesis of anamnesiss"
+                                [selectable]="selectable"
+                                [removable]="removable"
+                                (removed)="remove(anamnesis)">
+                                {{anamnesis}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                              </mat-chip>
+                              <input
+                                placeholder="Anamneza"
+                                #anamnesisInput
+                                formControlName="anamnesis"
+                                [matAutocomplete]="autoAnamnesis"
+                                [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                            <mat-autocomplete autoActiveFirstOption #autoAnamnesis="matAutocomplete" (optionSelected)="selected($event)">
+                              <mat-option *ngFor="let anamnesis of filteredanamnesiss | async" [value]="anamnesis">
+                                {{anamnesis}}
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                        <!--  
                         <mat-form-field>
                             <input matInput name="anamnesis" type="text" placeholder="Anamneza"
                                 formControlName="anamnesis">
                             <mat-error>{{formError.mapErrors(patientForm.get('status.anamnesis'), 'Anamneza')}}
                             </mat-error>
                         </mat-form-field>
+                        -->
                     </div>
                 </div>
             </mat-card>
