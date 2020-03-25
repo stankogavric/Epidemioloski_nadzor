@@ -1,12 +1,12 @@
 package epidemioloski_nadzor.models;
 
 import java.util.Set;
+
 import epidemioloski_nadzor.utils.View.ShowMeasure;
 import com.fasterxml.jackson.annotation.JsonView;
 import epidemioloski_nadzor.utils.View.ShowStatus;
 
 import org.springframework.data.annotation.Id;
-// import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "patients")
@@ -26,7 +26,6 @@ public class Patient {
 	@JsonView(ShowStatus.class)
 	private Set<Status> statuses;
 
-	// @DBRef(db = "contact")
 	@JsonView(ShowStatus.class)
 	private Set<Contact> contacts;
 

@@ -2,16 +2,11 @@ package epidemioloski_nadzor.models;
 
 import java.util.Date;
 
-// import org.springframework.data.mongodb.core.mapping.Document;
-
-// @Document(collection = "contact")
 public class Contact {
 
 	private String id;
-	
-	// @Id
-
 	private Date date;
+
 	private String description;
 	private PersonalInfo personalInfo;
 	private Address address;
