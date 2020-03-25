@@ -33,8 +33,8 @@ export class UserService {
     return this.http.post(this.userUrl+'/register', user);
   }
 
-  update(phone:string, user:User) {
-    return this.http.put(this.userUrl+`/${phone}`, user)
+  update(id:string, user:User) {
+    return this.http.put(this.userUrl+`/${id}`, user)
   }
 
 }

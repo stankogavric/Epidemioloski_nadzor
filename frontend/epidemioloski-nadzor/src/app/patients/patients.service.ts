@@ -16,20 +16,20 @@ export class PatientService {
         return this.http.get<Patient[]>(this.patientsUrl);
     }
 
-    getOne(jmbg: String) { 
-        return this.http.get<Patient>(this.patientsUrl + `/${jmbg}`);     
+    getOne(id: String) { 
+        return this.http.get<Patient>(this.patientsUrl + `/${id}`);     
     }
 
-    delete(jmbg: String) {
-        return this.http.delete(this.patientsUrl + `/${jmbg}`);
+    delete(id: String) {
+        return this.http.delete(this.patientsUrl + `/${id}`);
     }
 
     add(patient: Patient) {
         return this.http.post(this.patientsUrl, patient);
     }
 
-    update(jmbg: string, patient: Patient) {
-        return this.http.put(this.patientsUrl + `/${jmbg}`, patient)
+    update(id: string, patient: Patient) {
+        return this.http.put(this.patientsUrl + `/${id}`, patient)
     }
 
     // searchPatients(queryParams: {}) {

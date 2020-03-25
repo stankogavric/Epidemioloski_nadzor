@@ -4,29 +4,18 @@ import java.util.Date;
 
 public class Contact {
 
-	private String id;
 	private Date date;
-
 	private String description;
 	private PersonalInfo personalInfo;
 	private Address address;
 
 	public Contact() {}
 
-	public Contact(String id, Date date, String description, PersonalInfo personalInfo, Address address){
-		this.id = id;
+	public Contact(Date date, String description, PersonalInfo personalInfo, Address address){
 		this.date = date;
 		this.description = description;
 		this.personalInfo = personalInfo;
 		this.address = address;
-	}
-
-	public String getId(){
-		return id;
-	}
-
-	public void setId(String id){
-		this.id = id;
 	}
 
 	public Date getDate(){
