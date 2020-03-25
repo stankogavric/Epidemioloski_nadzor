@@ -33,7 +33,11 @@ export class LoginComponent implements OnInit {
         if (response.token) {
           localStorage.setItem('token', response.token);
           this.message = "";
-          this.router.navigate(['/patients']);
+          if(this.authService.getCurrentRole() == "admin"){
+            this.router.navigate(['/register']);
+          }else{
+            this.router.navigate(['/patients']);
+          }
         } else {
           this.message = "Pogrešan telefon i/ili pin";
         }

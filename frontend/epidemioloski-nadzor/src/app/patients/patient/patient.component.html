@@ -1,14 +1,16 @@
 <div class="patient">
-
-    <h1>Pacijent</h1>
-
-    <mat-tab-group mat-align-tabs="center" [selectedIndex]="1">
-        <mat-tab disabled>
+    <div>
+        <button class="patient-button" mat-raised-button color="accent" (click)="onBack()">Pregled
+            pacijenata</button>
+        <button class="patient-button" [disableRipple]="true" mat-raised-button color="primary"
+            (click)="savePatient()">Sačuvaj pacijenta</button>
+    </div>
+    <mat-tab-group mat-align-tabs="center" [selectedIndex]="0">
+        <!-- <mat-tab disabled>
             <ng-template mat-tab-label>
-                <button class="register-button" mat-raised-button color="accent" (click)="onBack()">Pregled
-                    pacijenata</button>
+
             </ng-template>
-        </mat-tab>
+        </mat-tab> -->
         <mat-tab label="Osnovni podaci">
             <br>
             <mat-card class="info-card">
@@ -474,7 +476,7 @@
                 &nbsp;
                 -->
                     <div formGroupName="personalInfo">
-                        
+
                     </div>
                     <mat-form-field>
                         <mat-label>Datum kontakta</mat-label>
@@ -547,12 +549,11 @@
             </div>
         </mat-tab>
 
-        <mat-tab disabled>
+        <!-- <mat-tab disabled>
             <ng-template mat-tab-label>
-                <button [disableRipple]="true" mat-raised-button color="primary" (click)="savePatient()">Sačuvaj
-                    pacijenta</button>
+
             </ng-template>
-        </mat-tab>
+        </mat-tab> -->
     </mat-tab-group>
 
 </div>

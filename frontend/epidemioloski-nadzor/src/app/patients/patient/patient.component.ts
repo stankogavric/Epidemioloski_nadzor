@@ -210,6 +210,7 @@ export class PatientComponent implements OnInit {
       this.patientForm.markAllAsTouched();
       return;
     }
+    let id = this.patient.id;
     this.patient = this.patientForm.value;
     delete this.patient['status'];
     delete this.patient['measure'];
@@ -239,6 +240,7 @@ export class PatientComponent implements OnInit {
     }
     this.patient.contacts = this.contacts;
     if (this.edit) {
+      this.patient.id = id;
       this.patientService.update(this.patient.id, this.patient).subscribe(
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
@@ -261,7 +263,6 @@ export class PatientComponent implements OnInit {
       return;
     }
     this.patient.contacts.push(this.contactForm.value);
-    this.contacts.push(this.contactForm.value);
     this.dataSourceContacts.data = this.patient.contacts;
     this.contactForm.reset();
     this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
