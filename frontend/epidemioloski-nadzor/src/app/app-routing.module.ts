@@ -14,7 +14,7 @@ const routes: Routes = [
   canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar', 'mup', 'krizniStab'] } },
   { path: 'register-patient', component: PatientComponent, 
   canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar'] } },
-  { path: 'edit-patient/:jmbg', component: PatientComponent, 
+  { path: 'edit-patient/:id', component: PatientComponent, 
   canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar'] } },
 ];
 
