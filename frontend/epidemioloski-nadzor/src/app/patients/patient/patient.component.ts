@@ -56,7 +56,7 @@ export class PatientComponent implements OnInit {
 
   edit = false;
 
-  date = new FormControl(new Date());
+  date = new FormControl((new Date()).toString());
   startDate = new FormControl(new Date());
   endDate = new FormControl(new Date());
   dateContact = new FormControl(new Date());
@@ -128,7 +128,7 @@ export class PatientComponent implements OnInit {
 
       status: this.fb.group({
         status: [],
-        date: [],
+        date: [(new Date()).toString()],
         /*temperature: ['36.5'],*/
         description: [],
         anamnesis: []
