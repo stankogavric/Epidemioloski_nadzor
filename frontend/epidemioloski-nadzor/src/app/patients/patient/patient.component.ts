@@ -15,7 +15,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 
-//TODO
+
 interface Statuss {
   value: string;
   viewValue: string;
@@ -41,8 +41,16 @@ export class PatientComponent implements OnInit {
 
   countries: string[] = ['Kina', 'Italija', 'Španija'];
   countriesContact: string[] = ['Kina', 'Italija', 'Španija'];
+  cities: string[];
+  citiesContact: string[];
+  citizenships: string[];
+  citizenshipsContact: string[];
   filteredCountries: Observable<string[]>;
   filteredCountriesContact: Observable<string[]>;
+  filteredCities: Observable<string[]>;
+  filteredCitiesContact: Observable<string[]>;
+  filteredCitizenships: Observable<string[]>;
+  filteredCitizenshipsContact: Observable<string[]>;
 
   showInstitution = false;
 
@@ -59,7 +67,8 @@ export class PatientComponent implements OnInit {
   measure: Measure = new Measure();
   contacts: Contact[] = [];
   contact: Contact = new Contact();
-  displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'temperature', 'description', 'anamnesis'];
+  displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'description', 'anamnesis'];
+  //displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'temperature', 'description', 'anamnesis'];
   dataSourceStatuses = new MatTableDataSource<Status>(this.statuses);
   displayedColumnsMeasures: string[] = ['no', 'measure', 'rescriptNum', 'startDate', 'endDate', 'institution'];
   dataSourceMeasures = new MatTableDataSource<Measure>(this.measures);
@@ -73,7 +82,6 @@ export class PatientComponent implements OnInit {
 
   patient = new Patient();
 
-  //TODO
   statuss: Statuss[] = [
     { value: 'Izlečen', viewValue: 'Izlečen' },
     { value: 'Sumnja - moguć', viewValue: 'Sumnja - moguć' },
@@ -122,8 +130,8 @@ export class PatientComponent implements OnInit {
 
       status: this.fb.group({
         status: [],
-        date: [new Date()],
-        temperature: ['36.5'],
+        date: [],
+        /*temperature: ['36.5'],*/
         description: [],
         anamnesis: []
       }),
@@ -168,6 +176,26 @@ export class PatientComponent implements OnInit {
       map(value => this._filterContact(value))
     );
 
+    this.filteredCities = this.patientForm.get("personalInfo.address.city").valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+    this.filteredCitiesContact = this.contactForm.get("personalInfo.address.city").valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterContact(value))
+    );
+
+    this.filteredCitizenships = this.patientForm.get("citizenship").valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+    this.filteredCitizenshipsContact = this.contactForm.get("citizenship").valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterContact(value))
+    );
+
     this.filteredanamnesiss = this.patientForm.get('status.anamnesis').valueChanges.pipe(
       startWith(null),
       map((anamnesis: string | null) => anamnesis ? this._filterAnamnesis(anamnesis) : this.allanamnesiss.slice()));
@@ -195,7 +223,8 @@ export class PatientComponent implements OnInit {
       this.patient.statuses = [];
     }
     for (let value of Object.entries(this.patientForm.get("status").value)) {
-      if (value[1] && value[0] != "date" && value[0] != "temperature") {
+      //if (value[1] && value[0] != "date" && value[0] != "temperature") {
+      if (value[1] && value[0] != "date") {
         let status = this.patientForm.get("status").value;
         status.anamnesis = this.anamnesiss;
         this.patient.statuses.push(status);
