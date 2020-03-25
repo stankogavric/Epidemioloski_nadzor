@@ -28,9 +28,9 @@ public class UserController {
         return new ResponseEntity<Iterable<User>>(userService.getUsers(), HttpStatus.OK);
     }
 
-    @RequestMapping(value="/{phone}", method=RequestMethod.GET)
-    public ResponseEntity<User> getUserByPhone(@PathVariable String phone) {
-        Optional<User> user = userService.getUserByPersonalInfoPhone(phone);
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
+        Optional<User> user = userService.getUserById(id);
         if(user.isPresent()) {
             return new ResponseEntity<User>(user.get(), HttpStatus.OK);
         }
@@ -42,16 +42,16 @@ public class UserController {
         return new ResponseEntity<User>(user, userService.addUser(user));
     }
 
-    @RequestMapping(value="/{phone}", method=RequestMethod.PUT)
-    public ResponseEntity<User> updateUser(@PathVariable String phone, @RequestBody User user) {
-        userService.updateUser(phone, user);
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user) {
+        userService.updateUser(id, user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/{phone}", method=RequestMethod.DELETE)
-    public ResponseEntity<User> removeUser(@PathVariable String phone) {
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    public ResponseEntity<User> removeUser(@PathVariable String id) {
         try {
-            userService.removeUser(phone);
+            userService.removeUser(id);
         }catch (Exception e) {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }

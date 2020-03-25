@@ -26,8 +26,8 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public Optional<User> getUserByPersonalInfoPhone(String phone) {
-        return userRepo.findByPersonalInfoPhone(phone);
+    public Optional<User> getUserById(String id) {
+        return userRepo.findById(id);
     }
 
     public HttpStatus addUser(User user) {
@@ -41,17 +41,16 @@ public class UserService {
         }
     }
 
-    public void removeUser(String phone) {
-        Optional<User> user = userRepo.findByPersonalInfoPhone(phone);
+    public void removeUser(String id) {
+        Optional<User> user = userRepo.findById(id);
         userRepo.delete(user.get());
     }
 
-    public void updateUser(String phone, User user) {
-        Optional<User> oUser = userRepo.findByPersonalInfoPhone(phone);
+    public void updateUser(String id, User user) {
+        Optional<User> oUser = userRepo.findById(id);
         if(oUser.isPresent()) {
-            user.getPersonalInfo().setPhone(oUser.get().getPersonalInfo().getPhone());
-            user.setPin(passwordEncoder.encode(user.getPin()));
             user.setId(oUser.get().getId());
+            user.setPin(passwordEncoder.encode(user.getPin()));
             userRepo.save(user);
         }
     }
