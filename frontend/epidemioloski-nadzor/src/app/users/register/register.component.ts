@@ -55,8 +55,8 @@ export class RegisterComponent implements OnInit {
 
     this.userService.add(this.user).subscribe(
       () => {
-        this.message = "";
-        this.router.navigate(['/']);
+        this.message = "Uspešno dodat korisnik " + this.user.personalInfo.firstname;
+        this.form.reset();
       },
       (e) => {
         if (e.status == 409) {

@@ -189,7 +189,7 @@
                     <table mat-table [dataSource]="dataSourceStatuses">
 
                         <ng-container matColumnDef="no">
-                            <th mat-header-cell *matHeaderCellDef> Redni broj </th>
+                            <th mat-header-cell *matHeaderCellDef> # </th>
                             <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
                         </ng-container>
 
@@ -200,7 +200,7 @@
 
                         <ng-container matColumnDef="date">
                             <th mat-header-cell *matHeaderCellDef> Datum </th>
-                            <td mat-cell *matCellDef="let status"> {{status.date}} </td>
+                            <td mat-cell *matCellDef="let status"> {{status.date | date:'dd:MM:yyyy' }} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="temperature">
@@ -290,7 +290,7 @@
                     <table mat-table [dataSource]="dataSourceMeasures">
 
                         <ng-container matColumnDef="no">
-                            <th mat-header-cell *matHeaderCellDef> Redni broj </th>
+                            <th mat-header-cell *matHeaderCellDef> # </th>
                             <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
                         </ng-container>
 
@@ -305,13 +305,13 @@
                         </ng-container>
 
                         <ng-container matColumnDef="startDate">
-                            <th mat-header-cell *matHeaderCellDef> Datum početka mere </th>
-                            <td mat-cell *matCellDef="let measure"> {{measure.startDate}} </td>
+                            <th mat-header-cell *matHeaderCellDef> Početak mere </th>
+                            <td mat-cell *matCellDef="let measure"> {{measure.startDate | date:'dd:MM:yyyy'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="endDate">
-                            <th mat-header-cell *matHeaderCellDef> Datum završetka mere </th>
-                            <td mat-cell *matCellDef="let measure"> {{measure.endDate}} </td>
+                            <th mat-header-cell *matHeaderCellDef> Završetak mere </th>
+                            <td mat-cell *matCellDef="let measure"> {{measure.endDate | date:'dd:MM:yyyy'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="institution">
@@ -447,7 +447,7 @@
                     <table mat-table [dataSource]="dataSourceContacts">
 
                         <ng-container matColumnDef="no">
-                            <th mat-header-cell *matHeaderCellDef> Redni broj </th>
+                            <th mat-header-cell *matHeaderCellDef> # </th>
                             <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
                         </ng-container>
 
