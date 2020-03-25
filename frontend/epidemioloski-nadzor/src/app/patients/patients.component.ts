@@ -32,6 +32,18 @@ export class PatientsComponent implements OnInit {
       this.patients = data;
       this.dataSource.data = data;
       this.dataSource.filterPredicate = function(data, filter): boolean {
+        if (!data.personalInfo.firstname){
+          data.personalInfo.firstname=""
+        }
+        if(!data.personalInfo.lastname){
+          data.personalInfo.lastname=""
+        }
+        if(!data.personalInfo.jmbg){
+          data.personalInfo.jmbg=""
+        }
+        if(!data.personalInfo.phone){
+          data.personalInfo.phone=""
+        }
         return data.personalInfo.firstname.toLowerCase().includes(filter) ||
                 data.personalInfo.lastname.toLowerCase().includes(filter) || 
                 data.personalInfo.jmbg.toLowerCase().includes(filter) ||
