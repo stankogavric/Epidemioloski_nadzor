@@ -11,7 +11,7 @@ export class AuthService {
 
 
   login(phone: string, pin: string) {
-    return this.http.post<{token: string}>("http://localhost:8080/login", {pin: pin, personalInfo:{phone: phone}});
+    return this.http.post<{token: string}>("http://88.99.225.22/api/login", {pin: pin, personalInfo:{phone: phone}});
   }
   
   logout(){
