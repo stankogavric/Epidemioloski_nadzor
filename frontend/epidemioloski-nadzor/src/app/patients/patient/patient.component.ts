@@ -5,7 +5,7 @@ import { FormErrorService } from 'src/app/shared/formError.service';
 import { Status } from '../status.model';
 import { Measure } from '../measure.model';
 import { Contact } from 'src/app/users/contact.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from '../patients.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -53,7 +53,7 @@ export class PatientComponent implements OnInit {
 
   patient = new Patient();
 
-  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute) { }
+  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -95,8 +95,8 @@ export class PatientComponent implements OnInit {
 
       status: this.fb.group({
         status: [],
-      date: [],
-      temperature: [],
+      date: [new Date()],
+      temperature: ['36.5'],
       description: [],
       anamnesis: []
       }),
@@ -104,12 +104,12 @@ export class PatientComponent implements OnInit {
       measure: this.fb.group({
         rescriptNum: [],
       institution: [],
-      startDate: [],
-      endDate: [],
+      startDate: [new Date()],
+      endDate: [new Date()],
       measure: []
       }),
 
-      citizenship: [],
+      citizenship: ["Srbija"],
       countryOfImport: []
     });
 
@@ -126,7 +126,7 @@ export class PatientComponent implements OnInit {
           city: []
         })
       }),
-      citizenship: [],
+      citizenship: ["Srbija"],
       countryOfImport: [],
       date:[]
     })
@@ -140,6 +140,10 @@ export class PatientComponent implements OnInit {
       startWith(''),
       map(value => this._filterContact(value))
     );
+  }
+
+  onBack(){
+    this.router.navigate(['/patients']);
   }
 
   savePatient() {
@@ -169,9 +173,6 @@ export class PatientComponent implements OnInit {
     }
     
     this.patient.contacts = this.contacts;
-    this.patientForm.reset();
-    this.contactForm.reset();
-    console.log(this.patient);
     if(this.edit){
       this.patientService.update(this.patient.personalInfo.jmbg, this.patient).subscribe(
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
@@ -183,6 +184,9 @@ export class PatientComponent implements OnInit {
           value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
           error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
+      this.patientForm.reset();
+      this.contactForm.reset();
+      this.dataSourceContacts.data = [];
     }
   }
 

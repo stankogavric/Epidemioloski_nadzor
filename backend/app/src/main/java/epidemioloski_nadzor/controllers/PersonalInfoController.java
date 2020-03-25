@@ -15,7 +15,7 @@ import epidemioloski_nadzor.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22"})
 @RestController
-@RequestMapping("/personalinfo")
+@RequestMapping("/api/personalinfo")
 public class PersonalInfoController {
 
     @Autowired

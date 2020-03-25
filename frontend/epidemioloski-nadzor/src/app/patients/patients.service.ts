@@ -25,7 +25,6 @@ export class PatientService {
     }
 
     add(patient: Patient) {
-        console.log(patient);
         return this.http.post(this.patientsUrl, patient);
     }
 
