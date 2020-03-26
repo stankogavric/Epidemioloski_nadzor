@@ -49,12 +49,12 @@ export class PatientComponent implements OnInit {
   @ViewChild('riskFactorInput', { static: true }) riskFactorInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoRiskFactor', { static: true }) matAutocompleteRiskFactor: MatAutocomplete;
 
-  countries: string[] = this.staticDataService.getCountries();
-  countriesContact: string[] = this.staticDataService.getCountries();
-  cities: string[] = this.staticDataService.getCities();
-  citiesContact: string[] = this.staticDataService.getCities();
-  citizenships: string[] = this.staticDataService.getCountries();
-  citizenshipsContact: string[] = this.staticDataService.getCountries();
+  countries: string[];
+  countriesContact: string[];
+  cities: string[];
+  citiesContact: string[];
+  citizenships: string[];
+  citizenshipsContact: string[];
   filteredCountries: Observable<string[]>;
   filteredCountriesContact: Observable<string[]>;
   filteredCities: Observable<string[]>;
