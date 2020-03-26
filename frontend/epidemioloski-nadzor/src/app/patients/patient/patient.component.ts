@@ -42,12 +42,12 @@ export class PatientComponent implements OnInit {
   @ViewChild('anamnesisInput', { static: true }) anamnesisInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoAnamnesis', { static: true }) matAutocomplete: MatAutocomplete;
 
-  countries: string[] = this.staticDataService.getCountries();
-  countriesContact: string[] = this.staticDataService.getCountries();
-  cities: string[] = this.staticDataService.getCities();
-  citiesContact: string[] = this.staticDataService.getCities();
-  citizenships: string[] = this.staticDataService.getCountries();
-  citizenshipsContact: string[] = this.staticDataService.getCountries();
+  countries: string[];
+  countriesContact: string[];
+  cities: string[];
+  citiesContact: string[];
+  citizenships: string[];
+  citizenshipsContact: string[];
   filteredCountries: Observable<string[]>;
   filteredCountriesContact: Observable<string[]>;
   filteredCities: Observable<string[]>;
@@ -98,6 +98,15 @@ export class PatientComponent implements OnInit {
   constructor( private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
+
+    this.staticDataService.getCities().subscribe((value: string[])=>{
+      this.citiesContact = this.cities = value;
+    })
+
+    this.staticDataService.getCountries().subscribe((value: string[])=>{
+      this.countries = this.countriesContact = this.citizenships = this.citizenshipsContact = value;
+    })
+
     this.currentRole = this.authService.getCurrentRole();
     let id = this.route.snapshot.paramMap.get("id");
 
@@ -272,7 +281,6 @@ export class PatientComponent implements OnInit {
         break;
       }
     }
-    console.log(this.patient);
     if (this.edit) {
       this.patient.id = id;
       this.patientService.update(this.patient.id, this.patient).subscribe(
