@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatTabGroup, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { FormErrorService } from 'src/app/shared/formError.service';
 import { Status } from '../status.model';
@@ -15,6 +15,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { StaticDataService } from 'src/app/shared/staticData.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 interface Statuss {
   value: string;
@@ -90,7 +91,9 @@ export class PatientComponent implements OnInit {
     { value: 'Mortalitet', viewValue: 'Mortalitet' }
   ];
 
-  constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
+  @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
+
+  constructor(public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get("id");
@@ -148,11 +151,11 @@ export class PatientComponent implements OnInit {
 
     this.contactForm = this.fb.group({
       personalInfo: this.fb.group({
-        jmbg: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
-        firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
-        lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
+        jmbg: ['', { validators: [Validators.pattern('[0-9]{13}')] }],
+        firstname: ['', { validators: [Validators.pattern('[^0-9]{3,}')] }],
+        lastname: ['', { validators: [Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
-        phone: ['', { validators: [Validators.required, Validators.pattern('[0-9+ ]{3,}')] }],
+        phone: ['', { validators: [Validators.pattern('[0-9+ ]{3,}')] }],
         address: this.fb.group({
           street: [],
           streetNum: [],
@@ -205,6 +208,7 @@ export class PatientComponent implements OnInit {
 
   savePatient() {
     if (this.patientForm.invalid) {
+      this.tabGroup.selectedIndex = 0;
       this.patientForm.markAllAsTouched();
       return;
     }
@@ -291,6 +295,26 @@ export class PatientComponent implements OnInit {
       this.anamnesiss = [];
     }
     this.edit = true;
+  }
+
+  delete(id: string){
+    this.patientsService.delete(id).subscribe(() => {
+      this.router.navigate(['/patients']);
+      this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
+    });
+  }
+
+  openDialog(patient: Patient): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: {title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?"}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.delete(patient.id);
+      };
+    });
   }
 
   saveContact() {
