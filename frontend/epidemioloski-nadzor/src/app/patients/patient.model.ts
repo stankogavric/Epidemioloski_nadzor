@@ -2,6 +2,7 @@ import { Contact } from '../users/contact.model';
 import { Measure } from './measure.model';
 import { PersonalInfo } from '../users/personal-info.model';
 import { Status } from './status.model';
+import { MupStatus } from './mup-status.model';
 
 export class Patient {
     id:string;
@@ -12,6 +13,7 @@ export class Patient {
     measures:Measure[];
     personalInfo:PersonalInfo;
     statuses:Status[];
+    mupStatuses: MupStatus[];
 
     constructor(){
         this.contacts = [];

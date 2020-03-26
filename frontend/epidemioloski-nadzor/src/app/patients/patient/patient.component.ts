@@ -17,6 +17,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { StaticDataService } from 'src/app/shared/staticData.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { AuthService } from 'src/app/auth/auth.service';
+import { MupStatus } from '../mup-status.model';
 
 interface Statuss {
   value: string;
@@ -66,6 +67,8 @@ export class PatientComponent implements OnInit {
 
   statuses: Status[] = [];
   status: Status = new Status();
+  mupStatuses: MupStatus[] = [];
+  mupStatus: MupStatus = new MupStatus();
   measures: Measure[] = [];
   measure: Measure = new Measure();
   contacts: Contact[] = [];
@@ -73,6 +76,8 @@ export class PatientComponent implements OnInit {
   displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'description', 'anamnesis'];
   //displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'temperature', 'description', 'anamnesis'];
   dataSourceStatuses = new MatTableDataSource<Status>(this.statuses);
+  displayedColumnsMupStatuses: string[] = ['no', 'status', 'date', 'description'];
+  dataSourceMupStatuses = new MatTableDataSource<MupStatus>(this.mupStatuses);
   displayedColumnsMeasures: string[] = ['no', 'measure', 'rescriptNum', 'startDate', 'endDate', 'institution'];
   dataSourceMeasures = new MatTableDataSource<Measure>(this.measures);
   displayedColumnsContacts: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
@@ -110,12 +115,15 @@ export class PatientComponent implements OnInit {
         this.dataSourceContacts.data = data.contacts;
         this.statuses = data.statuses;
         this.dataSourceStatuses.data = data.statuses;
+        this.mupStatuses = data.mupStatuses;
+        this.dataSourceMupStatuses.data = data.mupStatuses;
         this.measures = data.measures;
         this.dataSourceMeasures.data = data.measures;
       });
     }
     
     this.dataSourceStatuses.paginator = this.paginator;
+    this.dataSourceMupStatuses.paginator = this.paginator;
     this.dataSourceMeasures.paginator = this.paginator;
     this.dataSourceContacts.paginator = this.paginator;
     this.patientForm = this.fb.group({
@@ -138,6 +146,12 @@ export class PatientComponent implements OnInit {
         /*temperature: ['36.5'],*/
         description: [],
         anamnesis: []
+      }),
+
+      mupStatus: this.fb.group({
+        status: [],
+        date: [new Date()],
+        description: []
       }),
 
       measure: this.fb.group({
@@ -226,9 +240,11 @@ export class PatientComponent implements OnInit {
     let id = this.patient.id;
     this.patient = this.patientForm.value;
     this.patient.statuses = this.statuses;
+    this.patient.mupStatuses = this.mupStatuses;
     this.patient.measures = this.measures;
     this.patient.contacts = this.contacts;
     delete this.patient['status'];
+    delete this.patient['mupStatus'];
     delete this.patient['measure'];
     for (let value of Object.entries(this.patientForm.get("status").value)) {
       //if (value[1] && value[0] != "date" && value[0] != "temperature") {
@@ -238,6 +254,16 @@ export class PatientComponent implements OnInit {
         this.statuses.push(status);
         this.patient.statuses = this.statuses;
         this.dataSourceStatuses.data = this.statuses;
+        break;
+      }
+    }
+    for (let value of Object.entries(this.patientForm.get("mupStatus").value)) {
+      //if (value[1] && value[0] != "date" && value[0] != "temperature") {
+      if (value[1] && value[0] != "date") {
+        let status = this.patientForm.get("mupStatus").value;
+        this.mupStatuses.push(status);
+        this.patient.mupStatuses = this.mupStatuses;
+        this.dataSourceMupStatuses.data = this.mupStatuses;
         break;
       }
     }
@@ -280,6 +306,7 @@ export class PatientComponent implements OnInit {
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
       this.patientForm.get('status').reset();
+      this.patientForm.get('mupStatus').reset();
       this.patientForm.get('measure').reset();
       this.contactForm.reset();
       this.anamnesiss = [];
@@ -290,6 +317,7 @@ export class PatientComponent implements OnInit {
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
       this.patientForm.get('status').reset();
+      this.patientForm.get('mupStatus').reset();
       this.patientForm.get('measure').reset();
       this.contactForm.reset();
       //this.dataSourceContacts.data = [];
@@ -381,6 +409,10 @@ export class PatientComponent implements OnInit {
 
   applyFilterStatuses(filterValue: string) {
     this.dataSourceStatuses.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterMupStatuses(filterValue: string) {
+    this.dataSourceMupStatuses.filter = filterValue.trim().toLowerCase();
   }
 
   applyFilterMeasures(filterValue: string) {

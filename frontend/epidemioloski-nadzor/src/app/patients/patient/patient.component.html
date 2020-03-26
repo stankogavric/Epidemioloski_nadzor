@@ -275,7 +275,7 @@
                 </div>
 
                 <div *ngIf="currentRole=='mup'" [formGroup]="patientForm">
-                    <div formGroupName="status">
+                    <div formGroupName="mupStatus">
                         <mat-radio-group aria-label="Izaberite status" name="status" formControlName="status">
                             <mat-radio-button value="Prisutan">Prisutan</mat-radio-button>&nbsp;
                             <mat-radio-button value="Nije prisutan">Nije prisutan</mat-radio-button>
@@ -297,24 +297,42 @@
                     <br>
                 </div>
 
-                <!-- <div *ngIf="currentRole=='mup'" class="mat-elevation-z8">
+                <div *ngIf="currentRole=='mup'" class="mat-elevation-z8">
                     <mat-form-field class="search">
                         <span matSuffix>
                             <mat-icon>search</mat-icon>
                         </span>
-                        <input matInput (keyup)="applyFilterStatuses($event.target.value)" placeholder="Pretraga">
+                        <input matInput (keyup)="applyFilterMupStatuses($event.target.value)" placeholder="Pretraga">
                     </mat-form-field>
-                    <table mat-table [dataSource]="dataSourceStatuses">
+                    <table mat-table [dataSource]="dataSourceMupStatuses">
 
                         <ng-container matColumnDef="no">
                             <th mat-header-cell *matHeaderCellDef> # </th>
                             <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
                         </ng-container>
 
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let status"> {{status.status}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef> Datum </th>
+                            <td mat-cell *matCellDef="let status"> {{status.date | date:'dd.MM.yyyy.' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="description">
+                            <th mat-header-cell *matHeaderCellDef> Opis </th>
+                            <td mat-cell *matCellDef="let status"> {{status.description}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMupStatuses"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsMupStatuses;"></tr>
+
                     </table>
 
                     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-                </div> -->
+                </div>
             </div>
 
         </mat-tab>
