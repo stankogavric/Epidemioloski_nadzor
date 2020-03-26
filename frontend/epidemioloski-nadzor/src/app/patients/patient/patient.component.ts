@@ -34,7 +34,7 @@ export class PatientComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredanamnesiss: Observable<string[]>;
   anamnesiss: string[] = [];
-  allanamnesiss: string[] = ['febrilan', 'infekcija', 'septalni defekt', 'lokalizovane infekcije', 'glavobolja', 'drhtavica'];
+  allanamnesiss: string[] = this.staticDataService.getSymptoms();
 
   @ViewChild('anamnesisInput', { static: true }) anamnesisInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoAnamnesis', { static: true }) matAutocomplete: MatAutocomplete;
@@ -83,11 +83,11 @@ export class PatientComponent implements OnInit {
   patient = new Patient();
 
   statuss: Statuss[] = [
-    { value: 'Izlečen', viewValue: 'Izlečen' },
-    { value: 'Sumnja - moguć', viewValue: 'Sumnja - moguć' },
+    { value: 'Moguć/Sumnja', viewValue: 'Moguć/Sumnja' },
     { value: 'Verovatan', viewValue: 'Verovatan' },
-    { value: 'Potvrda', viewValue: 'Potvrda' },
-    { value: 'Mortalitet', viewValue: 'Mortalitet' }
+    { value: 'Potvrđen', viewValue: 'Potvrđen' },
+    { value: 'Izlečen/Ozdravio', viewValue: 'Izlečen/Ozdravio' },
+    { value: 'Smrtni ishod', viewValue: 'Smrtni ishod' }
   ];
 
   constructor(private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }

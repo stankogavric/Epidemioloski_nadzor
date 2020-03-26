@@ -169,7 +169,7 @@
                                     {{anamnesis}}
                                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                                 </mat-chip>
-                                <input placeholder="Anamneza" #anamnesisInput formControlName="anamnesis"
+                                <input placeholder="Simptomi" #anamnesisInput formControlName="anamnesis"
                                     [matAutocomplete]="autoAnamnesis" [matChipInputFor]="chipList"
                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                     (matChipInputTokenEnd)="add($event)">
@@ -242,7 +242,7 @@
                         </ng-container>
 
                         <ng-container matColumnDef="anamnesis">
-                            <th mat-header-cell *matHeaderCellDef> Anamneza </th>
+                            <th mat-header-cell *matHeaderCellDef> Simptomi </th>
                             <td mat-cell *matCellDef="let status"> {{status.anamnesis}} </td>
                         </ng-container>
                         <!--
@@ -280,16 +280,19 @@
                             </mat-error>
                         </mat-form-field><br><br>
                         <mat-radio-group aria-label="Izaberite meru" name="measure" formControlName="measure">
-                            <mat-radio-button value="Samoizolacija">Samoizolacija</mat-radio-button>&nbsp;
-                            <mat-radio-button value="Kućno lečenje">Kućno lečenje</mat-radio-button>&nbsp;
-                            <mat-radio-button value="Stacionar">Stacionar</mat-radio-button>
+                            <mat-radio-button value="Izolacija">Izolacija</mat-radio-button>&nbsp;
+                            <mat-radio-button value="Zdravstveni nadzor">Zdravstveni nadzor</mat-radio-button>&nbsp;
+                            <mat-radio-button value="Sanitetski transport">Sanitetski transport</mat-radio-button>
                         </mat-radio-group><br><br>
+                        <!--
                         <mat-form-field *ngIf="patientForm.value.measure?.measure == 'Stacionar'">
                             <input matInput name="institution" type="text" placeholder="Ustanova"
                                 formControlName="institution">
                             <mat-error>{{formError.mapErrors(patientForm.get('measure.institution'), 'Ustanova')}}
                             </mat-error>
-                        </mat-form-field><br>
+                        </mat-form-field>
+                        -->
+                        <br>
                         <mat-form-field>
                             <mat-label>Datum početka mere</mat-label>
                             <input matInput [matDatepicker]="pickerStart" name="startDate" formControlName="startDate">

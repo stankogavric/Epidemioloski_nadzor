@@ -6,7 +6,7 @@
     <button class="patients-button" (click)="logout()" mat-raised-button color="warn">
         Odjavi se
     </button>&nbsp;
-    <button class="patients-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
+    <button *ngIf="currentRole=='lekar' || currentRole=='student'" class="patients-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
         Dodaj pacijenta
     </button>
 </div>

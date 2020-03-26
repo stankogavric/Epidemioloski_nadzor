@@ -13,6 +13,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class PatientsComponent implements OnInit {
 
+  currentRole: string = '';
   patients : Patient[] = [];
   patient : Patient = new Patient();
   displayedColumns: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
@@ -24,6 +25,7 @@ export class PatientsComponent implements OnInit {
     private patientsService: PatientService, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
+    this.currentRole = this.authService.getCurrentRole();
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
