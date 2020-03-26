@@ -35,13 +35,19 @@ export class PatientComponent implements OnInit {
   visible = true;
   selectable = true;
   removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  separatorKeysCodes: number[] = [COMMA];
   filteredanamnesiss: Observable<string[]>;
+  filteredRiskFactors: Observable<string[]>;
   anamnesiss: string[] = [];
+  riskFactors: string[] = [];
   allanamnesiss: string[] = this.staticDataService.getSymptoms();
+  allRiskFactors: string[] = this.staticDataService.getRiskFactors();
 
   @ViewChild('anamnesisInput', { static: true }) anamnesisInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoAnamnesis', { static: true }) matAutocomplete: MatAutocomplete;
+
+  @ViewChild('riskFactorInput', { static: true }) riskFactorInput: ElementRef<HTMLInputElement>;
+  @ViewChild('autoRiskFactor', { static: true }) matAutocompleteRiskFactor: MatAutocomplete;
 
   countries: string[] = this.staticDataService.getCountries();
   countriesContact: string[] = this.staticDataService.getCountries();
@@ -98,9 +104,11 @@ export class PatientComponent implements OnInit {
     { value: 'Smrtni ishod', viewValue: 'Smrtni ishod' }
   ];
 
+  hospitalTreatments: string[] = ["Da", "Ne"];
+
   @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
 
-  constructor( private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
+  constructor(private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
     this.currentRole = this.authService.getCurrentRole();
@@ -121,7 +129,7 @@ export class PatientComponent implements OnInit {
         this.dataSourceMeasures.data = data.measures;
       });
     }
-    
+
     this.dataSourceStatuses.paginator = this.paginator;
     this.dataSourceMupStatuses.paginator = this.paginator;
     this.dataSourceMeasures.paginator = this.paginator;
@@ -145,7 +153,9 @@ export class PatientComponent implements OnInit {
         date: [new Date()],
         /*temperature: ['36.5'],*/
         description: [],
-        anamnesis: []
+        anamnesis: [],
+        riskFactors: [],
+        hospitalTreatment: []
       }),
 
       mupStatus: this.fb.group({
@@ -217,6 +227,10 @@ export class PatientComponent implements OnInit {
     this.filteredanamnesiss = this.patientForm.get('status.anamnesis').valueChanges.pipe(
       startWith(null),
       map((anamnesis: string | null) => anamnesis ? this._filterAnamnesis(anamnesis) : this.allanamnesiss.slice()));
+
+    this.filteredRiskFactors = this.patientForm.get('status.riskFactors').valueChanges.pipe(
+      startWith(null),
+      map((riskFactor: string | null) => riskFactor ? this._filterRiskFactors(riskFactor) : this.allRiskFactors.slice()));
   }
 
   onBack() {
@@ -235,7 +249,7 @@ export class PatientComponent implements OnInit {
       return;
     }
     */
-    
+
 
     let id = this.patient.id;
     this.patient = this.patientForm.value;
@@ -270,14 +284,14 @@ export class PatientComponent implements OnInit {
     for (let value of Object.entries(this.patientForm.get("measure").value)) {
       if (value[1] && value[0] != "startDate" && value[0] != "endDate") {
         this.measures.push(this.patientForm.get("measure").value);
-        this.patient.measures=this.measures;
+        this.patient.measures = this.measures;
         this.dataSourceMeasures.data = this.measures;
         break;
       }
     }
     let existContactData = false;
     for (let value of Object.entries(this.contactForm.get('personalInfo').value)) {
-      if (value[0]=="address"){
+      if (value[0] == "address") {
         for (let value of Object.entries(this.contactForm.get('personalInfo.address').value)) {
           if (value[1]) {
             this.contacts.push(this.contactForm.value);
@@ -288,7 +302,7 @@ export class PatientComponent implements OnInit {
           }
         }
       }
-      else if (existContactData){
+      else if (existContactData) {
         break;
       }
       else if (value[1]) {
@@ -298,7 +312,6 @@ export class PatientComponent implements OnInit {
         break;
       }
     }
-    console.log(this.patient);
     if (this.edit) {
       this.patient.id = id;
       this.patientService.update(this.patient.id, this.patient).subscribe(
@@ -313,7 +326,7 @@ export class PatientComponent implements OnInit {
     }
     else {
       this.patientService.add(this.patient).subscribe(
-        value => {this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; console.log(this.patient)},
+        value => { this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; },
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
       this.patientForm.get('status').reset();
@@ -328,7 +341,7 @@ export class PatientComponent implements OnInit {
     this.edit = true;
   }
 
-  delete(id: string){
+  delete(id: string) {
     this.patientsService.delete(id).subscribe(() => {
       this.router.navigate(['/patients']);
       this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
@@ -338,11 +351,11 @@ export class PatientComponent implements OnInit {
   openDialog(patient: Patient): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: {title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?"}
+      data: { title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.delete(patient.id);
       };
     });
@@ -427,7 +440,6 @@ export class PatientComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-
     // Add our anamnesis
     if ((value || '').trim()) {
       this.anamnesiss.push(value.trim());
@@ -441,6 +453,22 @@ export class PatientComponent implements OnInit {
     this.patientForm.get('status.anamnesis').setValue(null);
   }
 
+  addRiskFactor(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.riskFactors.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.patientForm.get('status.riskFactors').setValue(null);
+  }
+
   remove(anamnesis: string): void {
     const index = this.anamnesiss.indexOf(anamnesis);
 
@@ -449,16 +477,36 @@ export class PatientComponent implements OnInit {
     }
   }
 
+  removeRiskFactor(riskFactor: string): void {
+    const index = this.riskFactors.indexOf(riskFactor);
+
+    if (index >= 0) {
+      this.riskFactors.splice(index, 1);
+    }
+  }
+
   selected(event: MatAutocompleteSelectedEvent): void {
     this.anamnesiss.push(event.option.viewValue);
-    this.anamnesisInput.nativeElement.value = '';
+    //this.anamnesisInput.nativeElement.value = '';
     this.patientForm.get('status.anamnesis').setValue(null);
+  }
+
+  selectedRiskFactor(event: MatAutocompleteSelectedEvent): void {
+    this.riskFactors.push(event.option.viewValue);
+    //this.riskFactorInput.nativeElement.value = '';
+    this.patientForm.get('status.riskFactors').setValue(null);
   }
 
   private _filterAnamnesis(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.allanamnesiss.filter(anamnesis => anamnesis.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterRiskFactors(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allRiskFactors.filter(riskFactor => riskFactor.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

@@ -5,4 +5,6 @@ export class Status {
     description: string;
     status: string;
     anamnesis: string[];
+    riskFactors: string[];
+    hospitalTreatment: string;
 }

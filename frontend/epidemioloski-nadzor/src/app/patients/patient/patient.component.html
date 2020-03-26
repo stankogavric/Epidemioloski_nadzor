@@ -201,6 +201,41 @@
                             </mat-error>
                         </mat-form-field>
 
+                        <br>
+
+                        <mat-form-field>
+                            <mat-label>Bolničko lečenje</mat-label>
+                            <mat-select formControlName="hospitalTreatment">
+                                <mat-option *ngFor="let hospitalTreatment of hospitalTreatments"
+                                    [value]="hospitalTreatment">
+                                    {{hospitalTreatment}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>
+                                {{formError.mapErrors(patientForm.get('status.hospitalTreatment'), 'Bolničko lečenje')}}
+                            </mat-error>
+                        </mat-form-field>
+                        &nbsp;
+                        <mat-form-field class="example-chip-list">
+                            <mat-chip-list #chipListRiskFactors aria-label="riskFactor selection">
+                                <mat-chip *ngFor="let riskFactor of riskFactors" [selectable]="selectable"
+                                    [removable]="removable" (removed)="removeRiskFactor(riskFactor)">
+                                    {{riskFactor}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Faktori rizika" #riskFactorInput formControlName="riskFactors"
+                                    [matAutocomplete]="autoRiskFactor" [matChipInputFor]="chipListRiskFactors"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    (matChipInputTokenEnd)="addRiskFactor($event)">
+                            </mat-chip-list>
+                            <mat-autocomplete autoActiveFirstOption #autoRiskFactor="matAutocomplete"
+                                (optionSelected)="selectedRiskFactor($event)">
+                                <mat-option *ngFor="let riskFactor of filteredRiskFactors | async" [value]="riskFactor">
+                                    {{riskFactor}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+
                         <!--  
                         <mat-form-field>
                             <input matInput name="anamnesis" type="text" placeholder="Anamneza"
