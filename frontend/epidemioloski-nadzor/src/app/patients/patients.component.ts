@@ -14,77 +14,78 @@ import { AuthService } from '../auth/auth.service';
 export class PatientsComponent implements OnInit {
 
   currentRole: string = '';
-  patients : Patient[] = [];
-  patient : Patient = new Patient();
+  patients: Patient[] = [];
+  patient: Patient = new Patient();
   displayedColumns: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
   dataSource = new MatTableDataSource<Patient>(this.patients);
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog, private authService: AuthService, 
+  constructor(public dialog: MatDialog, private authService: AuthService,
     private patientsService: PatientService, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
     this.currentRole = this.authService.getCurrentRole();
     this.dataSource.paginator = this.paginator;
-    this.getAll({'pageIndex' : 0, 'pageSize' : 5});
+    this.getAll({ 'pageIndex': 0, 'pageSize': 5 });
   }
 
-  getAll(event){
-    this.patientsService.getAll(event.pageIndex, event.pageSize).subscribe((data: Patient[]) => {
+  getAll(event) {
+    this.patientsService.getAll(event.pageIndex, event.pageSize).subscribe((value: {content:Patient []}) => {
+      let data = value.content;
       this.patients = data;
       this.dataSource.data = data;
-      this.dataSource.filterPredicate = function(data, filter): boolean {
-        if (!data.personalInfo.firstname){
-          data.personalInfo.firstname=""
+      this.dataSource.filterPredicate = function (data, filter): boolean {
+        if (!data.personalInfo.firstname) {
+          data.personalInfo.firstname = ""
         }
-        if(!data.personalInfo.lastname){
-          data.personalInfo.lastname=""
+        if (!data.personalInfo.lastname) {
+          data.personalInfo.lastname = ""
         }
-        if(!data.personalInfo.jmbg){
-          data.personalInfo.jmbg=""
+        if (!data.personalInfo.jmbg) {
+          data.personalInfo.jmbg = ""
         }
-        if(!data.personalInfo.phone){
-          data.personalInfo.phone=""
+        if (!data.personalInfo.phone) {
+          data.personalInfo.phone = ""
         }
         return data.personalInfo.firstname.toLowerCase().includes(filter) ||
-                data.personalInfo.lastname.toLowerCase().includes(filter) || 
-                data.personalInfo.jmbg.toLowerCase().includes(filter) ||
-                data.personalInfo.phone.toLowerCase().includes(filter);
+          data.personalInfo.lastname.toLowerCase().includes(filter) ||
+          data.personalInfo.jmbg.toLowerCase().includes(filter) ||
+          data.personalInfo.phone.toLowerCase().includes(filter);
       };
     });
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
-/*
-  delete(id: string){
-    this.patientsService.delete(id).subscribe(() => {
-      this.getAll();
-      this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
-    });
-  }
-
-  update(id: string, patient: Patient){
-    this.patientsService.update(id, patient).subscribe(() => {
-      this.getAll();
-    });
-  }
-
-  openDialog(patient: Patient): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
-      data: {title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?"}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.delete(patient.id);
-      };
-    });
-  }
-*/
+  /*
+    delete(id: string){
+      this.patientsService.delete(id).subscribe(() => {
+        this.getAll();
+        this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
+      });
+    }
+  
+    update(id: string, patient: Patient){
+      this.patientsService.update(id, patient).subscribe(() => {
+        this.getAll();
+      });
+    }
+  
+    openDialog(patient: Patient): void {
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        width: '250px',
+        data: {title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?"}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
+          this.delete(patient.id);
+        };
+      });
+    }
+  */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
