@@ -15,6 +15,8 @@ public class Patient {
 	@Id
 	private String id;
 
+	private Boolean archived;
+
 	private String clinicBranch;
 	private String citizenship;
 	private String countryOfImport;
@@ -34,8 +36,9 @@ public class Patient {
 
 	public Patient() {}
 
-	public Patient(String id, String clinicBranch, String citizenship, String countryOfImport, PersonalInfo personalInfo, Set<Measure> measures, Set<Status> statuses, Set<Contact> contacts, Set<MupStatus> mupStatuses){
+	public Patient(String id, Boolean archived, String clinicBranch, String citizenship, String countryOfImport, PersonalInfo personalInfo, Set<Measure> measures, Set<Status> statuses, Set<Contact> contacts, Set<MupStatus> mupStatuses){
 		this.id = id;
+		this.archived = archived;
 		this.clinicBranch = clinicBranch;
 		this.citizenship = citizenship;
 		this.countryOfImport = countryOfImport;
@@ -56,6 +59,14 @@ public class Patient {
 
 	public String getClinicBranch(){
 		return clinicBranch;
+	}
+
+	public void setArchived(Boolean archived){
+		this.archived = archived;
+	}
+
+	public Boolean getArchived(){
+		return archived;
 	}
 
 	public void setClinicBranch(String clinicBranch){
