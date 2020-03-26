@@ -20,8 +20,8 @@ public class PatientService {
     public PatientService() {
     }
 
-    public Iterable<Patient> getPatients(Integer page, Integer elements) {
-        return patientRepo.findAll(PageRequest.of(page, elements));
+    public Iterable<Patient> getPatients(Integer page, Integer pageSize) {
+        return patientRepo.findByArchivedIsFalse(PageRequest.of(page, pageSize));
     }
 
     public Optional<Patient> getPatientById(String id) {
