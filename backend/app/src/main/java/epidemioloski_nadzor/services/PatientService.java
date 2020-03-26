@@ -28,13 +28,17 @@ public class PatientService {
     }
 
     public HttpStatus addPatient(Patient patient) {
+        patient.setArchived(false);
         patientRepo.save(patient);
         return HttpStatus.CREATED;
     }
 
     public void removePatient(String id) {
         Optional<Patient> patient = patientRepo.findById(id);
-        patientRepo.delete(patient.get());
+        if(patient.isPresent()){
+            patient.get().setArchived(true);
+            patientRepo.save(patient.get());
+        }
     }
 
     public void updatePatient(String id, Patient patient) {
