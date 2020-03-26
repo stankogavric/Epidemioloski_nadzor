@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'register-patient', component: PatientComponent, 
   canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar'] } },
   { path: 'edit-patient/:id', component: PatientComponent, 
-  canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar'] } },
+  canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar', 'mup'] } },
 ];
 
 @NgModule({

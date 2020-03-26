@@ -16,6 +16,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { StaticDataService } from 'src/app/shared/staticData.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 interface Statuss {
   value: string;
@@ -29,6 +30,7 @@ interface Statuss {
 })
 export class PatientComponent implements OnInit {
 
+  currentRole: string = '';
   visible = true;
   selectable = true;
   removable = true;
@@ -93,9 +95,10 @@ export class PatientComponent implements OnInit {
 
   @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
 
-  constructor(public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
+  constructor( private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
+    this.currentRole = this.authService.getCurrentRole();
     let id = this.route.snapshot.paramMap.get("id");
 
     if (id) {

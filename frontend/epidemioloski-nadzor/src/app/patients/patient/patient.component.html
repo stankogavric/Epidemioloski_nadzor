@@ -106,18 +106,18 @@
                             </mat-option>
                         </mat-autocomplete>
                     </mat-form-field>
-                    <!--
-                <mat-form-field>
-                    <input matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
-                        formControlName="countryOfImport">
-                    <mat-error>{{formError.mapErrors(patientForm.get('countryOfImport'), 'Doputovao iz države')}}
-                    </mat-error>
-                </mat-form-field>
-                -->
+
+                    <!-- <mat-form-field>
+                        <input matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
+                            formControlName="countryOfImport">
+                        <mat-error>{{formError.mapErrors(patientForm.get('countryOfImport'), 'Doputovao iz države')}}
+                        </mat-error>
+                    </mat-form-field> -->
+
                 </div>
             </div>
-            <div *ngIf="edit">
-                <button mat-raised-button color="warn" (click)="openDialog(patient)">
+            <div *ngIf="(currentRole=='lekar' || currentRole=='student') && edit">
+                <button class="patient-button" mat-raised-button color="warn" (click)="openDialog(patient)">
                     Izbriši pacijenta
                 </button>
             </div>
@@ -125,7 +125,7 @@
 
         <mat-tab label="Statusi">
             <div class="patients-div">
-                <div [formGroup]="patientForm">
+                <div *ngIf="currentRole=='lekar' || currentRole=='student'" [formGroup]="patientForm">
                     <div formGroupName="status">
                         <!-- <mat-radio-group name="status" formControlName="status" aria-label="Izaberite status pacijenta">
                             <mat-radio-button value="Izlečen">Izlečen</mat-radio-button>&nbsp;
@@ -210,9 +210,10 @@
                         </mat-form-field>
                         -->
                     </div>
+                    <br>
                 </div>
-                <br>
-                <div class="mat-elevation-z8">
+
+                <div *ngIf="currentRole=='lekar' || currentRole=='student'" class="mat-elevation-z8">
                     <mat-form-field class="search">
                         <span matSuffix>
                             <mat-icon>search</mat-icon>
@@ -250,32 +251,75 @@
                             <th mat-header-cell *matHeaderCellDef> Simptomi </th>
                             <td mat-cell *matCellDef="let status"> {{status.anamnesis}} </td>
                         </ng-container>
-                        <!--
-                    <ng-container matColumnDef="actions">
-                        <th mat-header-cell *matHeaderCellDef> </th>
-                        <td mat-cell *matCellDef="let patient">
-                            <button mat-raised-button color="warn" (click)="openDialog(patient)" matTooltip="Izbriši">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                            <button mat-raised-button color="accent" [routerLink]="['/register-patient', patient]"
-                                matTooltip="Izmeni">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                        </td>
-                    </ng-container>
-                    -->
+
+                        <!-- <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let patient">
+                                <button mat-raised-button color="warn" (click)="openDialog(patient)"
+                                    matTooltip="Izbriši">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button mat-raised-button color="accent" [routerLink]="['/register-patient', patient]"
+                                    matTooltip="Izmeni">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container> -->
+
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsStatuses"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsStatuses;"></tr>
                     </table>
 
                     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
+
+                <div *ngIf="currentRole=='mup'" [formGroup]="patientForm">
+                    <div formGroupName="status">
+                        <mat-radio-group aria-label="Izaberite status" name="status" formControlName="status">
+                            <mat-radio-button value="Prisutan">Prisutan</mat-radio-button>&nbsp;
+                            <mat-radio-button value="Nije prisutan">Nije prisutan</mat-radio-button>
+                        </mat-radio-group>
+                        <br><br><br>
+                        <mat-form-field>
+                            <mat-label>Datum i vreme</mat-label>
+                            <input matInput formControlName="date" type="datetime-local">
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" name="description" placeholder="Opis"
+                                formControlName="description"></textarea>
+                            <mat-error>{{formError.mapErrors(patientForm.get('status.description'), 'Opis')}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                </div>
+
+                <!-- <div *ngIf="currentRole=='mup'" class="mat-elevation-z8">
+                    <mat-form-field class="search">
+                        <span matSuffix>
+                            <mat-icon>search</mat-icon>
+                        </span>
+                        <input matInput (keyup)="applyFilterStatuses($event.target.value)" placeholder="Pretraga">
+                    </mat-form-field>
+                    <table mat-table [dataSource]="dataSourceStatuses">
+
+                        <ng-container matColumnDef="no">
+                            <th mat-header-cell *matHeaderCellDef> # </th>
+                            <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
+                        </ng-container>
+
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                </div> -->
             </div>
 
         </mat-tab>
         <mat-tab label="Mere">
             <div class="patients-div">
-                <div [formGroup]="patientForm">
+                <div *ngIf="currentRole=='lekar' || currentRole=='student'" [formGroup]="patientForm">
                     <div formGroupName="measure">
                         <mat-form-field>
                             <input matInput name="rescriptNum" type="text" placeholder="Broj rešenja"
@@ -311,9 +355,9 @@
                             <mat-datepicker #pickerEnd></mat-datepicker>
                         </mat-form-field>
                     </div>
+                    <br>
                 </div>
                 <!-- <button mat-raised-button color="primary" (click)="saveContact()">Dodaj meru</button> -->
-                <br>
                 <div class="mat-elevation-z8">
                     <mat-form-field class="search">
                         <span matSuffix>
@@ -375,7 +419,7 @@
             </div>
         </mat-tab>
 
-        <mat-tab label="Kontakti">
+        <mat-tab *ngIf="currentRole=='lekar' || currentRole=='student'" label="Kontakti">
             <div class="patients-div">
                 <div [formGroup]="contactForm">
                     <div formGroupName="personalInfo">
@@ -529,20 +573,21 @@
                             <th mat-header-cell *matHeaderCellDef> Telefon </th>
                             <td mat-cell *matCellDef="let contact"> {{contact.personalInfo.phone}} </td>
                         </ng-container>
-                        <!--
-                    <ng-container matColumnDef="actions">
-                        <th mat-header-cell *matHeaderCellDef> </th>
-                        <td mat-cell *matCellDef="let patient">
-                            <button mat-raised-button color="warn" (click)="openDialog(patient)" matTooltip="Izbriši">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                            <button mat-raised-button color="accent" [routerLink]="['/register-patient', patient]"
-                                matTooltip="Izmeni">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                        </td>
-                    </ng-container>
-                    -->
+
+                        <!-- <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let patient">
+                                <button mat-raised-button color="warn" (click)="openDialog(patient)"
+                                    matTooltip="Izbriši">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button mat-raised-button color="accent" [routerLink]="['/register-patient', patient]"
+                                    matTooltip="Izmeni">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container> -->
+
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsContacts"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsContacts;"></tr>
                     </table>
