@@ -228,7 +228,7 @@
 
                         <ng-container matColumnDef="date">
                             <th mat-header-cell *matHeaderCellDef> Datum </th>
-                            <td mat-cell *matCellDef="let status"> {{status.date | date:'dd.MM.yyyy' }} </td>
+                            <td mat-cell *matCellDef="let status"> {{status.date | date:'dd.MM.yyyy.' }} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="temperature">
@@ -332,12 +332,12 @@
 
                         <ng-container matColumnDef="startDate">
                             <th mat-header-cell *matHeaderCellDef> Početak mere </th>
-                            <td mat-cell *matCellDef="let measure"> {{measure.startDate | date:'dd.MM.yyyy'}} </td>
+                            <td mat-cell *matCellDef="let measure"> {{measure.startDate | date:'dd.MM.yyyy.'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="endDate">
                             <th mat-header-cell *matHeaderCellDef> Završetak mere </th>
-                            <td mat-cell *matCellDef="let measure"> {{measure.endDate | date:'dd.MM.yyyy'}} </td>
+                            <td mat-cell *matCellDef="let measure"> {{measure.endDate | date:'dd.MM.yyyy.'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="institution">
