@@ -3,6 +3,7 @@ package epidemioloski_nadzor.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class PatientService {
     public PatientService() {
     }
 
-    public Iterable<Patient> getPatients() {
-        return patientRepo.findAll();
+    public Iterable<Patient> getPatients(Integer page, Integer elements) {
+        return patientRepo.findAll(PageRequest.of(page, elements));
     }
 
     public Optional<Patient> getPatientById(String id) {

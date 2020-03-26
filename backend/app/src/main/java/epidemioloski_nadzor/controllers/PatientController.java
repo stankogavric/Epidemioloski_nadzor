@@ -24,9 +24,9 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @RequestMapping()
-    public ResponseEntity<Iterable<Patient>> getPatients() {
-        return new ResponseEntity<Iterable<Patient>>(patientService.getPatients(), HttpStatus.OK);
+    @RequestMapping(value="/{page}/{elements}")
+    public ResponseEntity<Iterable<Patient>> getPatients(@PathVariable Integer page, @PathVariable Integer elements) {
+        return new ResponseEntity<Iterable<Patient>>(patientService.getPatients(page, elements), HttpStatus.OK);
     }
 
     @RequestMapping(method=RequestMethod.POST)
