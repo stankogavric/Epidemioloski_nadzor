@@ -27,11 +27,11 @@ export class PatientsComponent implements OnInit {
   ngOnInit() {
     this.currentRole = this.authService.getCurrentRole();
     this.dataSource.paginator = this.paginator;
-    this.getAll();
+    this.getAll({'pageIndex' : 0, 'pageSize' : 5});
   }
 
-  getAll(){
-    this.patientsService.getAll().subscribe((data: Patient[]) => {
+  getAll(event){
+    this.patientsService.getAll(event.pageIndex, event.pageSize).subscribe((data: Patient[]) => {
       this.patients = data;
       this.dataSource.data = data;
       this.dataSource.filterPredicate = function(data, filter): boolean {
@@ -58,7 +58,7 @@ export class PatientsComponent implements OnInit {
   logout(){
     this.authService.logout();
   }
-
+/*
   delete(id: string){
     this.patientsService.delete(id).subscribe(() => {
       this.getAll();
@@ -84,7 +84,7 @@ export class PatientsComponent implements OnInit {
       };
     });
   }
-
+*/
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

@@ -12,8 +12,8 @@ export class PatientService {
     constructor(private http: HttpClient) {
     }
 
-    getAll() {
-        return this.http.get<Patient[]>(this.patientsUrl);
+    getAll(pageIndex, pageSize) {
+        return this.http.get<Patient[]>(this.patientsUrl + `/${pageIndex}` + `/${pageSize}`);
     }
 
     getOne(id: String) { 
