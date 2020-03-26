@@ -21,35 +21,36 @@
                 <div [formGroup]="patientForm">
                     <div formGroupName="personalInfo">
                         <mat-form-field>
-                            <input matInput name="firstname" type="text" placeholder="Ime" formControlName="firstname">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="firstname" type="text" placeholder="Ime"
+                                formControlName="firstname">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.firstname'), 'Ime')}}
                             </mat-error>
                         </mat-form-field>&nbsp;
                         <mat-form-field>
-                            <input matInput name="lastname" type="text" placeholder="Prezime"
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="lastname" type="text" placeholder="Prezime"
                                 formControlName="lastname">
                             <mat-error>
                                 {{formError.mapErrors(patientForm.get('personalInfo.lastname'), 'Prezime')}}
                             </mat-error>
                         </mat-form-field><br>
                         <mat-form-field>
-                            <input matInput name="lbo" type="text" placeholder="LBO" formControlName="lbo">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="lbo" type="text" placeholder="LBO" formControlName="lbo">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.lbo'), 'LBO')}}
                             </mat-error>
                         </mat-form-field>&nbsp;
                         <mat-form-field>
-                            <input matInput name="jmbg" type="text" placeholder="JMBG" formControlName="jmbg">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="jmbg" type="text" placeholder="JMBG" formControlName="jmbg">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.jmbg'), 'JMBG')}}
                             </mat-error>
                         </mat-form-field><br>
                         <mat-form-field>
-                            <input matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.phone'), 'Telefon')}}
                             </mat-error>
                         </mat-form-field>&nbsp;
                         <span formGroupName="address">
                             <mat-form-field>
-                                <input type="text" placeholder="Grad" aria-label="Number" matInput
+                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text" placeholder="Grad" aria-label="Number" matInput
                                     formControlName="city" [matAutocomplete]="autoCity">
                                 <mat-autocomplete #autoCity="matAutocomplete" autoActiveFirstOption>
                                     <mat-option *ngFor="let city of filteredCities | async" [value]="city">
@@ -59,20 +60,20 @@
                             </mat-form-field><br>
                             <!--
                             <mat-form-field>
-                                <input matInput name="city" type="text" placeholder="Grad" formControlName="city">
+                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="city" type="text" placeholder="Grad" formControlName="city">
                                 <mat-error>
                                     {{formError.mapErrors(patientForm.get('personalInfo.address.city'), 'Grad')}}
                                 </mat-error>
                             </mat-form-field>
                             -->
                             <mat-form-field>
-                                <input matInput name="street" type="text" placeholder="Ulica" formControlName="street">
+                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="street" type="text" placeholder="Ulica" formControlName="street">
                                 <mat-error>
                                     {{formError.mapErrors(patientForm.get('personalInfo.address.street'), 'Ulica')}}
                                 </mat-error>
                             </mat-form-field>&nbsp;
                             <mat-form-field>
-                                <input matInput name="streetNum" type="text" placeholder="Broj"
+                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="streetNum" type="text" placeholder="Broj"
                                     formControlName="streetNum">
                                 <mat-error>
                                     {{formError.mapErrors(patientForm.get('personalInfo.address.streetNum'), 'Broj')}}
@@ -83,13 +84,13 @@
                     </div>
                     <!--
                     <mat-form-field>
-                        <input matInput name="citizenship" type="text" placeholder="Državljanstvo"
+                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="citizenship" type="text" placeholder="Državljanstvo"
                             formControlName="citizenship">
                         <mat-error>{{formError.mapErrors(patientForm.get('citizenship'), 'Državljanstvo')}}</mat-error>
                     </mat-form-field>
                     -->
                     <mat-form-field>
-                        <input type="text" placeholder="Državljanstvo" aria-label="Number" matInput
+                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text" placeholder="Državljanstvo" aria-label="Number" matInput
                             formControlName="citizenship" [matAutocomplete]="autoCitizenship">
                         <mat-autocomplete #autoCitizenship="matAutocomplete" autoActiveFirstOption>
                             <mat-option *ngFor="let citizenship of filteredCitizenships | async" [value]="citizenship">
@@ -98,7 +99,7 @@
                         </mat-autocomplete>
                     </mat-form-field>&nbsp;
                     <mat-form-field class="example-full-width">
-                        <input type="text" placeholder="Doputovao iz države" aria-label="Number" matInput
+                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text" placeholder="Doputovao iz države" aria-label="Number" matInput
                             formControlName="countryOfImport" [matAutocomplete]="auto">
                         <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
                             <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
@@ -108,7 +109,7 @@
                     </mat-form-field>
 
                     <!-- <mat-form-field>
-                        <input matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
+                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="countryOfImport" type="text" placeholder="Doputovao iz države"
                             formControlName="countryOfImport">
                         <mat-error>{{formError.mapErrors(patientForm.get('countryOfImport'), 'Doputovao iz države')}}
                         </mat-error>
@@ -274,7 +275,7 @@
                 </div>
 
                 <div *ngIf="currentRole=='mup'" [formGroup]="patientForm">
-                    <div formGroupName="status">
+                    <div formGroupName="mupStatus">
                         <mat-radio-group aria-label="Izaberite status" name="status" formControlName="status">
                             <mat-radio-button value="Prisutan">Prisutan</mat-radio-button>&nbsp;
                             <mat-radio-button value="Nije prisutan">Nije prisutan</mat-radio-button>
@@ -296,24 +297,42 @@
                     <br>
                 </div>
 
-                <!-- <div *ngIf="currentRole=='mup'" class="mat-elevation-z8">
+                <div *ngIf="currentRole=='mup'" class="mat-elevation-z8">
                     <mat-form-field class="search">
                         <span matSuffix>
                             <mat-icon>search</mat-icon>
                         </span>
-                        <input matInput (keyup)="applyFilterStatuses($event.target.value)" placeholder="Pretraga">
+                        <input matInput (keyup)="applyFilterMupStatuses($event.target.value)" placeholder="Pretraga">
                     </mat-form-field>
-                    <table mat-table [dataSource]="dataSourceStatuses">
+                    <table mat-table [dataSource]="dataSourceMupStatuses">
 
                         <ng-container matColumnDef="no">
                             <th mat-header-cell *matHeaderCellDef> # </th>
                             <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
                         </ng-container>
 
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let status"> {{status.status}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef> Datum </th>
+                            <td mat-cell *matCellDef="let status"> {{status.date | date:'dd.MM.yyyy.' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="description">
+                            <th mat-header-cell *matHeaderCellDef> Opis </th>
+                            <td mat-cell *matCellDef="let status"> {{status.description}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMupStatuses"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsMupStatuses;"></tr>
+
                     </table>
 
                     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-                </div> -->
+                </div>
             </div>
 
         </mat-tab>
