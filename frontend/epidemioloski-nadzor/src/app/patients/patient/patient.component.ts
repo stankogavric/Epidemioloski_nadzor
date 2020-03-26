@@ -111,6 +111,15 @@ export class PatientComponent implements OnInit {
   constructor(private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
+
+    this.staticDataService.getCities().subscribe((value: string[])=>{
+      this.citiesContact = this.cities = value;
+    })
+
+    this.staticDataService.getCountries().subscribe((value: string[])=>{
+      this.countries = this.countriesContact = this.citizenships = this.citizenshipsContact = value;
+    })
+
     this.currentRole = this.authService.getCurrentRole();
     let id = this.route.snapshot.paramMap.get("id");
 
