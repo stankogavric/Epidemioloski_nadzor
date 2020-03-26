@@ -13,7 +13,7 @@ export class PatientService {
     }
 
     getAll(pageIndex, pageSize) {
-        return this.http.get<Patient[]>(this.patientsUrl + `/${pageIndex}` + `/${pageSize}`);
+        return this.http.get<{content:Patient[]}>(this.patientsUrl + `/${pageIndex}` + `/${pageSize}`);
     }
 
     getOne(id: String) { 

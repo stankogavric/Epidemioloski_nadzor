@@ -31,7 +31,8 @@ export class PatientsComponent implements OnInit {
   }
 
   getAll(event){
-    this.patientsService.getAll(event.pageIndex, event.pageSize).subscribe((data: Patient[]) => {
+    this.patientsService.getAll(event.pageIndex, event.pageSize).subscribe((value: {content:Patient[]}) => {
+      let data = value.content;
       this.patients = data;
       this.dataSource.data = data;
       this.dataSource.filterPredicate = function(data, filter): boolean {
