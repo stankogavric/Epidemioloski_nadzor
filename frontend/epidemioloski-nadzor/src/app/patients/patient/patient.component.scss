@@ -3,6 +3,10 @@ table {
     text-align: left;
 }
 
+tr.mat-row:hover {
+    background-color:  rgb(210, 255, 220);
+  }
+
 .patients-div {
     margin: 40px;
     justify-content: center;

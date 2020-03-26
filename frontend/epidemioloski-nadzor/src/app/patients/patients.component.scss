@@ -1,13 +1,16 @@
-  table {
-    width: 100%;
-    text-align: left;
-  }
-/*  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-*/
+table {
+  width: 100%;
+  text-align: left;
+}
+
+tr.mat-row:hover {
+  background-color:  rgb(210, 255, 220);
+}
+
+// .mat-form-field {
+//   font-size: 14px;
+//   width: 100%;
+// }
 
 .patients-div {
   margin: 20px;

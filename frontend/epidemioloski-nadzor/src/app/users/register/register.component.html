@@ -1,21 +1,23 @@
 <div class="register-div">
-    <mat-card class="register-card">
-        <img src="https://izjzv.org.rs/images/logo.png" alt="IZJZV"><br>
+    <div class="mat-elevation-z8">
+        <img src="https://izjzv.org.rs/images/logo.png" alt="IZJZV">
+        <br>
         <p>REGISTRACIJA NOVOG KORISNIKA</p>
         <div [formGroup]="form">
-            <mat-form-field class="register-form">
+            <mat-form-field>
                 <input matInput name="firstName" formControlName="firstName" type="text" placeholder="Ime">
                 <mat-error>{{formError.mapErrors(form.get('firstName'), 'Ime')}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="register-form">
+            </mat-form-field>&nbsp;
+            <mat-form-field>
                 <input matInput name="lastName" formControlName="lastName" type="text" placeholder="Prezime">
                 <mat-error>{{formError.mapErrors(form.get('lastName'), 'Prezime')}}</mat-error>
-            </mat-form-field><br>
-            <mat-form-field class="register-form">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
                 <input matInput name="phone" formControlName="phone" type="text" placeholder="Broj telefona">
                 <mat-error>{{formError.mapErrors(form.get('phone'), 'Broj telefona')}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="register-form">
+            </mat-form-field>&nbsp;
+            <mat-form-field>
                 <mat-label>Uloga</mat-label>
                 <mat-select formControlName="role">
                     <mat-option *ngFor="let role of roles" [value]="role.value">
@@ -23,21 +25,19 @@
                     </mat-option>
                 </mat-select>
                 <mat-error>{{formError.mapErrors(form.get('role'), 'Uloga')}}</mat-error>
-            </mat-form-field><br>
-            <mat-form-field class="register-form">
-                <span matSuffix>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Sakrij PIN'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button><br>
-                </span>
-                <input matInput name="pin" formControlName="pin" type="text" placeholder="PIN"
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput name="pin" formControlName="pin" placeholder="PIN"
                     [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
                 <mat-error>{{formError.mapErrors(form.get('pin'), 'PIN')}}</mat-error>
             </mat-form-field>
             <p class="message">{{message}}</p>
-            <button class="register-button" mat-raised-button color="primary"
-                (click)="onRegister()">Registruj</button>
+            <button class="register-button" mat-raised-button color="primary" (click)="onRegister()">Registruj</button>
         </div>
-    </mat-card>
+    </div>
 </div>

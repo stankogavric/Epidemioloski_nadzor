@@ -1,15 +1,28 @@
 /* Customs */
 
 .register-div {
-    margin-top: 40px;
+    margin: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }
 
-.register-card {
+.mat-elevation-z8 {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+    padding: 40px;
     background-color: rgb(210, 255, 220);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }
 
 .register-form {

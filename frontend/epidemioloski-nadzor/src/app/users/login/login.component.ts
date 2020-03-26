@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
+  hide = true;
+
   public loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService, public readonly formError: FormErrorService, private router: Router) { }

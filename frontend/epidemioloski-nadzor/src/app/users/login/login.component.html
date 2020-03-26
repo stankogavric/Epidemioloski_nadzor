@@ -1,18 +1,26 @@
 <div class="login-div">
-    <mat-card class="login-card">
-        <img src="https://izjzv.org.rs/images/logo.png" alt="IZJZV"><br>
+    <div class="mat-elevation-z8">
+        <img class="logo" src="https://izjzv.org.rs/images/logo.png" alt="IZJZV">
+        <br>
         <p>PRIJAVA NA SISTEM</p>
         <form (submit)="onLogin()" [formGroup]="loginForm">
-            <mat-form-field>
+            <mat-form-field appearance="">
                 <input matInput name="phone" type="text" placeholder="Broj telefona" formControlName="phoneInput">
                 <mat-error>{{formError.mapErrors(loginForm.get('phoneInput'), 'Broj telefona')}}</mat-error>
-            </mat-form-field><br>
-            <mat-form-field class="pin-form">
-                <input type="password" name="pin" matInput placeholder="PIN" formControlName="pinInput">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput name="pin" formControlName="pinInput" placeholder="PIN"
+                    [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
                 <mat-error>{{formError.mapErrors(loginForm.get('pinInput'), 'PIN')}}</mat-error>
-            </mat-form-field><br>
+            </mat-form-field>
+            <br>
             <p class="message">{{message}}</p>
             <button class="login-button" mat-raised-button color="primary" type="submit">Prijavi se</button>
         </form>
-    </mat-card>
+    </div>
 </div>
