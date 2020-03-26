@@ -46,6 +46,7 @@ public class PatientService {
         Optional<Patient> oPatient = patientRepo.findById(id);
         if(oPatient.isPresent()) {
             patient.setId(oPatient.get().getId());
+            patient.setArchived(false);
             patientRepo.save(patient);
         }
     }
@@ -55,6 +56,7 @@ public class PatientService {
         if(oPatient.isPresent()) {
             Patient p = oPatient.get();
             p.getContacts().add(contact);
+            p.setArchived(false);
             patientRepo.save(p);
         }
     }
