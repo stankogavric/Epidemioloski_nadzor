@@ -29,9 +29,12 @@ public class Patient {
 	@JsonView(ShowStatus.class)
 	private Set<Contact> contacts;
 
+	@JsonView(ShowStatus.class)
+	private Set<MupStatus> mupStatuses;
+
 	public Patient() {}
 
-	public Patient(String id, String clinicBranch, String citizenship, String countryOfImport, PersonalInfo personalInfo, Set<Measure> measures, Set<Status> statuses, Set<Contact> contacts){
+	public Patient(String id, String clinicBranch, String citizenship, String countryOfImport, PersonalInfo personalInfo, Set<Measure> measures, Set<Status> statuses, Set<Contact> contacts, Set<MupStatus> mupStatuses){
 		this.id = id;
 		this.clinicBranch = clinicBranch;
 		this.citizenship = citizenship;
@@ -40,6 +43,7 @@ public class Patient {
 		this.measures = measures;
 		this.statuses = statuses;
 		this.contacts = contacts;
+		this.mupStatuses = mupStatuses;
 	}
 	
 	public String getId(){
@@ -104,6 +108,14 @@ public class Patient {
 
 	public void setContacts(Set<Contact> contacts){
 		this.contacts = contacts;
+	}
+
+	public Set<MupStatus> getMupStatuses(){
+		return mupStatuses;
+	}
+
+	public void setMupStatuses(Set<MupStatus> mupStatuses){
+		this.mupStatuses = mupStatuses;
 	}
 	
 }
