@@ -10,15 +10,19 @@ public class Status {
 	private Float temperature;
 	private String description;
 	private String status;
+	private String hospitalTreatment;
+	private Set<String> riskFactors;
 	private Set<String> anamnesis;
 
 	public Status() {}
 
-	public Status(Date date, Float temperature, String description, String status, Set<String> anamnesis){
+	public Status(Date date, Float temperature, String description, String status, String hospitalTreatment, Set<String> riskFactors, Set<String> anamnesis){
 		this.date = date;
 		this.temperature = temperature;
 		this.description = description;
 		this.status = status;
+		this.hospitalTreatment = hospitalTreatment;
+		this.riskFactors = riskFactors;
 		this.anamnesis = anamnesis;
 	}
 
@@ -52,6 +56,22 @@ public class Status {
 
 	public void setStatus(String status){
 		this.status = status;
+	}
+
+	public String getHospitalTreatment(){
+		return hospitalTreatment;
+	}
+
+	public void setHospitalTreatment(String hospitalTreatment){
+		this.hospitalTreatment = hospitalTreatment;
+	}
+	
+	public Set<String> getRiskFactors(){
+		return riskFactors;
+	}
+
+	public void setRiskFactors(Set<String> riskFactors){
+		this.riskFactors = riskFactors;
 	}
 	
 	public Set<String> getAnamnesis(){
