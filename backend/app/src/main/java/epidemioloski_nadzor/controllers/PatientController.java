@@ -24,9 +24,19 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @RequestMapping(value="/{page}/{elements}")
-    public ResponseEntity<Iterable<Patient>> getPatients(@PathVariable Integer page, @PathVariable Integer elements) {
-        return new ResponseEntity<Iterable<Patient>>(patientService.getPatients(page, elements), HttpStatus.OK);
+    @RequestMapping()
+    public ResponseEntity<Iterable<Patient>> getPatients() {
+        return new ResponseEntity<Iterable<Patient>>(patientService.getPatients(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/{page}/{pageSize}/{query}")
+    public ResponseEntity<Iterable<Patient>> getPatientsByQuery(@PathVariable Integer page, @PathVariable Integer pageSize, @PathVariable String query) {
+        return new ResponseEntity<Iterable<Patient>>(patientService.getPatientsByQuery(query, page, pageSize), HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/{page}/{pageSize}")
+    public ResponseEntity<Iterable<Patient>> getPatientsPagable(@PathVariable Integer page, @PathVariable Integer pageSize) {
+        return new ResponseEntity<Iterable<Patient>>(patientService.getPatientsPagable(page, pageSize), HttpStatus.OK);
     }
 
     @RequestMapping(method=RequestMethod.POST)
