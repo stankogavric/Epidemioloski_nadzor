@@ -1,5 +1,6 @@
 package epidemioloski_nadzor.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class PatientService {
 
     public Optional<Patient> getPatientById(String id) {
         return patientRepo.findById(id);
+    }
+
+    public List<Patient> getNearestByRadius(double[] coordinates, double radius) {
+        return patientRepo.findNearestByRadius(coordinates,radius);
     }
 
     public HttpStatus addPatient(Patient patient) {

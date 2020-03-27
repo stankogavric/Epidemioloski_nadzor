@@ -8,6 +8,9 @@
     </button>&nbsp;
     <button *ngIf="currentRole=='lekar' || currentRole=='student'" class="patients-button" mat-raised-button color="primary" [routerLink]='["/register-patient"]'>
         Dodaj pacijenta
+    </button>&nbsp;
+    <button class="patients-button" mat-raised-button color="accent" [routerLink]='["/map"]'>
+        Otvori mapu
     </button>
 </div>
 <div class="patients-div">

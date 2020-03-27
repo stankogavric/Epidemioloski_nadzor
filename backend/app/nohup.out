@@ -1,0 +1,567 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-25 11:56:48.519  INFO 30455 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 30455 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-25 11:56:48.530  INFO 30455 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-25 11:56:50.987  INFO 30455 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-25 11:56:51.161  INFO 30455 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 164ms. Found 7 repository interfaces.
+2020-03-25 11:56:52.039  INFO 30455 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$362956e2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 11:56:52.058  INFO 30455 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9d7b8ea8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 11:56:52.110  INFO 30455 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 11:56:52.119  INFO 30455 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6b09fb41' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 11:56:52.125  INFO 30455 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$5afdf994] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 11:56:52.138  INFO 30455 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 11:56:52.961  INFO 30455 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-25 11:56:53.039  INFO 30455 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-25 11:56:53.045  INFO 30455 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-25 11:56:53.079  INFO 30455 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-25 11:56:53.217  INFO 30455 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-25 11:56:53.219  INFO 30455 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4514 ms
+2020-03-25 11:56:54.092  INFO 30455 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-25 11:56:54.092  INFO 30455 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-25 11:56:54.296  INFO 30455 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:135}] to localhost:27017
+2020-03-25 11:56:54.304  INFO 30455 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3678530}
+2020-03-25 11:56:54.314  INFO 30455 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-25 11:56:55.747  INFO 30455 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6b9c69a9, org.springframework.security.web.context.SecurityContextPersistenceFilter@7e0b9178, org.springframework.security.web.header.HeaderWriterFilter@4bf324f9, org.springframework.security.web.authentication.logout.LogoutFilter@58faa93b, epidemioloski_nadzor.security.AuthenticationTokenFilter@5a6d5a8f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f63c44f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5f5b5ca4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6622a690, org.springframework.security.web.session.SessionManagementFilter@3bd55d8, org.springframework.security.web.access.ExceptionTranslationFilter@3f4f9acd]
+2020-03-25 11:56:56.228  INFO 30455 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-25 11:56:56.592  INFO 30455 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-25 11:56:57.095  INFO 30455 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-25 11:56:57.100  INFO 30455 --- [           main] epidemioloski_nadzor.App                 : Started App in 10.194 seconds (JVM running for 11.085)
+2020-03-25 11:57:07.860  INFO 30455 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-25 11:57:07.861  INFO 30455 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-25 11:57:07.883  INFO 30455 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
+2020-03-25 11:57:08.088  INFO 30455 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:136}] to localhost:27017
+2020-03-25 15:02:37.792  WARN 30455 --- [nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `java.util.HashSet` out of VALUE_STRING token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.HashSet` out of VALUE_STRING token
+ at [Source: (PushbackInputStream); line: 1, column: 537] (through reference chain: epidemioloski_nadzor.models.Patient["statuses"]->java.util.HashSet[0]->epidemioloski_nadzor.models.Status["anamnesis"])]
+2020-03-25 15:19:51.975  INFO 30455 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'shutdown' on bean with name 'dataSource' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 15:19:51.977  WARN 30455 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 15:19:51.978  INFO 30455 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-25 15:19:51.981  INFO 30455 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'close' on bean with name 'mongo' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+2020-03-25 15:19:51.982  WARN 30455 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+Exception in thread "Thread-3" java.lang.NoClassDefFoundError: org/apache/catalina/Lifecycle$SingleUse
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:269)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:465)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:250)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:306)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.stopAndReleaseWebServer(ServletWebServerApplicationContext.java:320)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1032)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-25 15:19:57.848  INFO 1340 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 1340 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-25 15:19:57.864  INFO 1340 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-25 15:19:59.974  INFO 1340 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-25 15:20:00.159  INFO 1340 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 176ms. Found 7 repository interfaces.
+2020-03-25 15:20:00.855  INFO 1340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$1376659c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:20:00.871  INFO 1340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7ac89d62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:20:00.912  INFO 1340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:20:00.923  INFO 1340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@55de24cc' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:20:00.927  INFO 1340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$384b084e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:20:00.937  INFO 1340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:20:01.655  INFO 1340 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-25 15:20:01.717  INFO 1340 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-25 15:20:01.720  INFO 1340 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-25 15:20:01.742  INFO 1340 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-25 15:20:01.960  INFO 1340 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-25 15:20:01.962  INFO 1340 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3961 ms
+2020-03-25 15:20:02.926  INFO 1340 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-25 15:20:02.927  INFO 1340 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-25 15:20:03.147  INFO 1340 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:155}] to localhost:27017
+2020-03-25 15:20:03.162  INFO 1340 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=6617237}
+2020-03-25 15:20:03.170  INFO 1340 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-25 15:20:04.651  INFO 1340 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3887cf88, org.springframework.security.web.context.SecurityContextPersistenceFilter@6813a331, org.springframework.security.web.header.HeaderWriterFilter@99a65d3, org.springframework.security.web.authentication.logout.LogoutFilter@7882c44a, epidemioloski_nadzor.security.AuthenticationTokenFilter@3b718392, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39ab59f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@29d37757, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5649ec46, org.springframework.security.web.session.SessionManagementFilter@42cc13a0, org.springframework.security.web.access.ExceptionTranslationFilter@3e598df9]
+2020-03-25 15:20:05.088  INFO 1340 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-25 15:20:05.420  INFO 1340 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-25 15:20:05.892  INFO 1340 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-25 15:20:05.926  INFO 1340 --- [           main] epidemioloski_nadzor.App                 : Started App in 9.157 seconds (JVM running for 9.986)
+2020-03-25 15:20:14.817  INFO 1340 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-25 15:20:14.819  INFO 1340 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-25 15:20:14.836  INFO 1340 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2020-03-25 15:20:15.294  INFO 1340 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:156}] to localhost:27017
+2020-03-25 15:31:45.428  INFO 1340 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'shutdown' on bean with name 'dataSource' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 15:31:45.430  WARN 1340 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 15:31:45.436  INFO 1340 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-25 15:31:45.442  INFO 1340 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'close' on bean with name 'mongo' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+2020-03-25 15:31:45.442  WARN 1340 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+Exception in thread "Thread-3" java.lang.NoClassDefFoundError: org/apache/catalina/Lifecycle$SingleUse
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:269)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:465)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:250)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:306)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.stopAndReleaseWebServer(ServletWebServerApplicationContext.java:320)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1032)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-25 15:31:51.111  INFO 1669 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 1669 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-25 15:31:51.120  INFO 1669 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-25 15:31:53.254  INFO 1669 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-25 15:31:53.397  INFO 1669 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135ms. Found 7 repository interfaces.
+2020-03-25 15:31:54.130  INFO 1669 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$5629a8c0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:31:54.142  INFO 1669 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bd7be086] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:31:54.177  INFO 1669 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:31:54.185  INFO 1669 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@23f5b5dc' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:31:54.191  INFO 1669 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$7afe4b72] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:31:54.200  INFO 1669 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 15:31:54.916  INFO 1669 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-25 15:31:55.011  INFO 1669 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-25 15:31:55.018  INFO 1669 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-25 15:31:55.051  INFO 1669 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-25 15:31:55.208  INFO 1669 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-25 15:31:55.208  INFO 1669 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3947 ms
+2020-03-25 15:31:55.961  INFO 1669 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-25 15:31:55.962  INFO 1669 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-25 15:31:56.166  INFO 1669 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:157}] to localhost:27017
+2020-03-25 15:31:56.181  INFO 1669 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8991309}
+2020-03-25 15:31:56.183  INFO 1669 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-25 15:31:57.372  INFO 1669 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6622a690, org.springframework.security.web.context.SecurityContextPersistenceFilter@61942c1, org.springframework.security.web.header.HeaderWriterFilter@3e58d65e, org.springframework.security.web.authentication.logout.LogoutFilter@5f212d84, epidemioloski_nadzor.security.AuthenticationTokenFilter@1af05b03, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@408a247c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ee33af7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30b9eadd, org.springframework.security.web.session.SessionManagementFilter@63998bf4, org.springframework.security.web.access.ExceptionTranslationFilter@705202d1]
+2020-03-25 15:31:58.095  INFO 1669 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-25 15:31:58.603  INFO 1669 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-25 15:31:59.521  INFO 1669 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-25 15:31:59.536  INFO 1669 --- [           main] epidemioloski_nadzor.App                 : Started App in 9.673 seconds (JVM running for 10.451)
+2020-03-25 15:34:03.424  INFO 1669 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-25 15:34:03.426  INFO 1669 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-25 15:34:03.458  INFO 1669 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 32 ms
+2020-03-25 15:34:03.977  INFO 1669 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:158}] to localhost:27017
+2020-03-25 17:04:27.595  INFO 1669 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'shutdown' on bean with name 'dataSource' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 17:04:27.599  WARN 1669 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 17:04:27.604  INFO 1669 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-25 17:04:27.612  INFO 1669 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'close' on bean with name 'mongo' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+2020-03-25 17:04:27.613  WARN 1669 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+Exception in thread "Thread-3" java.lang.NoClassDefFoundError: org/apache/catalina/Lifecycle$SingleUse
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:269)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:465)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:250)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:306)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.stopAndReleaseWebServer(ServletWebServerApplicationContext.java:320)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1032)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-25 17:04:33.532  INFO 6129 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 6129 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-25 17:04:33.544  INFO 6129 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-25 17:04:35.651  INFO 6129 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-25 17:04:35.827  INFO 6129 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 165ms. Found 7 repository interfaces.
+2020-03-25 17:04:36.551  INFO 6129 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$fe0b1507] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 17:04:36.596  INFO 6129 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$655d4ccd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 17:04:36.648  INFO 6129 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 17:04:36.652  INFO 6129 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1be2019a' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 17:04:36.654  INFO 6129 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$22dfb7b9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 17:04:36.665  INFO 6129 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 17:04:37.341  INFO 6129 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-25 17:04:37.389  INFO 6129 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-25 17:04:37.390  INFO 6129 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-25 17:04:37.409  INFO 6129 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-25 17:04:37.567  INFO 6129 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-25 17:04:37.568  INFO 6129 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3865 ms
+2020-03-25 17:04:38.453  INFO 6129 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-25 17:04:38.454  INFO 6129 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-25 17:04:38.601  INFO 6129 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:159}] to localhost:27017
+2020-03-25 17:04:38.612  INFO 6129 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=5458140}
+2020-03-25 17:04:38.618  INFO 6129 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-25 17:04:40.132  INFO 6129 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ee33af7, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d2644e3, org.springframework.security.web.header.HeaderWriterFilter@46baf579, org.springframework.security.web.authentication.logout.LogoutFilter@62a8fd44, epidemioloski_nadzor.security.AuthenticationTokenFilter@438bad7c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@602c4656, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e58d65e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b04acb2, org.springframework.security.web.session.SessionManagementFilter@4f7c0be3, org.springframework.security.web.access.ExceptionTranslationFilter@7b22ec89]
+2020-03-25 17:04:40.576  INFO 6129 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-25 17:04:40.938  INFO 6129 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-25 17:04:41.419  INFO 6129 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-25 17:04:41.425  INFO 6129 --- [           main] epidemioloski_nadzor.App                 : Started App in 9.226 seconds (JVM running for 10.019)
+2020-03-25 17:04:41.687  INFO 6129 --- [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-25 17:04:41.689  INFO 6129 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-25 17:04:41.705  INFO 6129 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2020-03-25 17:04:42.241  INFO 6129 --- [nio-8080-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:160}] to localhost:27017
+2020-03-25 22:39:21.729  INFO 6129 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'shutdown' on bean with name 'dataSource' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 22:39:21.732  WARN 6129 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-25 22:39:21.734  INFO 6129 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-25 22:39:21.739  INFO 6129 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'close' on bean with name 'mongo' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+2020-03-25 22:39:21.739  WARN 6129 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+Exception in thread "Thread-3" java.lang.NoClassDefFoundError: org/apache/catalina/Lifecycle$SingleUse
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:269)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:465)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:250)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:306)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.stopAndReleaseWebServer(ServletWebServerApplicationContext.java:320)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1032)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-25 22:39:41.150  INFO 18635 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 18635 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-25 22:39:41.171  INFO 18635 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-25 22:39:43.221  INFO 18635 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-25 22:39:43.412  INFO 18635 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 180ms. Found 7 repository interfaces.
+2020-03-25 22:39:44.119  INFO 18635 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$f753c0eb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:39:44.137  INFO 18635 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5ea5f8b1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:39:44.192  INFO 18635 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:39:44.196  INFO 18635 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@821330f' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:39:44.198  INFO 18635 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$1c28639d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:39:44.210  INFO 18635 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:39:45.017  INFO 18635 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-25 22:39:45.076  INFO 18635 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-25 22:39:45.077  INFO 18635 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-25 22:39:45.096  INFO 18635 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-25 22:39:45.238  INFO 18635 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-25 22:39:45.239  INFO 18635 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3884 ms
+2020-03-25 22:39:46.131  INFO 18635 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-25 22:39:46.132  INFO 18635 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-25 22:39:46.266  INFO 18635 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:171}] to localhost:27017
+2020-03-25 22:39:46.284  INFO 18635 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=6858145}
+2020-03-25 22:39:46.289  INFO 18635 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-25 22:39:47.398  INFO 18635 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ee33af7, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d2644e3, org.springframework.security.web.header.HeaderWriterFilter@46baf579, org.springframework.security.web.authentication.logout.LogoutFilter@62a8fd44, epidemioloski_nadzor.security.AuthenticationTokenFilter@4fdf8f12, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@602c4656, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e58d65e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b04acb2, org.springframework.security.web.session.SessionManagementFilter@4f7c0be3, org.springframework.security.web.access.ExceptionTranslationFilter@ba1f559]
+2020-03-25 22:39:47.723  INFO 18635 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-25 22:39:48.137  INFO 18635 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-25 22:39:48.642  INFO 18635 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-25 22:39:48.647  INFO 18635 --- [           main] epidemioloski_nadzor.App                 : Started App in 8.708 seconds (JVM running for 9.464)
+2020-03-25 22:43:32.627  INFO 18635 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-25 22:44:45.626  INFO 19012 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 19012 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-25 22:44:45.633  INFO 19012 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-25 22:44:47.581  INFO 19012 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-25 22:44:47.755  INFO 19012 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 167ms. Found 7 repository interfaces.
+2020-03-25 22:44:48.443  INFO 19012 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$820ffe1d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:44:48.460  INFO 19012 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e96235e3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:44:48.500  INFO 19012 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:44:48.506  INFO 19012 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6b09fb41' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:44:48.513  INFO 19012 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$a6e4a0cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:44:48.522  INFO 19012 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:44:49.276  INFO 19012 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-25 22:44:49.315  INFO 19012 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-25 22:44:49.316  INFO 19012 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-25 22:44:49.337  INFO 19012 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-25 22:44:49.480  INFO 19012 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-25 22:44:49.482  INFO 19012 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3727 ms
+2020-03-25 22:44:50.438  INFO 19012 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-25 22:44:50.439  INFO 19012 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-25 22:44:50.578  INFO 19012 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:172}] to localhost:27017
+2020-03-25 22:44:50.607  INFO 19012 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=19102828}
+2020-03-25 22:44:50.614  INFO 19012 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-25 22:44:51.865  INFO 19012 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@408a247c, org.springframework.security.web.context.SecurityContextPersistenceFilter@46baf579, org.springframework.security.web.header.HeaderWriterFilter@775594f2, org.springframework.security.web.authentication.logout.LogoutFilter@7e0b9178, epidemioloski_nadzor.security.AuthenticationTokenFilter@1af05b03, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f7c0be3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@602c4656, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62a8fd44, org.springframework.security.web.session.SessionManagementFilter@7b22ec89, org.springframework.security.web.access.ExceptionTranslationFilter@3cc20577]
+2020-03-25 22:44:52.204  INFO 19012 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-25 22:44:52.564  INFO 19012 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-25 22:44:53.057  INFO 19012 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-25 22:44:53.070  INFO 19012 --- [           main] epidemioloski_nadzor.App                 : Started App in 8.55 seconds (JVM running for 9.522)
+2020-03-25 22:45:47.605  INFO 19012 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-25 22:55:43.063  INFO 20140 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 20140 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-25 22:55:43.075  INFO 20140 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-25 22:55:45.194  INFO 20140 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-25 22:55:45.352  INFO 20140 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 149ms. Found 7 repository interfaces.
+2020-03-25 22:55:46.069  INFO 20140 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$523a6998] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:55:46.085  INFO 20140 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b98ca15e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:55:46.127  INFO 20140 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:55:46.136  INFO 20140 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6f43c82' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:55:46.143  INFO 20140 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$770f0c4a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:55:46.153  INFO 20140 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-25 22:55:46.721  INFO 20140 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-25 22:55:46.814  INFO 20140 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-25 22:55:46.815  INFO 20140 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-25 22:55:46.840  INFO 20140 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-25 22:55:46.979  INFO 20140 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-25 22:55:46.980  INFO 20140 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3747 ms
+2020-03-25 22:55:47.838  INFO 20140 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-25 22:55:47.838  INFO 20140 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-25 22:55:48.005  INFO 20140 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:174}] to localhost:27017
+2020-03-25 22:55:48.034  INFO 20140 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=14747103}
+2020-03-25 22:55:48.040  INFO 20140 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-25 22:55:49.245  INFO 20140 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@127d7908, org.springframework.security.web.context.SecurityContextPersistenceFilter@63998bf4, org.springframework.security.web.header.HeaderWriterFilter@705202d1, org.springframework.security.web.authentication.logout.LogoutFilter@4cfbaf4, epidemioloski_nadzor.security.AuthenticationTokenFilter@5bbbdd4b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@61942c1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2e6ba49a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b9c69a9, org.springframework.security.web.session.SessionManagementFilter@3e58d65e, org.springframework.security.web.access.ExceptionTranslationFilter@ba1f559]
+2020-03-25 22:55:49.581  INFO 20140 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-25 22:55:49.999  INFO 20140 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-25 22:55:50.617  INFO 20140 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-25 22:55:50.626  INFO 20140 --- [           main] epidemioloski_nadzor.App                 : Started App in 8.771 seconds (JVM running for 9.492)
+2020-03-25 22:56:32.188  INFO 20140 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-25 22:56:32.188  INFO 20140 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-25 22:56:32.213  INFO 20140 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 25 ms
+2020-03-25 22:56:32.705  INFO 20140 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:176}] to localhost:27017
+2020-03-26 13:42:37.529  INFO 20140 --- [io-8080-exec-10] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:414) ~[tomcat-embed-core-9.0.16.jar!/:9.0.16]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:294) ~[tomcat-embed-core-9.0.16.jar!/:9.0.16]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.16.jar!/:9.0.16]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) ~[tomcat-embed-core-9.0.16.jar!/:9.0.16]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) ~[tomcat-embed-core-9.0.16.jar!/:9.0.16]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.16.jar!/:9.0.16]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.16.jar!/:9.0.16]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-26 22:56:30.058  INFO 20140 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'shutdown' on bean with name 'dataSource' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-26 22:56:30.063  WARN 20140 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration' threw an exception: java.lang.NoClassDefFoundError: org/h2/jdbc/JdbcStatement
+2020-03-26 22:56:30.065  INFO 20140 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-26 22:56:30.071  INFO 20140 --- [       Thread-3] o.s.b.f.support.DisposableBeanAdapter    : Destroy method 'close' on bean with name 'mongo' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+2020-03-26 22:56:30.071  WARN 20140 --- [       Thread-3] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration' threw an exception: java.lang.NoClassDefFoundError: com/mongodb/internal/connection/ConcurrentLinkedDeque$CLDIterator
+Exception in thread "Thread-3" java.lang.NoClassDefFoundError: org/apache/catalina/Lifecycle$SingleUse
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:269)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:465)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:250)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:306)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.stopAndReleaseWebServer(ServletWebServerApplicationContext.java:320)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1032)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-26 22:59:55.535  INFO 17438 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 17438 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-26 22:59:55.549  INFO 17438 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-26 22:59:57.267  INFO 17438 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-26 22:59:57.354  INFO 17438 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80ms. Found 2 repository interfaces.
+2020-03-26 22:59:58.013  INFO 17438 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$2eb731b7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-26 22:59:58.025  INFO 17438 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9609697d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-26 22:59:58.053  INFO 17438 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-26 22:59:58.055  INFO 17438 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@38467116' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-26 22:59:58.057  INFO 17438 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$538bd469] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-26 22:59:58.066  INFO 17438 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-26 22:59:58.844  INFO 17438 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-26 22:59:58.890  INFO 17438 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-26 22:59:58.890  INFO 17438 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-26 22:59:58.906  INFO 17438 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-26 22:59:59.009  INFO 17438 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-26 22:59:59.009  INFO 17438 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3346 ms
+2020-03-26 22:59:59.839  INFO 17438 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-26 22:59:59.841  INFO 17438 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-26 22:59:59.993  INFO 17438 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:325}] to localhost:27017
+2020-03-26 23:00:00.007  INFO 17438 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8508607}
+2020-03-26 23:00:00.009  INFO 17438 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-26 23:00:01.063  INFO 17438 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3935e9a8, org.springframework.security.web.context.SecurityContextPersistenceFilter@64040287, org.springframework.security.web.header.HeaderWriterFilter@b0964b2, org.springframework.security.web.authentication.logout.LogoutFilter@511816c0, epidemioloski_nadzor.security.AuthenticationTokenFilter@7ee55e70, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f89f665, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3a43d133, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@288a4658, org.springframework.security.web.session.SessionManagementFilter@7f4037ed, org.springframework.security.web.access.ExceptionTranslationFilter@78f9ed3e]
+2020-03-26 23:00:01.547  INFO 17438 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-26 23:00:02.042  INFO 17438 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-26 23:00:02.685  INFO 17438 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-26 23:00:02.692  INFO 17438 --- [           main] epidemioloski_nadzor.App                 : Started App in 8.201 seconds (JVM running for 8.974)
+2020-03-26 23:06:26.268  INFO 17438 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-26 23:06:26.270  INFO 17438 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-26 23:06:26.310  INFO 17438 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 39 ms
+2020-03-26 23:06:55.062  INFO 17438 --- [nio-8080-exec-3] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:326}] to localhost:27017
+2020-03-26 23:54:47.447  INFO 17438 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-26 23:54:47.459  INFO 17438 --- [       Thread-3] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:2, serverValue:326}] to localhost:27017 because the pool has been closed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-27 00:15:44.908  INFO 20501 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 20501 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-27 00:15:44.916  INFO 20501 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-27 00:15:46.735  INFO 20501 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-27 00:15:46.837  INFO 20501 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 93ms. Found 2 repository interfaces.
+2020-03-27 00:15:47.479  INFO 20501 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$cc74168] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 00:15:47.492  INFO 20501 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7419792e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 00:15:47.533  INFO 20501 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 00:15:47.539  INFO 20501 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@d554c5f' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 00:15:47.541  INFO 20501 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$319be41a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 00:15:47.550  INFO 20501 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 00:15:48.237  INFO 20501 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 00:15:48.312  INFO 20501 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 00:15:48.314  INFO 20501 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-27 00:15:48.337  INFO 20501 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-27 00:15:48.461  INFO 20501 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-27 00:15:48.464  INFO 20501 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3416 ms
+2020-03-27 00:15:49.300  INFO 20501 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 00:15:49.301  INFO 20501 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-27 00:15:49.466  INFO 20501 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:363}] to localhost:27017
+2020-03-27 00:15:49.485  INFO 20501 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4200949}
+2020-03-27 00:15:49.493  INFO 20501 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-27 00:15:50.713  INFO 20501 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fa06f52, org.springframework.security.web.context.SecurityContextPersistenceFilter@5767b2af, org.springframework.security.web.header.HeaderWriterFilter@1286528d, org.springframework.security.web.authentication.logout.LogoutFilter@4f7c0be3, epidemioloski_nadzor.security.AuthenticationTokenFilter@273c947f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@790132f7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@547c04c4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@602c4656, org.springframework.security.web.session.SessionManagementFilter@33a630fa, org.springframework.security.web.access.ExceptionTranslationFilter@26a529dc]
+2020-03-27 00:15:50.990  INFO 20501 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 00:15:51.296  INFO 20501 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-27 00:15:51.782  INFO 20501 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-27 00:15:51.790  INFO 20501 --- [           main] epidemioloski_nadzor.App                 : Started App in 8.077 seconds (JVM running for 8.95)
+2020-03-27 00:18:26.903  INFO 20501 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 00:18:26.906  INFO 20501 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 00:18:26.924  INFO 20501 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+[D@4f8bcfc92020-03-27 00:18:27.332  INFO 20501 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:364}] to localhost:27017
+[D@d660672[D@61ba3b62020-03-27 01:29:52.405  INFO 20501 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:365}] to localhost:27017
+[D@3b1154cd2020-03-27 01:33:26.229  INFO 20501 --- [nio-8080-exec-8] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:2, serverValue:364}] to localhost:27017 because there was a socket exception raised on another connection from this pool.
+2020-03-27 01:33:26.239  INFO 20501 --- [nio-8080-exec-8] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:366}] to localhost:27017
+[D@43a9d6232020-03-27 01:51:05.586  INFO 20501 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:367}] to localhost:27017
+[D@30dcb14c2020-03-27 01:52:53.897  INFO 20501 --- [io-8080-exec-10] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:4, serverValue:366}] to localhost:27017 because there was a socket exception raised on another connection from this pool.
+2020-03-27 01:52:53.912  INFO 20501 --- [io-8080-exec-10] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:6, serverValue:369}] to localhost:27017
+[D@6b6e71572020-03-27 01:57:54.166  INFO 20501 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-27 01:57:54.172  INFO 20501 --- [       Thread-3] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:6, serverValue:369}] to localhost:27017 because the pool has been closed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-27 01:59:03.945  INFO 24030 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 24030 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-27 01:59:03.948  INFO 24030 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-27 01:59:05.448  INFO 24030 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-27 01:59:05.553  INFO 24030 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98ms. Found 2 repository interfaces.
+2020-03-27 01:59:06.087  INFO 24030 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$8feec402] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 01:59:06.097  INFO 24030 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f740fbc8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 01:59:06.122  INFO 24030 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 01:59:06.124  INFO 24030 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@57bc27f5' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 01:59:06.127  INFO 24030 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$b4c366b4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 01:59:06.134  INFO 24030 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 01:59:06.673  INFO 24030 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 01:59:06.749  INFO 24030 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 01:59:06.749  INFO 24030 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-27 01:59:06.770  INFO 24030 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-27 01:59:06.953  INFO 24030 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-27 01:59:06.953  INFO 24030 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2887 ms
+2020-03-27 01:59:08.109  INFO 24030 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 01:59:08.111  INFO 24030 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-27 01:59:08.299  INFO 24030 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:393}] to localhost:27017
+2020-03-27 01:59:08.314  INFO 24030 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=6535362}
+2020-03-27 01:59:08.320  INFO 24030 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-27 01:59:09.693  INFO 24030 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fcc529, org.springframework.security.web.context.SecurityContextPersistenceFilter@138a7441, org.springframework.security.web.header.HeaderWriterFilter@28c88600, org.springframework.security.web.authentication.logout.LogoutFilter@111610e6, epidemioloski_nadzor.security.AuthenticationTokenFilter@1f2d2181, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31611954, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3088660d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25cc7470, org.springframework.security.web.session.SessionManagementFilter@607b2792, org.springframework.security.web.access.ExceptionTranslationFilter@6c8a68c1]
+2020-03-27 01:59:10.414  INFO 24030 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 01:59:11.174  INFO 24030 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-27 01:59:11.872  INFO 24030 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-27 01:59:11.880  INFO 24030 --- [           main] epidemioloski_nadzor.App                 : Started App in 9.004 seconds (JVM running for 9.87)
+2020-03-27 02:02:14.113  INFO 24030 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 02:02:14.114  INFO 24030 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 02:02:14.151  INFO 24030 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 37 ms
+2020-03-27 02:02:14.361  INFO 24030 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:394}] to localhost:27017
+[D@7d7012b6[D@4c9a74e9[D@33035484[D@7242cbe5[D@6c698ee6[D@7c852bdd2020-03-27 03:34:54.169  INFO 24030 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-27 03:34:54.177  INFO 24030 --- [       Thread-3] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:2, serverValue:394}] to localhost:27017 because the pool has been closed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-27 03:35:19.995  INFO 27408 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 27408 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-27 03:35:20.004  INFO 27408 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-27 03:35:21.682  INFO 27408 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-27 03:35:21.768  INFO 27408 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80ms. Found 2 repository interfaces.
+2020-03-27 03:35:22.349  INFO 27408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$85e0b499] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:35:22.360  INFO 27408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ed32ec5f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:35:22.388  INFO 27408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:35:22.395  INFO 27408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1807e3f6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:35:22.401  INFO 27408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$aab5574b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:35:22.415  INFO 27408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:35:23.017  INFO 27408 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 03:35:23.095  INFO 27408 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 03:35:23.097  INFO 27408 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-27 03:35:23.114  INFO 27408 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-27 03:35:23.236  INFO 27408 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-27 03:35:23.242  INFO 27408 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3087 ms
+2020-03-27 03:35:24.118  INFO 27408 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 03:35:24.119  INFO 27408 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-27 03:35:24.289  INFO 27408 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:407}] to localhost:27017
+2020-03-27 03:35:24.305  INFO 27408 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3647644}
+2020-03-27 03:35:24.306  INFO 27408 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-27 03:35:25.359  INFO 27408 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ad4936c, org.springframework.security.web.context.SecurityContextPersistenceFilter@607b2792, org.springframework.security.web.header.HeaderWriterFilter@6c8a68c1, org.springframework.security.web.authentication.logout.LogoutFilter@39ab59f8, epidemioloski_nadzor.security.AuthenticationTokenFilter@3fcdcf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@138a7441, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e31ce0f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@29d37757, org.springframework.security.web.session.SessionManagementFilter@28c88600, org.springframework.security.web.access.ExceptionTranslationFilter@6a9287b1]
+2020-03-27 03:35:25.778  INFO 27408 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 03:35:26.064  INFO 27408 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-27 03:35:26.523  INFO 27408 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-27 03:35:26.529  INFO 27408 --- [           main] epidemioloski_nadzor.App                 : Started App in 7.467 seconds (JVM running for 8.236)
+2020-03-27 03:35:34.865  INFO 27408 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 03:35:34.866  INFO 27408 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 03:35:34.877  INFO 27408 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+[D@779939612020-03-27 03:35:35.186  INFO 27408 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:408}] to localhost:27017
+2020-03-27 03:37:11.227  INFO 27408 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-27 03:37:11.233  INFO 27408 --- [       Thread-3] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:2, serverValue:408}] to localhost:27017 because the pool has been closed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.3.RELEASE)
+
+2020-03-27 03:37:31.130  INFO 27627 --- [           main] epidemioloski_nadzor.App                 : Starting App v0.0.1-SNAPSHOT on ottometric with PID 27627 (/home/otto/data/git/Epidemioloski_nadzor/backend/app/target/app-0.0.1-SNAPSHOT.jar started by otto in /home/otto/data/git/Epidemioloski_nadzor/backend/app)
+2020-03-27 03:37:31.134  INFO 27627 --- [           main] epidemioloski_nadzor.App                 : No active profile set, falling back to default profiles: default
+2020-03-27 03:37:32.858  INFO 27627 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-27 03:37:32.944  INFO 27627 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79ms. Found 2 repository interfaces.
+2020-03-27 03:37:33.614  INFO 27627 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$1593ae49] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:37:33.624  INFO 27627 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7ce5e60f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:37:33.650  INFO 27627 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:37:33.653  INFO 27627 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@55de24cc' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:37:33.654  INFO 27627 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$3a6850fb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:37:33.661  INFO 27627 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 03:37:34.155  INFO 27627 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 03:37:34.222  INFO 27627 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 03:37:34.222  INFO 27627 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-03-27 03:37:34.239  INFO 27627 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2020-03-27 03:37:34.391  INFO 27627 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-27 03:37:34.393  INFO 27627 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3140 ms
+2020-03-27 03:37:35.015  INFO 27627 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 03:37:35.020  INFO 27627 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2020-03-27 03:37:35.216  INFO 27627 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:409}] to localhost:27017
+2020-03-27 03:37:35.225  INFO 27627 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 3]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=6707530}
+2020-03-27 03:37:35.231  INFO 27627 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2020-03-27 03:37:36.173  INFO 27627 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d28bcd5, org.springframework.security.web.context.SecurityContextPersistenceFilter@99a65d3, org.springframework.security.web.header.HeaderWriterFilter@81ff872, org.springframework.security.web.authentication.logout.LogoutFilter@4beddc56, epidemioloski_nadzor.security.AuthenticationTokenFilter@7726e185, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42cc13a0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@39ab59f8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7882c44a, org.springframework.security.web.session.SessionManagementFilter@3e598df9, org.springframework.security.web.access.ExceptionTranslationFilter@7f9e1534]
+2020-03-27 03:37:36.505  INFO 27627 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 03:37:36.840  INFO 27627 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Creating embedded database 'testdb'
+2020-03-27 03:37:37.299  INFO 27627 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-27 03:37:37.305  INFO 27627 --- [           main] epidemioloski_nadzor.App                 : Started App in 7.186 seconds (JVM running for 7.942)
+2020-03-27 03:37:42.280  INFO 27627 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 03:37:42.282  INFO 27627 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 03:37:42.293  INFO 27627 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2020-03-27 03:37:42.436  INFO 27627 --- [nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:410}] to localhost:27017
+[D@174edbb2[D@7b07ef20[D@4f595483[D@3826a0792020-03-27 03:47:41.811  INFO 27627 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:419}] to localhost:27017
+2020-03-27 03:48:10.563  INFO 27627 --- [nio-8080-exec-5] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:2, serverValue:410}] to localhost:27017 because there was a socket exception raised on another connection from this pool.
+2020-03-27 03:48:10.569  INFO 27627 --- [nio-8080-exec-5] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:420}] to localhost:27017
+[D@329f6d43[D@61dae5dc[D@c48864e[D@6f95484[D@3242e5da[D@9f4a3ca[D@7ad80c47[D@75d0c10b[D@70772b26
