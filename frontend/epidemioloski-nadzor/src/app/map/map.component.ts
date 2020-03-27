@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements AfterViewInit {/*
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
   map: google.maps.Map;
   displayedColumns: string[] = ['status', 'firstName', 'lastName', 'city'];
@@ -83,6 +83,6 @@ export class MapComponent implements AfterViewInit {
 
   openPatient(){
     this.router.navigate(['/edit-patient',this.activePatient.id]);
-  }
+  }*/
 }
 

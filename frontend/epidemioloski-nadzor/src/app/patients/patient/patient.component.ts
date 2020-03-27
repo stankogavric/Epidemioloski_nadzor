@@ -92,10 +92,10 @@ export class PatientComponent implements OnInit {
   displayedColumnsContacts: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
   dataSourceContacts = new MatTableDataSource<Contact>(this.contacts);
 
-  @ViewChild("matPaginatorStatuses", { static: true }) paginatorStatuses: MatPaginator;
-  @ViewChild("matPaginatorMupStatuses", { static: true }) paginatorMupStatuses: MatPaginator;
+  @ViewChild("matPaginatorStatuses", { static: false }) paginatorStatuses: MatPaginator;
+  @ViewChild("matPaginatorMupStatuses", { static: false }) paginatorMupStatuses: MatPaginator;
   @ViewChild("matPaginatorMeasures", { static: true }) paginatorMeasures: MatPaginator;
-  @ViewChild("matPaginatorContacts", { static: true }) paginatorContacts: MatPaginator;
+  @ViewChild("matPaginatorContacts", { static: false }) paginatorContacts: MatPaginator;
 
   public patientForm: FormGroup;
   public contactForm: FormGroup;
@@ -117,10 +117,7 @@ export class PatientComponent implements OnInit {
   constructor(private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
-    this.dataSourceStatuses.paginator = this.paginatorStatuses;
-    this.dataSourceMupStatuses.paginator = this.paginatorMupStatuses;
-    this.dataSourceMeasures.paginator = this.paginatorMeasures;
-    this.dataSourceContacts.paginator = this.paginatorContacts;
+    
 
     this.staticDataService.getCities().subscribe((value: string[])=>{
       this.citiesContact = this.cities = value;
@@ -246,6 +243,13 @@ export class PatientComponent implements OnInit {
     this.filteredRiskFactors = this.patientForm.get('status.riskFactors').valueChanges.pipe(
       startWith(null),
       map((riskFactor: string | null) => riskFactor ? this._filterRiskFactors(riskFactor) : this.allRiskFactors.slice()));
+  }
+
+  ngAfterViewInit() {
+    this.dataSourceStatuses.paginator = this.paginatorStatuses;
+    this.dataSourceMupStatuses.paginator = this.paginatorMupStatuses;
+    this.dataSourceMeasures.paginator = this.paginatorMeasures;
+    this.dataSourceContacts.paginator = this.paginatorContacts;
   }
 
   onBack() {
