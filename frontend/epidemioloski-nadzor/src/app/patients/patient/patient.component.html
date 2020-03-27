@@ -316,7 +316,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsStatuses;"></tr>
                     </table>
 
-                    <mat-paginator [length]="statuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator #matPaginatorStatuses [length]="statuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
 
                 <div *ngIf="currentRole=='mup'" [formGroup]="patientForm">
@@ -376,7 +376,7 @@
 
                     </table>
 
-                    <mat-paginator [length]="mupStatuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator #matPaginatorMupStatuses [length]="mupStatuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
 
@@ -478,7 +478,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsMeasures;"></tr>
                     </table>
 
-                    <mat-paginator [length]="measures.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator #matPaginatorMeasures [length]="measures.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
         </mat-tab>
@@ -656,7 +656,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsContacts;"></tr>
                     </table>
 
-                    <mat-paginator [length]="contacts.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator #matPaginatorContacts [length]="contacts.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
         </mat-tab>

@@ -92,7 +92,10 @@ export class PatientComponent implements OnInit {
   displayedColumnsContacts: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
   dataSourceContacts = new MatTableDataSource<Contact>(this.contacts);
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild("matPaginatorStatuses", { static: true }) paginatorStatuses: MatPaginator;
+  @ViewChild("matPaginatorMupStatuses", { static: true }) paginatorMupStatuses: MatPaginator;
+  @ViewChild("matPaginatorMeasures", { static: true }) paginatorMeasures: MatPaginator;
+  @ViewChild("matPaginatorContacts", { static: true }) paginatorContacts: MatPaginator;
 
   public patientForm: FormGroup;
   public contactForm: FormGroup;
@@ -114,6 +117,10 @@ export class PatientComponent implements OnInit {
   constructor(private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
+    this.dataSourceStatuses.paginator = this.paginatorStatuses;
+    this.dataSourceMupStatuses.paginator = this.paginatorMupStatuses;
+    this.dataSourceMeasures.paginator = this.paginatorMeasures;
+    this.dataSourceContacts.paginator = this.paginatorContacts;
 
     this.staticDataService.getCities().subscribe((value: string[])=>{
       this.citiesContact = this.cities = value;
@@ -142,10 +149,6 @@ export class PatientComponent implements OnInit {
       });
     }
 
-    this.dataSourceStatuses.paginator = this.paginator;
-    this.dataSourceMupStatuses.paginator = this.paginator;
-    this.dataSourceMeasures.paginator = this.paginator;
-    this.dataSourceContacts.paginator = this.paginator;
     this.patientForm = this.fb.group({
       personalInfo: this.fb.group({
         jmbg: ['', { validators: [Validators.pattern('[0-9]{13}')] }],
