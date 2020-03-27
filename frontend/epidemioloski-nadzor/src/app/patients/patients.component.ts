@@ -12,13 +12,15 @@ import { AuthService } from '../auth/auth.service';
 })
 export class PatientsComponent implements OnInit {
 
+  loading = true;
+  length: number;
   currentRole: string = '';
   patients: Patient[] = [];
   patient: Patient = new Patient();
   displayedColumns: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
   dataSource = new MatTableDataSource<Patient>(this.patients);
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   constructor(public dialog: MatDialog, private authService: AuthService,
     private patientsService: PatientService) { }
@@ -34,6 +36,8 @@ export class PatientsComponent implements OnInit {
       let data = value.content;
       this.patients = data;
       this.dataSource.data = data;
+      this.loading = false;
+      this.length = value['totalElements'];
       this.dataSource.filterPredicate = function (data, filter): boolean {
         if (!data.personalInfo.firstname) {
           data.personalInfo.firstname = ""

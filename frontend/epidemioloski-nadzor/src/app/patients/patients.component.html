@@ -21,7 +21,8 @@
             </span>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretraga">
         </mat-form-field>
-
+        <mat-spinner class="spinner" *ngIf="loading else loaded"></mat-spinner>
+        <ng-template #loaded>
         <table mat-table [dataSource]="dataSource">
 
             <ng-container matColumnDef="no">
@@ -69,6 +70,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/edit-patient', row.id]"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="getAll($event)"></mat-paginator>
+        <mat-paginator [length]="length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="getAll($event)"></mat-paginator>
+    </ng-template>
     </div>
 </div>

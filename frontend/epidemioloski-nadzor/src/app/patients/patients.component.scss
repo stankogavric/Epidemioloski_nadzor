@@ -5,6 +5,7 @@ table {
 
 tr.mat-row:hover {
   background-color:  rgb(210, 255, 220);
+  cursor: pointer;
 }
 
 // .mat-form-field {
@@ -38,4 +39,8 @@ tr.mat-row:hover {
 
 .patients-button {
   margin: 20px;
+}
+
+.spinner {
+  margin: 0 auto;
 }
