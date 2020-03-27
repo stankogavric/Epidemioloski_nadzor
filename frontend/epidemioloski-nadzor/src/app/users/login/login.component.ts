@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loading = false;
 
   hide = true;
 
@@ -30,8 +31,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.loading = true;
     this.authService.login(this.loginForm.value.phoneInput, this.loginForm.value.pinInput).subscribe(
       response => {
+        this.loading = false;
         if (response.token) {
           localStorage.setItem('token', response.token);
           this.message = "";
@@ -45,6 +48,7 @@ export class LoginComponent implements OnInit {
         }
       },
       () => {
+        this.loading = false;
         this.message = "Pogrešan telefon i/ili pin";
       });
   }

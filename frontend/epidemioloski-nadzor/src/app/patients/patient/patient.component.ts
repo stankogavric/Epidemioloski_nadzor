@@ -31,6 +31,9 @@ interface Statuss {
 })
 export class PatientComponent implements OnInit {
 
+  deleting = false;
+  saving = false;
+
   currentRole: string = '';
   visible = true;
   selectable = true;
@@ -269,7 +272,7 @@ export class PatientComponent implements OnInit {
       return;
     }
     
-
+    this.saving = true;
 
     let id = this.patient.id;
     this.patient = this.patientForm.value;
@@ -336,8 +339,8 @@ export class PatientComponent implements OnInit {
     if (this.edit) {
       this.patient.id = id;
       this.patientService.update(this.patient.id, this.patient).subscribe(
-        value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
-        error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
+        value => { this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.saving = false },
+        error => { this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK"); this.saving = false }
       );
       this.patientForm.get('status').reset({date: this.toDateString(new Date())});
       this.patientForm.get('mupStatus').reset({date: this.toDateString(new Date())});
@@ -348,8 +351,8 @@ export class PatientComponent implements OnInit {
     }
     else {
       this.patientService.add(this.patient).subscribe(
-        value => { this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; },
-        error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
+        value => { this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; this.saving = false },
+        error => { this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK"); this.saving = false }
       );
       this.patientForm.get('status').reset({date: this.toDateString(new Date())});
       this.patientForm.get('mupStatus').reset({date: this.toDateString(new Date())});
@@ -365,7 +368,9 @@ export class PatientComponent implements OnInit {
   }
 
   delete(id: string) {
+    this.deleting = true;
     this.patientsService.delete(id).subscribe(() => {
+      this.deleting = false;
       this.router.navigate(['/patients']);
       this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
     });

@@ -7,8 +7,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StaticDataService {
 
-    //public url = "/";
-    public url = "http://localhost:8080/";
+    public devProdUrl = "";
+    //public devProdUrl = "http://localhost:8080";
+
+    public url = this.devProdUrl+"/";
 
     constructor(private http: HttpClient) {
     }

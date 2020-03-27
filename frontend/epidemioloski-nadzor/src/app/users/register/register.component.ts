@@ -18,6 +18,8 @@ interface Role {
 
 export class RegisterComponent implements OnInit {
 
+  loading = false;
+
   public form: FormGroup;
   public user: User = new User();
   message: string = "";
@@ -47,6 +49,9 @@ export class RegisterComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
+
+    this.loading = true;
+
     this.user.personalInfo.firstname = this.form.value.firstName;
     this.user.personalInfo.lastname = this.form.value.lastName;
     this.user.personalInfo.phone = this.form.value.phone;
@@ -57,11 +62,13 @@ export class RegisterComponent implements OnInit {
       () => {
         this.message = "Uspešno dodat korisnik " + this.user.personalInfo.firstname;
         this.form.reset();
+        this.loading = false;
       },
       (e) => {
         if (e.status == 409) {
           this.message = "Korisnik sa tim telefonom je već registrovan";
         }
+        this.loading = false;
       });
   }
 

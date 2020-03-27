@@ -38,6 +38,7 @@ export class PatientsComponent implements OnInit {
       this.dataSource.data = data;
       this.loading = false;
       this.length = value['totalElements'];
+      /*
       this.dataSource.filterPredicate = function (data, filter): boolean {
         if (!data.personalInfo.firstname) {
           data.personalInfo.firstname = ""
@@ -55,7 +56,7 @@ export class PatientsComponent implements OnInit {
           data.personalInfo.lastname.toLowerCase().includes(filter) ||
           data.personalInfo.jmbg.toLowerCase().includes(filter) ||
           data.personalInfo.phone.toLowerCase().includes(filter);
-      };
+      };*/
     });
   }
 
@@ -89,8 +90,37 @@ export class PatientsComponent implements OnInit {
       });
     }
   */
+ /*
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  */
+  getPatientsByQuery(pageIndex, pageSize, query){
+    this.patientsService.getAllByQuery(pageIndex, pageSize, query).subscribe((value: {content:Patient []}) => {
+      let data = value.content;
+      this.patients = data;
+      this.dataSource.data = data;
+      this.loading = false;
+      this.length = value['totalElements'];
+    });
+  }
+
+  search(query){
+    query = query.trim();
+    if(query!=""){
+      this.loading = true;
+      this.getPatientsByQuery(0, this.paginator.pageSize, query);
+    }
+    else{
+      this.getAll({ 'pageIndex': 0, 'pageSize': this.paginator.pageSize });
+    }
+  }
+
+  checkQuery(query){
+    query = query.trim();
+    if(query==""){
+      this.getAll({ 'pageIndex': 0, 'pageSize': this.paginator.pageSize });
+    }
   }
 
 }

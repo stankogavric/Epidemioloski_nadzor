@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Patient } from './patient.model';
 import { Location } from './location.model';
+import { StaticDataService } from '../shared/staticData.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PatientService {
-    public patientsUrl = "http://localhost:8080/api/patient";
-    //public patientsUrl = "/api/patient";
+    public patientsUrl = this.staticDataService.devProdUrl+"/api/patient";
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private staticDataService: StaticDataService) {
     }
 
     getAll(pageIndex, pageSize) {
         return this.http.get<{content:Patient[]}>(this.patientsUrl + `/${pageIndex}` + `/${pageSize}`);
+    }
+
+    getAllByQuery(pageIndex, pageSize, query) {
+        return this.http.get<{content:Patient[]}>(this.patientsUrl + `/${pageIndex}` + `/${pageSize}` + `/${query}`);
     }
 
     getOne(id: String) { 
