@@ -7,9 +7,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StaticDataService {
 
-    public url = "http://localhost:8080/";
+    public url = "/";
+    //public url = "http://localhost:8080/";
 
     constructor(private http: HttpClient) {
+    }
+
+    getRiskFactors(){
+        return ["Trudnoća trimestar", "Postporođajni period", "Kardiovaskularna bolest", "Imunodeficijencija", "Dijabetes", "Bolest bubrega", "Bolest jetre", "Bolest pluća", "Hronična neurološka bolest", "Maligna bolest"]
     }
 
     getSymptoms() {

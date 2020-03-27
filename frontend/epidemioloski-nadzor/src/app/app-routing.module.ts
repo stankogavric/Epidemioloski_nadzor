@@ -5,9 +5,11 @@ import { PatientsComponent } from './patients/patients.component';
 import { PatientComponent } from './patients/patient/patient.component';
 import { RegisterComponent } from './users/register/register.component';
 import { LoginComponent } from './users/login/login.component';
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'map', component: MapComponent },
   { path: 'register', component: RegisterComponent, 
     canActivate: [RoleGuard], data: { expectedRoles: ['admin'] } },
   { path: 'patients', component: PatientsComponent, 

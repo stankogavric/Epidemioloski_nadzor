@@ -181,7 +181,7 @@
                                     (matChipInputTokenEnd)="add($event)">
                             </mat-chip-list>
                             <mat-autocomplete autoActiveFirstOption #autoAnamnesis="matAutocomplete"
-                                (optionSelected)="selected($event)">
+                                (optionSelected)="selected($event, anamnesisInput)">
                                 <mat-option *ngFor="let anamnesis of filteredanamnesiss | async" [value]="anamnesis">
                                     {{anamnesis}}
                                 </mat-option>
@@ -200,6 +200,41 @@
                                 formControlName="description"></textarea>
                             <mat-error>{{formError.mapErrors(patientForm.get('status.description'), 'Opis')}}
                             </mat-error>
+                        </mat-form-field>
+
+                        <br>
+
+                        <mat-form-field>
+                            <mat-label>Bolničko lečenje</mat-label>
+                            <mat-select formControlName="hospitalTreatment">
+                                <mat-option *ngFor="let hospitalTreatment of hospitalTreatments"
+                                    [value]="hospitalTreatment">
+                                    {{hospitalTreatment}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>
+                                {{formError.mapErrors(patientForm.get('status.hospitalTreatment'), 'Bolničko lečenje')}}
+                            </mat-error>
+                        </mat-form-field>
+                        &nbsp;
+                        <mat-form-field class="example-chip-list">
+                            <mat-chip-list #chipListRiskFactors aria-label="riskFactor selection">
+                                <mat-chip *ngFor="let riskFactor of riskFactors" [selectable]="selectableRiskFactors"
+                                    [removable]="removableRiskFactors" (removed)="removeRiskFactor(riskFactor)">
+                                    {{riskFactor}}
+                                    <mat-icon matChipRemove *ngIf="removableRiskFactors">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Faktori rizika" #riskFactorInput formControlName="riskFactors"
+                                    [matAutocomplete]="autoRiskFactor" [matChipInputFor]="chipListRiskFactors"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    (matChipInputTokenEnd)="addRiskFactor($event)">
+                            </mat-chip-list>
+                            <mat-autocomplete autoActiveFirstOption #autoRiskFactor="matAutocomplete"
+                                (optionSelected)="selectedRiskFactor($event, riskFactorInput)">
+                                <mat-option *ngFor="let riskFactor of filteredRiskFactors | async" [value]="riskFactor">
+                                    {{riskFactor}}
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
 
                         <!--  
@@ -253,6 +288,16 @@
                             <td mat-cell *matCellDef="let status"> {{status.anamnesis}} </td>
                         </ng-container>
 
+                        <ng-container matColumnDef="hospitalTreatment">
+                            <th mat-header-cell *matHeaderCellDef> Bolničko lečenje </th>
+                            <td mat-cell *matCellDef="let status"> {{status.hospitalTreatment}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="riskFactors">
+                            <th mat-header-cell *matHeaderCellDef> Faktori rizika </th>
+                            <td mat-cell *matCellDef="let status"> {{status.riskFactors}} </td>
+                        </ng-container>
+
                         <!-- <ng-container matColumnDef="actions">
                             <th mat-header-cell *matHeaderCellDef> </th>
                             <td mat-cell *matCellDef="let patient">
@@ -271,7 +316,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsStatuses;"></tr>
                     </table>
 
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator [length]="statuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
 
                 <div *ngIf="currentRole=='mup'" [formGroup]="patientForm">
@@ -331,7 +376,7 @@
 
                     </table>
 
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator [length]="mupStatuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
 
@@ -433,7 +478,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsMeasures;"></tr>
                     </table>
 
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator [length]="measures.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
         </mat-tab>
@@ -611,7 +656,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsContacts;"></tr>
                     </table>
 
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    <mat-paginator [length]="contacts.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
         </mat-tab>

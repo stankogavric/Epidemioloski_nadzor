@@ -35,13 +35,22 @@ export class PatientComponent implements OnInit {
   visible = true;
   selectable = true;
   removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  visibleRiskFactors = true;
+  selectableRiskFactors = true;
+  removableRiskFactors = true;
+  separatorKeysCodes: number[] = [COMMA, ENTER];
   filteredanamnesiss: Observable<string[]>;
+  filteredRiskFactors: Observable<string[]>;
   anamnesiss: string[] = [];
+  riskFactors: string[] = [];
   allanamnesiss: string[] = this.staticDataService.getSymptoms();
+  allRiskFactors: string[] = this.staticDataService.getRiskFactors();
 
   @ViewChild('anamnesisInput', { static: true }) anamnesisInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoAnamnesis', { static: true }) matAutocomplete: MatAutocomplete;
+
+  @ViewChild('riskFactorInput', { static: true }) riskFactorInput: ElementRef<HTMLInputElement>;
+  @ViewChild('autoRiskFactor', { static: true }) matAutocompleteRiskFactor: MatAutocomplete;
 
   countries: string[];
   countriesContact: string[];
@@ -73,7 +82,7 @@ export class PatientComponent implements OnInit {
   measure: Measure = new Measure();
   contacts: Contact[] = [];
   contact: Contact = new Contact();
-  displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'description', 'anamnesis'];
+  displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'description', 'anamnesis', 'hospitalTreatment', 'riskFactors'];
   //displayedColumnsStatuses: string[] = ['no', 'status', 'date', 'temperature', 'description', 'anamnesis'];
   dataSourceStatuses = new MatTableDataSource<Status>(this.statuses);
   displayedColumnsMupStatuses: string[] = ['no', 'status', 'date', 'description'];
@@ -83,7 +92,7 @@ export class PatientComponent implements OnInit {
   displayedColumnsContacts: string[] = ['no', 'firstname', 'lastname', 'jmbg', 'phone'];
   dataSourceContacts = new MatTableDataSource<Contact>(this.contacts);
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   public patientForm: FormGroup;
   public contactForm: FormGroup;
@@ -98,9 +107,11 @@ export class PatientComponent implements OnInit {
     { value: 'Smrtni ishod', viewValue: 'Smrtni ishod' }
   ];
 
+  hospitalTreatments: string[] = ["Da", "Ne"];
+
   @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
 
-  constructor( private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
+  constructor(private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
 
@@ -130,18 +141,18 @@ export class PatientComponent implements OnInit {
         this.dataSourceMeasures.data = data.measures;
       });
     }
-    
+
     this.dataSourceStatuses.paginator = this.paginator;
     this.dataSourceMupStatuses.paginator = this.paginator;
     this.dataSourceMeasures.paginator = this.paginator;
     this.dataSourceContacts.paginator = this.paginator;
     this.patientForm = this.fb.group({
       personalInfo: this.fb.group({
-        jmbg: ['', { validators: [Validators.required, Validators.pattern('[0-9]{13}')] }],
+        jmbg: ['', { validators: [Validators.pattern('[0-9]{13}')] }],
         firstname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lastname: ['', { validators: [Validators.required, Validators.pattern('[^0-9]{3,}')] }],
         lbo: [],
-        phone: ['', { validators: [Validators.required, Validators.pattern('[0-9+ ]{3,}')] }],
+        phone: ['', { validators: [Validators.pattern('[0-9+ ]{3,}')] }],
         address: this.fb.group({
           street: [],
           streetNum: [],
@@ -151,15 +162,17 @@ export class PatientComponent implements OnInit {
 
       status: this.fb.group({
         status: [],
-        date: [new Date()],
+        date: [this.toDateString(new Date())],
         /*temperature: ['36.5'],*/
         description: [],
-        anamnesis: []
+        anamnesis: [],
+        riskFactors: [],
+        hospitalTreatment: []
       }),
 
       mupStatus: this.fb.group({
         status: [],
-        date: [new Date()],
+        date: [this.toDateString(new Date())],
         description: []
       }),
 
@@ -190,7 +203,7 @@ export class PatientComponent implements OnInit {
       }),
       citizenship: ["Srbija"],
       countryOfImport: [],
-      date: []
+      date: [new Date()]
     })
 
     this.filteredCountries = this.patientForm.get("countryOfImport").valueChanges.pipe(
@@ -226,6 +239,10 @@ export class PatientComponent implements OnInit {
     this.filteredanamnesiss = this.patientForm.get('status.anamnesis').valueChanges.pipe(
       startWith(null),
       map((anamnesis: string | null) => anamnesis ? this._filterAnamnesis(anamnesis) : this.allanamnesiss.slice()));
+
+    this.filteredRiskFactors = this.patientForm.get('status.riskFactors').valueChanges.pipe(
+      startWith(null),
+      map((riskFactor: string | null) => riskFactor ? this._filterRiskFactors(riskFactor) : this.allRiskFactors.slice()));
   }
 
   onBack() {
@@ -238,13 +255,14 @@ export class PatientComponent implements OnInit {
       this.patientForm.markAllAsTouched();
       return;
     }
-    /*
+    
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
+      this.tabGroup.selectedIndex = 3;
       return;
     }
-    */
     
+
 
     let id = this.patient.id;
     this.patient = this.patientForm.value;
@@ -260,6 +278,7 @@ export class PatientComponent implements OnInit {
       if (value[1] && value[0] != "date") {
         let status = this.patientForm.get("status").value;
         status.anamnesis = this.anamnesiss;
+        status.riskFactors = this.riskFactors;
         this.statuses.push(status);
         this.patient.statuses = this.statuses;
         this.dataSourceStatuses.data = this.statuses;
@@ -279,14 +298,14 @@ export class PatientComponent implements OnInit {
     for (let value of Object.entries(this.patientForm.get("measure").value)) {
       if (value[1] && value[0] != "startDate" && value[0] != "endDate") {
         this.measures.push(this.patientForm.get("measure").value);
-        this.patient.measures=this.measures;
+        this.patient.measures = this.measures;
         this.dataSourceMeasures.data = this.measures;
         break;
       }
     }
     let existContactData = false;
     for (let value of Object.entries(this.contactForm.get('personalInfo').value)) {
-      if (value[0]=="address"){
+      if (value[0] == "address") {
         for (let value of Object.entries(this.contactForm.get('personalInfo.address').value)) {
           if (value[1]) {
             this.contacts.push(this.contactForm.value);
@@ -297,7 +316,7 @@ export class PatientComponent implements OnInit {
           }
         }
       }
-      else if (existContactData){
+      else if (existContactData) {
         break;
       }
       else if (value[1]) {
@@ -313,30 +332,32 @@ export class PatientComponent implements OnInit {
         value => this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"),
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
-      this.patientForm.get('status').reset();
-      this.patientForm.get('mupStatus').reset();
-      this.patientForm.get('measure').reset();
-      this.contactForm.reset();
+      this.patientForm.get('status').reset({date: this.toDateString(new Date())});
+      this.patientForm.get('mupStatus').reset({date: this.toDateString(new Date())});
+      this.patientForm.get('measure').reset({startDate: new Date(), endDate: new Date()});
+      this.contactForm.reset({date: new Date(), citizenship: "Srbija"});
       this.anamnesiss = [];
+      this.riskFactors = [];
     }
     else {
       this.patientService.add(this.patient).subscribe(
-        value => {this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; console.log(this.patient)},
+        value => { this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; },
         error => this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK")
       );
-      this.patientForm.get('status').reset();
-      this.patientForm.get('mupStatus').reset();
-      this.patientForm.get('measure').reset();
-      this.contactForm.reset();
+      this.patientForm.get('status').reset({date: this.toDateString(new Date())});
+      this.patientForm.get('mupStatus').reset({date: this.toDateString(new Date())});
+      this.patientForm.get('measure').reset({startDate: new Date(), endDate: new Date()});
+      this.contactForm.reset({date: new Date(), citizenship: "Srbija"});
       //this.dataSourceContacts.data = [];
       //this.dataSourceMeasures.data = [];
       //this.dataSourceStatuses.data = [];
       this.anamnesiss = [];
+      this.riskFactors = [];
     }
     this.edit = true;
   }
 
-  delete(id: string){
+  delete(id: string) {
     this.patientsService.delete(id).subscribe(() => {
       this.router.navigate(['/patients']);
       this.snackBarService.openSnackBar("Uspešno izbrisano", "OK")
@@ -346,11 +367,11 @@ export class PatientComponent implements OnInit {
   openDialog(patient: Patient): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: {title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?"}
+      data: { title: "Izbriši pacijenta", content: "Da li ste sigurni da želite da izbrišete ovog pacijenta?" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.delete(patient.id);
       };
     });
@@ -363,7 +384,7 @@ export class PatientComponent implements OnInit {
     }
     this.contacts.push(this.contactForm.value);
     this.dataSourceContacts.data = this.contacts;
-    this.contactForm.reset();
+    this.contactForm.reset({date: new Date(), citizenship: "Srbija"});
     this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
 
@@ -435,7 +456,6 @@ export class PatientComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-
     // Add our anamnesis
     if ((value || '').trim()) {
       this.anamnesiss.push(value.trim());
@@ -449,6 +469,22 @@ export class PatientComponent implements OnInit {
     this.patientForm.get('status.anamnesis').setValue(null);
   }
 
+  addRiskFactor(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.riskFactors.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.patientForm.get('status.riskFactors').setValue(null);
+  }
+
   remove(anamnesis: string): void {
     const index = this.anamnesiss.indexOf(anamnesis);
 
@@ -457,10 +493,26 @@ export class PatientComponent implements OnInit {
     }
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
+  removeRiskFactor(riskFactor: string): void {
+    const index = this.riskFactors.indexOf(riskFactor);
+
+    if (index >= 0) {
+      this.riskFactors.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent, anamnesisInput): void {
     this.anamnesiss.push(event.option.viewValue);
-    this.anamnesisInput.nativeElement.value = '';
+    //this.anamnesisInput.nativeElement.value = '';
+    anamnesisInput.value = '';
     this.patientForm.get('status.anamnesis').setValue(null);
+  }
+
+  selectedRiskFactor(event: MatAutocompleteSelectedEvent, riskFactorInput): void {
+    this.riskFactors.push(event.option.viewValue);
+    //this.riskFactorInput.nativeElement.value = '';
+    riskFactorInput.value = '';
+    this.patientForm.get('status.riskFactors').setValue(null);
   }
 
   private _filterAnamnesis(value: string): string[] {
@@ -468,5 +520,18 @@ export class PatientComponent implements OnInit {
 
     return this.allanamnesiss.filter(anamnesis => anamnesis.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  private _filterRiskFactors(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allRiskFactors.filter(riskFactor => riskFactor.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private toDateString(date: Date): string {
+    return (date.getFullYear().toString() + '-' 
+       + ("0" + (date.getMonth() + 1)).slice(-2) + '-' 
+       + ("0" + (date.getDate())).slice(-2))
+       + 'T' + date.toTimeString().slice(0,5);
+}
 
 }
