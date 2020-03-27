@@ -8,8 +8,9 @@ nohup java -jar target/app-0.0.1-SNAPSHOT.jar &
 ```
 
 ### Nginx
-Created link of directory of project in `/var/www/` with `sudo ln -s ~/data/git/Epidemioloski_nadzor/frontend/epidemioloski-nadzor/epidemija_nginx.conf .`
+Created link of directory of project in `/var/www/` with `sudo ln -s /home/otto/data/git/Epidemioloski_nadzor/`
 Then create **Nginx cofiguration file** to separate static files for frontend and requests for backend
+Create links to Nginx configuration filde into direcories `/etc/nginx/sites-available` and `/etc/nginx/sites-enabled` with `sudo ln -s /home/otto/data/git/Epidemioloski_nadzor/frontend/epidemioloski-nadzor/epidemija_nginx.conf .`
 
 **Rewriting Requests:**
 ```
