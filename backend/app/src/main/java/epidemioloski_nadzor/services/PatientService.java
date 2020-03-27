@@ -1,5 +1,6 @@
 package epidemioloski_nadzor.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,24 @@ public class PatientService {
     public PatientService() {
     }
 
-    public Iterable<Patient> getPatients(Integer page, Integer pageSize) {
+    public Iterable<Patient> getPatients() {
+        return patientRepo.findAll();
+    }
+
+    public Iterable<Patient> getPatientsByQuery(String query, Integer page, Integer pageSize) {
+        return patientRepo.findByQuery(query, PageRequest.of(page, pageSize));
+    }
+
+    public Iterable<Patient> getPatientsPagable(Integer page, Integer pageSize) {
         return patientRepo.findByArchivedIsFalse(PageRequest.of(page, pageSize));
     }
 
     public Optional<Patient> getPatientById(String id) {
         return patientRepo.findById(id);
+    }
+
+    public List<Patient> getNearestByRadius(double[] coordinates, double radius) {
+        return patientRepo.findNearestByRadius(coordinates,radius);
     }
 
     public HttpStatus addPatient(Patient patient) {

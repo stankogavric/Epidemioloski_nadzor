@@ -16,8 +16,13 @@ export class Patient {
     mupStatuses: MupStatus[];
 
     constructor(){
+        this.clinicBranch = '';
+        this.citizenship = '';
+        this.countryOfImport = '';
+        this.personalInfo = new PersonalInfo();
         this.contacts = [];
         this.measures = [];
         this.statuses = [];
+        this.mupStatuses = [];
     }
 }

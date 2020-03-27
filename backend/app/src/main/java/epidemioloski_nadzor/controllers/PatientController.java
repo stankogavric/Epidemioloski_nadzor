@@ -1,5 +1,6 @@
 package epidemioloski_nadzor.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import epidemioloski_nadzor.models.Contact;
 import epidemioloski_nadzor.models.Patient;
+import epidemioloski_nadzor.models.Location;
 import epidemioloski_nadzor.services.PatientService;
 
 @CrossOrigin(origins={"http://localhost:4200", "http://88.99.225.22","https://portal.izjzv.org.rs"})
@@ -24,9 +26,19 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @RequestMapping(value="/{page}/{elements}")
-    public ResponseEntity<Iterable<Patient>> getPatients(@PathVariable Integer page, @PathVariable Integer elements) {
-        return new ResponseEntity<Iterable<Patient>>(patientService.getPatients(page, elements), HttpStatus.OK);
+    @RequestMapping()
+    public ResponseEntity<Iterable<Patient>> getPatients() {
+        return new ResponseEntity<Iterable<Patient>>(patientService.getPatients(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/{page}/{pageSize}/{query}")
+    public ResponseEntity<Iterable<Patient>> getPatientsByQuery(@PathVariable Integer page, @PathVariable Integer pageSize, @PathVariable String query) {
+        return new ResponseEntity<Iterable<Patient>>(patientService.getPatientsByQuery(query, page, pageSize), HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/{page}/{pageSize}")
+    public ResponseEntity<Iterable<Patient>> getPatientsPagable(@PathVariable Integer page, @PathVariable Integer pageSize) {
+        return new ResponseEntity<Iterable<Patient>>(patientService.getPatientsPagable(page, pageSize), HttpStatus.OK);
     }
 
     @RequestMapping(method=RequestMethod.POST)
@@ -41,6 +53,12 @@ public class PatientController {
             return new ResponseEntity<Patient>(patient.get(), HttpStatus.OK);
         }
         return new ResponseEntity<Patient>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value="/nearMe/{radius}", method=RequestMethod.PUT)
+    public ResponseEntity<List<Patient>> getNearestByRadius(@PathVariable double radius, @RequestBody Location data) {
+        System.out.print(data.getCoordinates()); 
+        return new ResponseEntity<List<Patient>>(patientService.getNearestByRadius(data.getCoordinates(),radius), HttpStatus.OK);
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
