@@ -10,14 +10,22 @@ import { MapComponent } from './map/map.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'map', component: MapComponent },
-  { path: 'register', component: RegisterComponent, 
-    canActivate: [RoleGuard], data: { expectedRoles: ['admin'] } },
-  { path: 'patients', component: PatientsComponent, 
-  canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar', 'mup', 'krizniStab'] } },
-  { path: 'register-patient', component: PatientComponent, 
-  canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar'] } },
-  { path: 'edit-patient/:id', component: PatientComponent, 
-  canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar', 'mup'] } },
+  {
+    path: 'register', component: RegisterComponent,
+    canActivate: [RoleGuard], data: { expectedRoles: ['admin'] }
+  },
+  {
+    path: 'patients', component: PatientsComponent,
+    canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar', 'mup', 'krizniStab'] }
+  },
+  {
+    path: 'register-patient', component: PatientComponent,
+    canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar'] }
+  },
+  {
+    path: 'edit-patient/:id', component: PatientComponent,
+    canActivate: [RoleGuard], data: { expectedRoles: ['student', 'lekar', 'mup'] }
+  },
 ];
 
 @NgModule({

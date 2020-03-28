@@ -1,8 +1,8 @@
 <div class="patient">
     <div>
         <button class="patient-button" mat-raised-button color="accent" (click)="onBack()">Pregled pacijenata</button>
-        <button [disabled]="saving ? true : false" class="patient-button" [disableRipple]="true" mat-raised-button color="primary"
-            (click)="savePatient()">Sačuvaj izmene</button>
+        <button [disabled]="saving ? true : false" class="patient-button" [disableRipple]="true" mat-raised-button
+            color="primary" (click)="savePatient()">Sačuvaj izmene</button>
         <div *ngIf="edit">
             <h3>{{patient.personalInfo?.firstname}} {{patient.personalInfo?.lastname}}</h3>
         </div>
@@ -21,37 +21,40 @@
                 <div [formGroup]="patientForm">
                     <div formGroupName="personalInfo">
                         <mat-form-field>
-                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="firstname" type="text" placeholder="Ime"
-                                formControlName="firstname">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="firstname"
+                                type="text" placeholder="Ime" formControlName="firstname">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.firstname'), 'Ime')}}
                             </mat-error>
                         </mat-form-field>&nbsp;
                         <mat-form-field>
-                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="lastname" type="text" placeholder="Prezime"
-                                formControlName="lastname">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="lastname"
+                                type="text" placeholder="Prezime" formControlName="lastname">
                             <mat-error>
                                 {{formError.mapErrors(patientForm.get('personalInfo.lastname'), 'Prezime')}}
                             </mat-error>
                         </mat-form-field><br>
                         <mat-form-field>
-                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="lbo" type="text" placeholder="LBO" formControlName="lbo">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="lbo" type="text"
+                                placeholder="LBO" formControlName="lbo">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.lbo'), 'LBO')}}
                             </mat-error>
                         </mat-form-field>&nbsp;
                         <mat-form-field>
-                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="jmbg" type="text" placeholder="JMBG" formControlName="jmbg">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="jmbg" type="text"
+                                placeholder="JMBG" formControlName="jmbg">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.jmbg'), 'JMBG')}}
                             </mat-error>
                         </mat-form-field><br>
                         <mat-form-field>
-                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="phone" type="text" placeholder="Telefon" formControlName="phone">
+                            <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="phone" type="text"
+                                placeholder="Telefon" formControlName="phone">
                             <mat-error>{{formError.mapErrors(patientForm.get('personalInfo.phone'), 'Telefon')}}
                             </mat-error>
                         </mat-form-field>&nbsp;
                         <span formGroupName="address">
                             <mat-form-field>
-                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text" placeholder="Grad" aria-label="Number" matInput
-                                    formControlName="city" [matAutocomplete]="autoCity">
+                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text" placeholder="Grad"
+                                    aria-label="Number" matInput formControlName="city" [matAutocomplete]="autoCity">
                                 <mat-autocomplete #autoCity="matAutocomplete" autoActiveFirstOption>
                                     <mat-option *ngFor="let city of filteredCities | async" [value]="city">
                                         {{city}}
@@ -67,14 +70,15 @@
                             </mat-form-field>
                             -->
                             <mat-form-field>
-                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="street" type="text" placeholder="Ulica" formControlName="street">
+                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="street"
+                                    type="text" placeholder="Ulica" formControlName="street">
                                 <mat-error>
                                     {{formError.mapErrors(patientForm.get('personalInfo.address.street'), 'Ulica')}}
                                 </mat-error>
                             </mat-form-field>&nbsp;
                             <mat-form-field>
-                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="streetNum" type="text" placeholder="Broj"
-                                    formControlName="streetNum">
+                                <input [readonly]="currentRole=='mup' ? 'true' : 'false'" matInput name="streetNum"
+                                    type="text" placeholder="Broj" formControlName="streetNum">
                                 <mat-error>
                                     {{formError.mapErrors(patientForm.get('personalInfo.address.streetNum'), 'Broj')}}
                                 </mat-error>
@@ -90,8 +94,9 @@
                     </mat-form-field>
                     -->
                     <mat-form-field>
-                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text" placeholder="Državljanstvo" aria-label="Number" matInput
-                            formControlName="citizenship" [matAutocomplete]="autoCitizenship">
+                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text"
+                            placeholder="Državljanstvo" aria-label="Number" matInput formControlName="citizenship"
+                            [matAutocomplete]="autoCitizenship">
                         <mat-autocomplete #autoCitizenship="matAutocomplete" autoActiveFirstOption>
                             <mat-option *ngFor="let citizenship of filteredCitizenships | async" [value]="citizenship">
                                 {{citizenship}}
@@ -99,7 +104,8 @@
                         </mat-autocomplete>
                     </mat-form-field>&nbsp;
                     <mat-form-field class="example-full-width">
-                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text" placeholder="Doputovao iz države" aria-label="Number" matInput
+                        <input [readonly]="currentRole=='mup' ? 'true' : 'false'" type="text"
+                            placeholder="Doputovao iz države" aria-label="Number" matInput
                             formControlName="countryOfImport" [matAutocomplete]="auto">
                         <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
                             <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
@@ -118,7 +124,8 @@
                 </div>
             </div>
             <div *ngIf="(currentRole=='lekar' || currentRole=='student') && edit">
-                <button [disabled]="deleting ? true : false" class="patient-button" mat-raised-button color="warn" (click)="openDialog(patient)">
+                <button [disabled]="deleting ? true : false" class="patient-button" mat-raised-button color="warn"
+                    (click)="openDialog(patient)">
                     Izbriši pacijenta
                 </button>
             </div>
@@ -256,49 +263,82 @@
                         </span>
                         <input matInput (keyup)="applyFilterStatuses($event.target.value)" placeholder="Pretraga">
                     </mat-form-field>
-                    <table mat-table [dataSource]="dataSourceStatuses">
+                    <div style="overflow-x:auto;">
+                        <table mat-table [dataSource]="dataSourceStatuses">
 
-                        <ng-container matColumnDef="no">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">#</div> </th>
-                            <td mat-cell *matCellDef="let i = index;"> <div class="cell">{{i+1}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="no">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">#</div>
+                                </th>
+                                <td mat-cell *matCellDef="let i = index;">
+                                    <div class="cell">{{i+1}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Status</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.status}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Status</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.status}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Datum</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.date | date:'dd.MM.yyyy.' }}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="date">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Datum</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.date | date:'dd.MM.yyyy.' }}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="temperature">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Temperatura</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.temperature}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="temperature">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Temperatura</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.temperature}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="description">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Opis</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.description}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Opis</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.description}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="anamnesis">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Simptomi</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.anamnesis}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="anamnesis">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Simptomi</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.anamnesis}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="hospitalTreatment">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Bolničko lečenje</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.hospitalTreatment}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="hospitalTreatment">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Bolničko lečenje</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.hospitalTreatment}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="riskFactors">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Faktori rizika</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.riskFactors}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="riskFactors">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Faktori rizika</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.riskFactors}}</div>
+                                </td>
+                            </ng-container>
 
-                        <!-- <ng-container matColumnDef="actions">
+                            <!-- <ng-container matColumnDef="actions">
                             <th mat-header-cell *matHeaderCellDef> </th>
                             <td mat-cell *matCellDef="let patient">
                                 <button mat-raised-button color="warn" (click)="openDialog(patient)"
@@ -312,11 +352,12 @@
                             </td>
                         </ng-container> -->
 
-                        <tr mat-header-row *matHeaderRowDef="displayedColumnsStatuses"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumnsStatuses;"></tr>
-                    </table>
-
-                    <mat-paginator #matPaginatorStatuses [length]="statuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsStatuses"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsStatuses;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator #matPaginatorStatuses [length]="statuses.length" [pageSizeOptions]="[5, 10, 20]"
+                        showFirstLastButtons></mat-paginator>
                 </div>
 
                 <div *ngIf="currentRole=='mup'" [formGroup]="patientForm">
@@ -349,34 +390,52 @@
                         </span>
                         <input matInput (keyup)="applyFilterMupStatuses($event.target.value)" placeholder="Pretraga">
                     </mat-form-field>
-                    <table mat-table [dataSource]="dataSourceMupStatuses">
+                    <div style="overflow-x:auto;">
+                        <table mat-table [dataSource]="dataSourceMupStatuses">
 
-                        <ng-container matColumnDef="no">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">#</div> </th>
-                            <td mat-cell *matCellDef="let i = index;"> <div class="cell">{{i+1}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="no">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">#</div>
+                                </th>
+                                <td mat-cell *matCellDef="let i = index;">
+                                    <div class="cell">{{i+1}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Status</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.status}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Status</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.status}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Datum</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.date | date:'dd.MM.yyyy.' }}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="date">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Datum</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.date | date:'dd.MM.yyyy.' }}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="description">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Opis</div> </th>
-                            <td mat-cell *matCellDef="let status"> <div class="cell">{{status.description}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Opis</div>
+                                </th>
+                                <td mat-cell *matCellDef="let status">
+                                    <div class="cell">{{status.description}}</div>
+                                </td>
+                            </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMupStatuses"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumnsMupStatuses;"></tr>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsMupStatuses"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsMupStatuses;"></tr>
 
-                    </table>
-
-                    <mat-paginator #matPaginatorMupStatuses [length]="mupStatuses.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                        </table>
+                    </div>
+                    <mat-paginator #matPaginatorMupStatuses [length]="mupStatuses.length"
+                        [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                 </div>
             </div>
 
@@ -429,38 +488,63 @@
                         </span>
                         <input matInput (keyup)="applyFilterMeasures($event.target.value)" placeholder="Pretraga">
                     </mat-form-field>
-                    <table mat-table [dataSource]="dataSourceMeasures">
+                    <div style="overflow-x:auto;">
+                        <table mat-table [dataSource]="dataSourceMeasures">
 
-                        <ng-container matColumnDef="no">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">#</div> </th>
-                            <td mat-cell *matCellDef="let i = index;"> <div class="cell">{{i+1}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="no">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">#</div>
+                                </th>
+                                <td mat-cell *matCellDef="let i = index;">
+                                    <div class="cell">{{i+1}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="measure">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Mera</div> </th>
-                            <td mat-cell *matCellDef="let measure"> <div class="cell">{{measure.measure}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="measure">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Mera</div>
+                                </th>
+                                <td mat-cell *matCellDef="let measure">
+                                    <div class="cell">{{measure.measure}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="rescriptNum">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Broj rešenja</div> </th>
-                            <td mat-cell *matCellDef="let measure"> <div class="cell">{{measure.rescriptNum}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="rescriptNum">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Broj rešenja</div>
+                                </th>
+                                <td mat-cell *matCellDef="let measure">
+                                    <div class="cell">{{measure.rescriptNum}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="startDate">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Početak mere</div> </th>
-                            <td mat-cell *matCellDef="let measure"> <div class="cell">{{measure.startDate | date:'dd.MM.yyyy.'}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="startDate">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Početak mere</div>
+                                </th>
+                                <td mat-cell *matCellDef="let measure">
+                                    <div class="cell">{{measure.startDate | date:'dd.MM.yyyy.'}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="endDate">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Završetak mere</div> </th>
-                            <td mat-cell *matCellDef="let measure"> <div class="cell">{{measure.endDate | date:'dd.MM.yyyy.'}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="endDate">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Završetak mere</div>
+                                </th>
+                                <td mat-cell *matCellDef="let measure">
+                                    <div class="cell">{{measure.endDate | date:'dd.MM.yyyy.'}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="institution">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Ustanova</div> </th>
-                            <td mat-cell *matCellDef="let measure"><div class="cell">{{measure.institution}}</div> </td>
-                        </ng-container>
-                        <!--
+                            <ng-container matColumnDef="institution">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Ustanova</div>
+                                </th>
+                                <td mat-cell *matCellDef="let measure">
+                                    <div class="cell">{{measure.institution}}</div>
+                                </td>
+                            </ng-container>
+                            <!--
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef> </th>
                         <td mat-cell *matCellDef="let patient">
@@ -474,11 +558,12 @@
                         </td>
                     </ng-container>
                     -->
-                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMeasures"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumnsMeasures;"></tr>
-                    </table>
-
-                    <mat-paginator #matPaginatorMeasures [length]="measures.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsMeasures"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsMeasures;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator #matPaginatorMeasures [length]="measures.length" [pageSizeOptions]="[5, 10, 20]"
+                        showFirstLastButtons></mat-paginator>
                 </div>
             </div>
         </mat-tab>
@@ -611,34 +696,55 @@
                         </span>
                         <input matInput (keyup)="applyFilterContacts($event.target.value)" placeholder="Pretraga">
                     </mat-form-field>
-                    <table mat-table [dataSource]="dataSourceContacts">
+                    <div style="overflow-x:auto;">
+                        <table mat-table [dataSource]="dataSourceContacts">
 
-                        <ng-container matColumnDef="no">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">#</div> </th>
-                            <td mat-cell *matCellDef="let i = index;"> <div class="cell">{{i+1}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="no">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">#</div>
+                                </th>
+                                <td mat-cell *matCellDef="let i = index;">
+                                    <div class="cell">{{i+1}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="firstname">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Ime</div> </th>
-                            <td mat-cell *matCellDef="let contact"> <div class="cell">{{contact.personalInfo.firstname}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="firstname">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Ime</div>
+                                </th>
+                                <td mat-cell *matCellDef="let contact">
+                                    <div class="cell">{{contact.personalInfo.firstname}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="lastname">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Prezime</div> </th>
-                            <td mat-cell *matCellDef="let contact"> <div class="cell">{{contact.personalInfo.lastname}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="lastname">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Prezime</div>
+                                </th>
+                                <td mat-cell *matCellDef="let contact">
+                                    <div class="cell">{{contact.personalInfo.lastname}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="jmbg">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">JMBG</div> </th>
-                            <td mat-cell *matCellDef="let contact"> <div class="cell">{{contact.personalInfo.jmbg}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="jmbg">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">JMBG</div>
+                                </th>
+                                <td mat-cell *matCellDef="let contact">
+                                    <div class="cell">{{contact.personalInfo.jmbg}}</div>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="phone">
-                            <th mat-header-cell *matHeaderCellDef> <div class="cell">Telefon</div> </th>
-                            <td mat-cell *matCellDef="let contact"> <div class="cell">{{contact.personalInfo.phone}}</div> </td>
-                        </ng-container>
+                            <ng-container matColumnDef="phone">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div class="cell">Telefon</div>
+                                </th>
+                                <td mat-cell *matCellDef="let contact">
+                                    <div class="cell">{{contact.personalInfo.phone}}</div>
+                                </td>
+                            </ng-container>
 
-                        <!-- <ng-container matColumnDef="actions">
+                            <!-- <ng-container matColumnDef="actions">
                             <th mat-header-cell *matHeaderCellDef> </th>
                             <td mat-cell *matCellDef="let patient">
                                 <button mat-raised-button color="warn" (click)="openDialog(patient)"
@@ -652,11 +758,12 @@
                             </td>
                         </ng-container> -->
 
-                        <tr mat-header-row *matHeaderRowDef="displayedColumnsContacts"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumnsContacts;"></tr>
-                    </table>
-
-                    <mat-paginator #matPaginatorContacts [length]="contacts.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsContacts"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsContacts;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator #matPaginatorContacts [length]="contacts.length" [pageSizeOptions]="[5, 10, 20]"
+                        showFirstLastButtons></mat-paginator>
                 </div>
             </div>
         </mat-tab>

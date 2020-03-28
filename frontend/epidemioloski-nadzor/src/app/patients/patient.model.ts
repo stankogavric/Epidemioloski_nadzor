@@ -5,17 +5,17 @@ import { Status } from './status.model';
 import { MupStatus } from './mup-status.model';
 
 export class Patient {
-    id:string;
-    clinicBranch:string;
-    citizenship:string;
-    countryOfImport:string;
-    contacts:Contact[];
-    measures:Measure[];
-    personalInfo:PersonalInfo;
-    statuses:Status[];
+    id: string;
+    clinicBranch: string;
+    citizenship: string;
+    countryOfImport: string;
+    contacts: Contact[];
+    measures: Measure[];
+    personalInfo: PersonalInfo;
+    statuses: Status[];
     mupStatuses: MupStatus[];
 
-    constructor(){
+    constructor() {
         this.clinicBranch = '';
         this.citizenship = '';
         this.countryOfImport = '';

@@ -24,12 +24,12 @@ export class RoleGuard implements CanActivate {
         });
       }
     }
-    if(authorized){
+    if (authorized) {
       return true;
-    }else{
-      if(token){
+    } else {
+      if (token) {
         this.router.navigate(['/']);
-      }else{
+      } else {
         this.router.navigate(['']);
       }
       return false;

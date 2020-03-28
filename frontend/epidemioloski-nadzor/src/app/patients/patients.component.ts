@@ -32,7 +32,7 @@ export class PatientsComponent implements OnInit {
   }
 
   getAll(event) {
-    this.patientsService.getAll(event.pageIndex, event.pageSize).subscribe((value: {content:Patient []}) => {
+    this.patientsService.getAll(event.pageIndex, event.pageSize).subscribe((value: { content: Patient[] }) => {
       let data = value.content;
       this.patients = data;
       this.dataSource.data = data;
@@ -90,13 +90,13 @@ export class PatientsComponent implements OnInit {
       });
     }
   */
- /*
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  */
-  getPatientsByQuery(pageIndex, pageSize, query){
-    this.patientsService.getAllByQuery(pageIndex, pageSize, query).subscribe((value: {content:Patient []}) => {
+  /*
+   applyFilter(filterValue: string) {
+     this.dataSource.filter = filterValue.trim().toLowerCase();
+   }
+   */
+  getPatientsByQuery(pageIndex, pageSize, query) {
+    this.patientsService.getAllByQuery(pageIndex, pageSize, query).subscribe((value: { content: Patient[] }) => {
       let data = value.content;
       this.patients = data;
       this.dataSource.data = data;
@@ -105,20 +105,20 @@ export class PatientsComponent implements OnInit {
     });
   }
 
-  search(query){
+  search(query) {
     query = query.trim();
-    if(query!=""){
+    if (query != "") {
       this.loading = true;
       this.getPatientsByQuery(0, this.paginator.pageSize, query);
     }
-    else{
+    else {
       this.getAll({ 'pageIndex': 0, 'pageSize': this.paginator.pageSize });
     }
   }
 
-  checkQuery(query){
+  checkQuery(query) {
     query = query.trim();
-    if(query==""){
+    if (query == "") {
       this.getAll({ 'pageIndex': 0, 'pageSize': this.paginator.pageSize });
     }
   }

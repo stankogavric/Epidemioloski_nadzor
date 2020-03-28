@@ -1,5 +1,5 @@
 export class Measure {
-    id:number;
+    id: number;
     measure: string;
     startDate: Date;
     endDate: Date;

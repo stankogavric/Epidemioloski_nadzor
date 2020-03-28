@@ -10,12 +10,12 @@ export class StaticDataService {
     public devProdUrl = "";
     //public devProdUrl = "http://localhost:8080";
 
-    public url = this.devProdUrl+"/";
+    public url = this.devProdUrl + "/";
 
     constructor(private http: HttpClient) {
     }
 
-    getRiskFactors(){
+    getRiskFactors() {
         return ["Trudnoća trimestar", "Postporođajni period", "Kardiovaskularna bolest", "Imunodeficijencija", "Dijabetes", "Bolest bubrega", "Bolest jetre", "Bolest pluća", "Hronična neurološka bolest", "Maligna bolest"]
     }
 

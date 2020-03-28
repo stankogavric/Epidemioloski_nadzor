@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit {
         if (response.token) {
           localStorage.setItem('token', response.token);
           this.message = "";
-          if(this.authService.getCurrentRole() == "admin"){
+          if (this.authService.getCurrentRole() == "admin") {
             this.router.navigate(['/register']);
-          }else{
+          } else {
             this.router.navigate(['/patients']);
           }
         } else {

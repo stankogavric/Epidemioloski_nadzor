@@ -120,13 +120,13 @@ export class PatientComponent implements OnInit {
   constructor(private authService: AuthService, public dialog: MatDialog, private patientsService: PatientService, private snackBarService: SnackBarService, private patientService: PatientService, private fb: FormBuilder, public formError: FormErrorService, private route: ActivatedRoute, private router: Router, private staticDataService: StaticDataService) { }
 
   ngOnInit() {
-    
 
-    this.staticDataService.getCities().subscribe((value: string[])=>{
+
+    this.staticDataService.getCities().subscribe((value: string[]) => {
       this.citiesContact = this.cities = value;
     })
 
-    this.staticDataService.getCountries().subscribe((value: string[])=>{
+    this.staticDataService.getCountries().subscribe((value: string[]) => {
       this.countries = this.countriesContact = this.citizenships = this.citizenshipsContact = value;
     })
 
@@ -265,13 +265,13 @@ export class PatientComponent implements OnInit {
       this.patientForm.markAllAsTouched();
       return;
     }
-    
+
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       this.tabGroup.selectedIndex = 3;
       return;
     }
-    
+
     this.saving = true;
 
     let id = this.patient.id;
@@ -342,10 +342,10 @@ export class PatientComponent implements OnInit {
         value => { this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.saving = false },
         error => { this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK"); this.saving = false }
       );
-      this.patientForm.get('status').reset({date: this.toDateString(new Date())});
-      this.patientForm.get('mupStatus').reset({date: this.toDateString(new Date())});
-      this.patientForm.get('measure').reset({startDate: new Date(), endDate: new Date()});
-      this.contactForm.reset({date: new Date(), citizenship: "Srbija"});
+      this.patientForm.get('status').reset({ date: this.toDateString(new Date()) });
+      this.patientForm.get('mupStatus').reset({ date: this.toDateString(new Date()) });
+      this.patientForm.get('measure').reset({ startDate: new Date(), endDate: new Date() });
+      this.contactForm.reset({ date: new Date(), citizenship: "Srbija" });
       this.anamnesiss = [];
       this.riskFactors = [];
     }
@@ -354,10 +354,10 @@ export class PatientComponent implements OnInit {
         value => { this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK"); this.patient.id = value['id']; this.saving = false },
         error => { this.snackBarService.openSnackBar("Uneti podaci nisu sačuvani", "OK"); this.saving = false }
       );
-      this.patientForm.get('status').reset({date: this.toDateString(new Date())});
-      this.patientForm.get('mupStatus').reset({date: this.toDateString(new Date())});
-      this.patientForm.get('measure').reset({startDate: new Date(), endDate: new Date()});
-      this.contactForm.reset({date: new Date(), citizenship: "Srbija"});
+      this.patientForm.get('status').reset({ date: this.toDateString(new Date()) });
+      this.patientForm.get('mupStatus').reset({ date: this.toDateString(new Date()) });
+      this.patientForm.get('measure').reset({ startDate: new Date(), endDate: new Date() });
+      this.contactForm.reset({ date: new Date(), citizenship: "Srbija" });
       //this.dataSourceContacts.data = [];
       //this.dataSourceMeasures.data = [];
       //this.dataSourceStatuses.data = [];
@@ -396,7 +396,7 @@ export class PatientComponent implements OnInit {
     }
     this.contacts.push(this.contactForm.value);
     this.dataSourceContacts.data = this.contacts;
-    this.contactForm.reset({date: new Date(), citizenship: "Srbija"});
+    this.contactForm.reset({ date: new Date(), citizenship: "Srbija" });
     this.snackBarService.openSnackBar("Uneti podaci su sačuvani", "OK");
   }
 
@@ -540,10 +540,10 @@ export class PatientComponent implements OnInit {
   }
 
   private toDateString(date: Date): string {
-    return (date.getFullYear().toString() + '-' 
-       + ("0" + (date.getMonth() + 1)).slice(-2) + '-' 
-       + ("0" + (date.getDate())).slice(-2))
-       + 'T' + date.toTimeString().slice(0,5);
-}
+    return (date.getFullYear().toString() + '-'
+      + ("0" + (date.getMonth() + 1)).slice(-2) + '-'
+      + ("0" + (date.getDate())).slice(-2))
+      + 'T' + date.toTimeString().slice(0, 5);
+  }
 
 }

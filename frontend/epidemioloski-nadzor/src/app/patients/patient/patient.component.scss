@@ -34,37 +34,6 @@ tr.mat-row:hover {
     margin: 20px;
 }
 
-@media only screen and (max-width: 700px) {
-    .cell {
-      width: 50px;
-      word-wrap: break-word;
-    }
-  }
-  
-  @media only screen and (max-width: 600px) {
-    .cell {
-      width: 40px;
-      word-wrap: break-word;
-    }
-  }
-  
-  @media only screen and (max-width: 500px) {
-    .cell {
-      width: 30px;
-      word-wrap: break-word;
-    }
-  }
-  
-  @media only screen and (max-width: 400px) {
-    .cell {
-      width: 20px;
-      word-wrap: break-word;
-    }
-  }
-  
-  @media only screen and (max-width: 300px) {
-    .cell {
-      width: 10px;
-      word-wrap: break-word;
-    }
-  }
+.cell {
+  margin: 10px;
+}

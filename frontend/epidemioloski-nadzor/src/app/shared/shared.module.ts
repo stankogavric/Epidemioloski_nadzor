@@ -7,7 +7,7 @@ import { MaterialModule } from './material.module';
 import { AppRoutingModule } from '../app-routing.module';
 
 //import {FlexLayoutModule} from "@angular/flex-layout";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
@@ -35,7 +35,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     ConfirmationDialogComponent
     //FlexLayoutModule
   ],
-  entryComponents: [ 
+  entryComponents: [
     ConfirmationDialogComponent
   ]
 })

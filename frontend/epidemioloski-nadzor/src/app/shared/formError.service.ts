@@ -13,22 +13,23 @@ export class FormErrorService {
         '^[0-9+ ]{3,}$': " mora biti broj sa najmanje 3 kraktera"
     }
 
-    errorMap: { 
-        [key: string]: (c: AbstractControl, name: string) => string } = {
-        'required': (c: AbstractControl) => `Polje je obavezno`,
-        'email': (c: AbstractControl) => `${c.value} nije ispravna e-pošta`,
-        'maxlength': (c: AbstractControl, name: string) => `${name} ne može imati više od ${c.errors['minlength']['requiredLength']} karaktera`,
-        'minlength': (c: AbstractControl, name: string) => `${name} mora imati najmanje ${c.errors['minlength']['requiredLength']} karaktera`,
-        'mustMatch': (c: AbstractControl, name: string) => `${name} se mora slagati sa lozinkom`,
-        'invalidMimeType': (c: AbstractControl, name: string) => `Pogrešan tip, samo png i jpg su podržani za ${name}`,
-        'pattern' (c: AbstractControl, name: string) {
-            return `${name} ${this.patternMap[c.errors['pattern']['requiredPattern']]}`
+    errorMap: {
+        [key: string]: (c: AbstractControl, name: string) => string
+    } = {
+            'required': (c: AbstractControl) => `Polje je obavezno`,
+            'email': (c: AbstractControl) => `${c.value} nije ispravna e-pošta`,
+            'maxlength': (c: AbstractControl, name: string) => `${name} ne može imati više od ${c.errors['minlength']['requiredLength']} karaktera`,
+            'minlength': (c: AbstractControl, name: string) => `${name} mora imati najmanje ${c.errors['minlength']['requiredLength']} karaktera`,
+            'mustMatch': (c: AbstractControl, name: string) => `${name} se mora slagati sa lozinkom`,
+            'invalidMimeType': (c: AbstractControl, name: string) => `Pogrešan tip, samo png i jpg su podržani za ${name}`,
+            'pattern'(c: AbstractControl, name: string) {
+                return `${name} ${this.patternMap[c.errors['pattern']['requiredPattern']]}`
+            }
         }
-    }
 
     mapErrors(control: AbstractControl, name: string): string {
         for (let i = 0; i < Object.keys(control.errors || {}).length; i++) {
-            if(this.errorMap[Object.keys(control.errors || {})[0]]){
+            if (this.errorMap[Object.keys(control.errors || {})[0]]) {
                 return this.errorMap[Object.keys(control.errors || {})[0]].bind(this)(control, name);
             }
             return "Nepodržana greška";

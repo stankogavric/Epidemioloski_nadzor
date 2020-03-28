@@ -34,7 +34,8 @@
                 <mat-error>{{formError.mapErrors(form.get('pin'), 'PIN')}}</mat-error>
             </mat-form-field>
             <p class="message">{{message}}</p>
-            <button [disabled]="loading ? true : false" class="register-button" mat-raised-button color="primary" (click)="onRegister()">Registruj</button>
+            <button [disabled]="loading ? true : false" class="register-button" mat-raised-button color="primary"
+                (click)="onRegister()">Registruj</button>
         </div>
     </div>
 </div>

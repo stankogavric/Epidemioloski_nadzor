@@ -12,12 +12,14 @@
             <mat-form-field>
                 <input matInput name="pin" formControlName="pinInput" placeholder="PIN"
                     [type]="hide ? 'password' : 'text'">
-                    <mat-icon class="password-toggle" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon class="password-toggle" matSuffix (click)="hide = !hide">
+                    {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-error>{{formError.mapErrors(loginForm.get('pinInput'), 'PIN')}}</mat-error>
             </mat-form-field>
             <br>
             <p class="message">{{message}}</p>
-            <button class="login-button" mat-raised-button color="primary" type="submit" [disabled]="loading ? true : false">Prijavi se</button>
+            <button class="login-button" mat-raised-button color="primary" type="submit"
+                [disabled]="loading ? true : false">Prijavi se</button>
         </form>
     </div>
 </div>
